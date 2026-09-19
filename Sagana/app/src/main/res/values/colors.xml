@@ -15,4 +15,9 @@
     <color name="text_secondary">#6B5A52</color>
     <color name="icon_muted">#8C7B72</color>
     <color name="input_border">#F0E3CF</color>
+    <color name="chili_light">#FDE3DF</color>
+    <color name="white_translucent">#33FFFFFF</color>
+    <color name="white_muted">#E6FFFFFF</color>
+    <color name="placeholder_stripe">#FFE9AE</color>
+    <color name="placeholder_ink">#9A6B00</color>
 </resources>

@@ -4,33 +4,59 @@
     <color name="black">#FF000000</color>
     <color name="butter">#FFF3CF</color>
     <color name="chili">#C8231B</color>
+    <color name="chili_light">#FDE3DF</color>
     <color name="icon_muted">#8C7B72</color>
     <color name="input_border">#F0E3CF</color>
     <color name="leaf">#2F7D4A</color>
     <color name="mango">#FFB400</color>
+    <color name="placeholder_ink">#9A6B00</color>
+    <color name="placeholder_stripe">#FFE9AE</color>
     <color name="rice">#FFFBF4</color>
     <color name="text_secondary">#6B5A52</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white_muted">#E6FFFFFF</color>
+    <color name="white_translucent">#33FFFFFF</color>
     <string name="action_demo">Use demo account</string>
     <string name="action_login">Log in</string>
     <string name="app_name">Sagana</string>
     <string name="brand_name">SaluBite</string>
+    <string name="brgy_desk">Brgy. desk</string>
     <string name="cd_hide_password">Hide password</string>
     <string name="cd_logo">SaluBite logo</string>
+    <string name="cd_notifications">Notifications</string>
     <string name="cd_show_password">Show password</string>
+    <string name="chip_all">All</string>
+    <string name="chip_bread">Bread</string>
+    <string name="chip_cooked">Cooked</string>
+    <string name="chip_packaged">Packaged</string>
+    <string name="chip_produce">Produce</string>
+    <string name="closest_first">Closest first</string>
     <string name="create_account">Create an account</string>
+    <string name="demo_display_name">Demo</string>
     <string name="error_email_invalid">Enter a valid email</string>
     <string name="error_email_required">Enter your email</string>
     <string name="error_password_required">Enter your password</string>
     <string name="forgot_password">Forgot password?</string>
+    <string name="greeting_afternoon">Good afternoon</string>
+    <string name="greeting_evening">Good evening</string>
+    <string name="greeting_morning">Good morning</string>
     <string name="hint_email">juan@email.com</string>
     <string name="hint_password">Your password</string>
+    <string name="hint_search">Search pandesal, rice, adobo</string>
+    <string name="home_greeting">%1$s, %2$s. Here\'s what\'s up for grabs nearby.</string>
     <string name="label_email">Email</string>
     <string name="label_password">Password</string>
+    <string name="listing_count">%1$d listings</string>
     <string name="login_tagline">Extra food, shared with neighbors nearby.</string>
+    <string name="nav_alerts">Alerts</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_pickups">Pickups</string>
+    <string name="nav_post">Post</string>
+    <string name="nav_profile">Profile</string>
     <string name="new_here">New here?</string>
+    <string name="range_km">1–5 km</string>
     <string name="toast_coming_soon">Coming soon</string>
-    <string name="toast_login_success">Welcome, %1$s!</string>
+    <string name="within_km">Within %1$d km of you</string>
     <style name="Base.Theme.Sagana" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/chili</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -43,5 +69,31 @@
         <item name="android:windowBackground">@color/rice</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
+    <style name="TextAppearance.SaluBite.Chip" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/chip_text</item>
+    </style>
+    <style name="TextAppearance.SaluBite.NavLabel" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="TextAppearance.SaluBite.NavLabel.Active">
+        <item name="android:textStyle">bold</item>
+    </style>
     <style name="Theme.Sagana" parent="Base.Theme.Sagana"/>
+    <style name="Widget.SaluBite.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">@color/chip_background</item>
+        <item name="android:textColor">@color/chip_text</item>
+        <item name="android:textAppearance">@style/TextAppearance.SaluBite.Chip</item>
+        <item name="chipStrokeColor">@color/input_border</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipCornerRadius">20dp</item>
+        <item name="chipMinHeight">40dp</item>
+        <item name="chipStartPadding">8dp</item>
+        <item name="chipEndPadding">8dp</item>
+        <item name="checkedIconVisible">false</item>
+    </style>
+    <style name="Widget.SaluBite.NavIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/chili_light</item>
+    </style>
 </resources>

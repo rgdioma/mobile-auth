@@ -1,5 +1,6 @@
 package com.example.sagana
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.util.Patterns
@@ -101,12 +102,17 @@ class MainActivity : AppCompatActivity() {
                 editPassword.requestFocus()
             }
             else -> {
-                val name = email.substringBefore('@')
-                Toast.makeText(
-                    this,
-                    getString(R.string.toast_login_success, name),
-                    Toast.LENGTH_SHORT
-                ).show()
+                // TODO: Replace with real authentication.
+                val displayName = if (email == DEMO_EMAIL) {
+                    getString(R.string.demo_display_name)
+                } else {
+                    email.substringBefore('@').replaceFirstChar { it.uppercase() }
+                }
+                startActivity(
+                    Intent(this, HomeActivity::class.java)
+                        .putExtra(HomeActivity.EXTRA_DISPLAY_NAME, displayName)
+                )
+                finish()
             }
         }
     }

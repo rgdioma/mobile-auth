@@ -20,6 +20,31 @@
     <string name="error_email_required">Enter your email</string>
     <string name="error_email_invalid">Enter a valid email</string>
     <string name="error_password_required">Enter your password</string>
-    <string name="toast_login_success">Welcome, %1$s!</string>
     <string name="toast_coming_soon">Coming soon</string>
+    <string name="demo_display_name">Demo</string>
+
+    <!-- Home -->
+    <string name="greeting_morning">Good morning</string>
+    <string name="greeting_afternoon">Good afternoon</string>
+    <string name="greeting_evening">Good evening</string>
+    <string name="home_greeting">%1$s, %2$s. Here\'s what\'s up for grabs nearby.</string>
+    <string name="cd_notifications">Notifications</string>
+    <string name="hint_search">Search pandesal, rice, adobo</string>
+    <string name="within_km">Within %1$d km of you</string>
+    <string name="range_km">1–5 km</string>
+    <string name="chip_all">All</string>
+    <string name="chip_cooked">Cooked</string>
+    <string name="chip_bread">Bread</string>
+    <string name="chip_produce">Produce</string>
+    <string name="chip_packaged">Packaged</string>
+    <string name="closest_first">Closest first</string>
+    <string name="listing_count">%1$d listings</string>
+    <string name="brgy_desk">Brgy. desk</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_post">Post</string>
+    <string name="nav_pickups">Pickups</string>
+    <string name="nav_alerts">Alerts</string>
+    <string name="nav_profile">Profile</string>
 </resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Category filter chips -->
+    <style name="Widget.SaluBite.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">@color/chip_background</item>
+        <item name="android:textColor">@color/chip_text</item>
+        <item name="android:textAppearance">@style/TextAppearance.SaluBite.Chip</item>
+        <item name="chipStrokeColor">@color/input_border</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipCornerRadius">20dp</item>
+        <item name="chipMinHeight">40dp</item>
+        <item name="chipStartPadding">8dp</item>
+        <item name="chipEndPadding">8dp</item>
+        <item name="checkedIconVisible">false</item>
+    </style>
+
+    <style name="TextAppearance.SaluBite.Chip" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/chip_text</item>
+    </style>
+
+    <!-- Bottom navigation -->
+    <style name="Widget.SaluBite.NavIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/chili_light</item>
+    </style>
+
+    <style name="TextAppearance.SaluBite.NavLabel" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextAppearance.SaluBite.NavLabel.Active">
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>

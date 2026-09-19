@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Butter tile with diagonal stripes, sized for the 88dp listing photo slot -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="88dp"
+    android:height="88dp"
+    android:viewportWidth="88"
+    android:viewportHeight="88">
+    <group>
+        <clip-path android:pathData="M12,0 H76 A12,12 0 0 1 88,12 V76 A12,12 0 0 1 76,88 H12 A12,12 0 0 1 0,76 V12 A12,12 0 0 1 12,0 Z" />
+        <path
+            android:fillColor="@color/butter"
+            android:pathData="M0,0 H88 V88 H0 Z" />
+        <path
+            android:strokeColor="@color/placeholder_stripe"
+            android:strokeWidth="5"
+            android:pathData="M12,0 L-76,88 M24,0 L-64,88 M36,0 L-52,88 M48,0 L-40,88 M60,0 L-28,88 M72,0 L-16,88 M84,0 L-4,88 M96,0 L8,88 M108,0 L20,88 M120,0 L32,88 M132,0 L44,88 M144,0 L56,88 M156,0 L68,88 M168,0 L80,88 M180,0 L92,88" />
+    </group>
+</vector>

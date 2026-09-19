@@ -26,6 +26,7 @@
             android:src="@drawable/ic_logo" />
 
         <!-- Brand -->
+
         <TextView
             android:id="@+id/textBrand"
             android:layout_width="wrap_content"
@@ -121,8 +122,8 @@
 
             <ImageButton
                 android:id="@+id/buttonTogglePassword"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="53dp"
+                android:layout_height="48dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/cd_show_password"
                 android:src="@drawable/ic_visibility" />
