@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="adobo">#3A1B12</color>
+    <color name="black">#FF000000</color>
+    <color name="butter">#FFF3CF</color>
+    <color name="chili">#C8231B</color>
+    <color name="icon_muted">#8C7B72</color>
+    <color name="input_border">#F0E3CF</color>
+    <color name="leaf">#2F7D4A</color>
+    <color name="mango">#FFB400</color>
+    <color name="rice">#FFFBF4</color>
+    <color name="text_secondary">#6B5A52</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="action_demo">Use demo account</string>
+    <string name="action_login">Log in</string>
+    <string name="app_name">Sagana</string>
+    <string name="brand_name">SaluBite</string>
+    <string name="cd_hide_password">Hide password</string>
+    <string name="cd_logo">SaluBite logo</string>
+    <string name="cd_show_password">Show password</string>
+    <string name="create_account">Create an account</string>
+    <string name="error_email_invalid">Enter a valid email</string>
+    <string name="error_email_required">Enter your email</string>
+    <string name="error_password_required">Enter your password</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="hint_email">juan@email.com</string>
+    <string name="hint_password">Your password</string>
+    <string name="label_email">Email</string>
+    <string name="label_password">Password</string>
+    <string name="login_tagline">Extra food, shared with neighbors nearby.</string>
+    <string name="new_here">New here?</string>
+    <string name="toast_coming_soon">Coming soon</string>
+    <string name="toast_login_success">Welcome, %1$s!</string>
+    <style name="Base.Theme.Sagana" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/chili</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/mango</item>
+        <item name="colorOnSecondary">@color/adobo</item>
+        <item name="android:colorBackground">@color/rice</item>
+        <item name="colorOnBackground">@color/adobo</item>
+        <item name="colorSurface">@color/rice</item>
+        <item name="colorOnSurface">@color/adobo</item>
+        <item name="android:windowBackground">@color/rice</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+    <style name="Theme.Sagana" parent="Base.Theme.Sagana"/>
+</resources>
