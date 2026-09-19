@@ -1,8 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Sagana" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Base.Theme.Sagana" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/chili</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/mango</item>
+        <item name="colorOnSecondary">@color/adobo</item>
+        <item name="android:colorBackground">@color/rice</item>
+        <item name="colorOnBackground">@color/adobo</item>
+        <item name="colorSurface">@color/rice</item>
+        <item name="colorOnSurface">@color/adobo</item>
+        <item name="android:windowBackground">@color/rice</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.Sagana" parent="Base.Theme.Sagana" />

@@ -2,4 +2,17 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- SaluBite palette -->
+    <color name="chili">#C8231B</color>
+    <color name="mango">#FFB400</color>
+    <color name="butter">#FFF3CF</color>
+    <color name="rice">#FFFBF4</color>
+    <color name="adobo">#3A1B12</color>
+    <color name="leaf">#2F7D4A</color>
+
+    <!-- Supporting tones -->
+    <color name="text_secondary">#6B5A52</color>
+    <color name="icon_muted">#8C7B72</color>
+    <color name="input_border">#F0E3CF</color>
 </resources>

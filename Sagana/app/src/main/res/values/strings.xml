@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Sagana</string>
+
+    <!-- Login -->
+    <string name="brand_name">SaluBite</string>
+    <string name="login_tagline">Extra food, shared with neighbors nearby.</string>
+    <string name="label_email">Email</string>
+    <string name="hint_email">juan@email.com</string>
+    <string name="label_password">Password</string>
+    <string name="hint_password">Your password</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="action_login">Log in</string>
+    <string name="action_demo">Use demo account</string>
+    <string name="new_here">New here?</string>
+    <string name="create_account">Create an account</string>
+    <string name="cd_logo">SaluBite logo</string>
+    <string name="cd_show_password">Show password</string>
+    <string name="cd_hide_password">Hide password</string>
+
+    <string name="error_email_required">Enter your email</string>
+    <string name="error_email_invalid">Enter a valid email</string>
+    <string name="error_password_required">Enter your password</string>
+    <string name="toast_login_success">Welcome, %1$s!</string>
+    <string name="toast_coming_soon">Coming soon</string>
 </resources>
