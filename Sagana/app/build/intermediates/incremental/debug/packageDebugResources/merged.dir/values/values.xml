@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="categories">
+        <item>Choose a category</item>
+        <item>Cooked Food</item>
+        <item>Bread &amp; Pastries</item>
+        <item>Fruits &amp; Vegetables</item>
+        <item>Packaged Goods</item>
+    </string-array>
+    <string-array name="units">
+        <item>packs</item>
+        <item>kg</item>
+        <item>pieces</item>
+        <item>servings</item>
+    </string-array>
     <color name="adobo">#3A1B12</color>
     <color name="black">#FF000000</color>
     <color name="butter">#FFF3CF</color>
@@ -18,12 +31,14 @@
     <color name="white_translucent">#33FFFFFF</color>
     <string name="action_demo">Use demo account</string>
     <string name="action_login">Log in</string>
+    <string name="action_post_food">Post</string>
     <string name="app_name">Sagana</string>
     <string name="brand_name">SaluBite</string>
     <string name="brgy_desk">Brgy. desk</string>
     <string name="cd_hide_password">Hide password</string>
     <string name="cd_logo">SaluBite logo</string>
     <string name="cd_notifications">Notifications</string>
+    <string name="cd_photo_picker">Photo picker icon</string>
     <string name="cd_show_password">Show password</string>
     <string name="chip_all">All</string>
     <string name="chip_bread">Bread</string>
@@ -32,6 +47,9 @@
     <string name="chip_produce">Produce</string>
     <string name="closest_first">Closest first</string>
     <string name="create_account">Create an account</string>
+    <string name="default_end_time">05:42 am</string>
+    <string name="default_quantity">1</string>
+    <string name="default_start_time">03:12 am</string>
     <string name="demo_display_name">Demo</string>
     <string name="error_email_invalid">Enter a valid email</string>
     <string name="error_email_required">Enter your email</string>
@@ -40,12 +58,25 @@
     <string name="greeting_afternoon">Good afternoon</string>
     <string name="greeting_evening">Good evening</string>
     <string name="greeting_morning">Good morning</string>
+    <string name="hint_add_photo">Put: a clear photo of the actual food</string>
+    <string name="hint_category">Choose a category</string>
+    <string name="hint_drop_off">Brgy. Tangub social welfare desk</string>
     <string name="hint_email">juan@email.com</string>
     <string name="hint_password">Your password</string>
     <string name="hint_search">Search pandesal, rice, adobo</string>
+    <string name="hint_unit">packs</string>
+    <string name="hint_what_food">Pancit canton, pandesal, rice</string>
     <string name="home_greeting">%1$s, %2$s. Here\'s what\'s up for grabs nearby.</string>
+    <string name="label_add_photo">Tap to add a photo</string>
+    <string name="label_category">Category</string>
+    <string name="label_drop_off">Drop-off point</string>
     <string name="label_email">Email</string>
     <string name="label_password">Password</string>
+    <string name="label_pickup_window">Pickup window, today</string>
+    <string name="label_quantity">Quantity</string>
+    <string name="label_safety_check">The food is fresh, covered, and safe to eat</string>
+    <string name="label_unit">Unit</string>
+    <string name="label_what_food">What food is it?</string>
     <string name="listing_count">%1$d listings</string>
     <string name="login_tagline">Extra food, shared with neighbors nearby.</string>
     <string name="nav_alerts">Alerts</string>
@@ -55,6 +86,9 @@
     <string name="nav_profile">Profile</string>
     <string name="new_here">New here?</string>
     <string name="range_km">1–5 km</string>
+    <string name="subtitle_post_food">Tell people what you have, how much, and when they can get it.</string>
+    <string name="time_to">to</string>
+    <string name="title_post_food">Post extra food</string>
     <string name="toast_coming_soon">Coming soon</string>
     <string name="within_km">Within %1$d km of you</string>
     <style name="Base.Theme.Sagana" parent="Theme.Material3.Light.NoActionBar">

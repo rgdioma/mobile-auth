@@ -41,7 +41,7 @@ class HomeActivity : AppCompatActivity() {
     private fun showTab(itemId: Int) {
         val fragment: Fragment = when (itemId) {
             R.id.nav_home -> HomeFragment()
-            R.id.nav_post -> PlaceholderFragment.newInstance(R.string.nav_post, R.drawable.ic_nav_post)
+            R.id.nav_post -> PostFragment()
             R.id.nav_pickups -> PlaceholderFragment.newInstance(R.string.nav_pickups, R.drawable.ic_nav_pickups)
             R.id.nav_alerts -> PlaceholderFragment.newInstance(R.string.nav_alerts, R.drawable.ic_nav_alerts)
             else -> PlaceholderFragment.newInstance(R.string.nav_profile, R.drawable.ic_nav_profile)

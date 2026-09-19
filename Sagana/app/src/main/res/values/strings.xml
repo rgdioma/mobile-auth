@@ -47,4 +47,43 @@
     <string name="nav_pickups">Pickups</string>
     <string name="nav_alerts">Alerts</string>
     <string name="nav_profile">Profile</string>
+    <!-- Post -->
+    <string name="title_post_food">Post extra food</string>
+    <string name="subtitle_post_food">Tell people what you have, how much, and when they can get it.</string>
+    <string name="label_add_photo">Tap to add a photo</string>
+    <string name="hint_add_photo">Put: a clear photo of the actual food</string>
+    <string name="label_what_food">What food is it?</string>
+    <string name="hint_what_food">Pancit canton, pandesal, rice</string>
+    <string name="label_quantity">Quantity</string>
+    <string name="label_unit">Unit</string>
+    <string name="hint_unit">packs</string>
+    <string name="label_category">Category</string>
+    <string name="hint_category">Choose a category</string>
+    <string name="label_pickup_window">Pickup window, today</string>
+    <string name="label_drop_off">Drop-off point</string>
+    <string name="hint_drop_off">Brgy. Tangub social welfare desk</string>
+    <string name="label_safety_check">The food is fresh, covered, and safe to eat</string>
+    <string name="action_post_food">Post</string>
+    <string name="time_to">to</string>
+    <string name="cd_photo_picker">Photo picker icon</string>
+    <string name="default_quantity">1</string>
+    <string name="format_quantity">%1$d</string>
+    <string name="format_time">%1$02d:%2$02d %3$s</string>
+    <string name="default_start_time">03:12 am</string>
+    <string name="default_end_time">05:42 am</string>
+
+    <string-array name="units">
+        <item>packs</item>
+        <item>kg</item>
+        <item>pieces</item>
+        <item>servings</item>
+    </string-array>
+    <string-array name="categories">
+        <item>Choose a category</item>
+        <item>Cooked Food</item>
+        <item>Bread &amp; Pastries</item>
+        <item>Fruits &amp; Vegetables</item>
+        <item>Packaged Goods</item>
+    </string-array>
+
 </resources>
