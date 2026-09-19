@@ -128,6 +128,8 @@ string error_email_invalid
 string error_email_required
 string error_password_required
 string forgot_password
+string format_quantity
+string format_time
 string greeting_afternoon
 string greeting_evening
 string greeting_morning
@@ -160,8 +162,11 @@ string nav_profile
 string new_here
 string range_km
 string subtitle_post_food
+string time_am
+string time_pm
 string time_to
 string title_post_food
+string title_select_time
 string toast_coming_soon
 string within_km
 style Base.Theme.Sagana

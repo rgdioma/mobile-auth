@@ -71,6 +71,9 @@
     <string name="format_time">%1$02d:%2$02d %3$s</string>
     <string name="default_start_time">03:12 am</string>
     <string name="default_end_time">05:42 am</string>
+    <string name="time_am">am</string>
+    <string name="time_pm">pm</string>
+    <string name="title_select_time">Select time</string>
 
     <string-array name="units">
         <item>packs</item>

@@ -2043,6 +2043,8 @@
     <string name="fab_transformation_scrim_behavior" translatable="false">com.google.android.material.transformation.FabTransformationScrimBehavior</string>
     <string name="fab_transformation_sheet_behavior" translatable="false">com.google.android.material.transformation.FabTransformationSheetBehavior</string>
     <string name="forgot_password">Forgot password?</string>
+    <string name="format_quantity">%1$d</string>
+    <string name="format_time">%1$02d:%2$02d %3$s</string>
     <string name="greeting_afternoon">Good afternoon</string>
     <string name="greeting_evening">Good evening</string>
     <string name="greeting_morning">Good morning</string>
@@ -2198,8 +2200,11 @@
     <string name="side_sheet_behavior" translatable="false">com.google.android.material.sidesheet.SideSheetBehavior</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="subtitle_post_food">Tell people what you have, how much, and when they can get it.</string>
+    <string name="time_am">am</string>
+    <string name="time_pm">pm</string>
     <string name="time_to">to</string>
     <string name="title_post_food">Post extra food</string>
+    <string name="title_select_time">Select time</string>
     <string name="toast_coming_soon">Coming soon</string>
     <string name="within_km">Within %1$d km of you</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>

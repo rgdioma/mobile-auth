@@ -3909,6 +3909,8 @@ int string exposed_dropdown_menu_content_description 0x7f100044
 int string fab_transformation_scrim_behavior 0x7f100045
 int string fab_transformation_sheet_behavior 0x7f100046
 int string forgot_password 0x7f100047
+int string format_quantity 0x7f1000e4
+int string format_time 0x7f1000e5
 int string greeting_afternoon 0x7f100048
 int string greeting_evening 0x7f100049
 int string greeting_morning 0x7f10004a
@@ -4056,8 +4058,11 @@ int string side_sheet_accessibility_pane_title 0x7f1000ca
 int string side_sheet_behavior 0x7f1000cb
 int string status_bar_notification_info_overflow 0x7f1000cc
 int string subtitle_post_food 0x7f1000e1
+int string time_am 0x7f1000e6
+int string time_pm 0x7f1000e7
 int string time_to 0x7f1000e2
 int string title_post_food 0x7f1000e3
+int string title_select_time 0x7f1000e8
 int string toast_coming_soon 0x7f1000cd
 int string within_km 0x7f1000ce
 int style AlertDialog_AppCompat 0x7f110000

@@ -55,6 +55,8 @@
     <string name="error_email_required">Enter your email</string>
     <string name="error_password_required">Enter your password</string>
     <string name="forgot_password">Forgot password?</string>
+    <string name="format_quantity">%1$d</string>
+    <string name="format_time">%1$02d:%2$02d %3$s</string>
     <string name="greeting_afternoon">Good afternoon</string>
     <string name="greeting_evening">Good evening</string>
     <string name="greeting_morning">Good morning</string>
@@ -87,8 +89,11 @@
     <string name="new_here">New here?</string>
     <string name="range_km">1–5 km</string>
     <string name="subtitle_post_food">Tell people what you have, how much, and when they can get it.</string>
+    <string name="time_am">am</string>
+    <string name="time_pm">pm</string>
     <string name="time_to">to</string>
     <string name="title_post_food">Post extra food</string>
+    <string name="title_select_time">Select time</string>
     <string name="toast_coming_soon">Coming soon</string>
     <string name="within_km">Within %1$d km of you</string>
     <style name="Base.Theme.Sagana" parent="Theme.Material3.Light.NoActionBar">

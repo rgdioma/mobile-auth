@@ -126,6 +126,8 @@ int string error_email_invalid 0x0
 int string error_email_required 0x0
 int string error_password_required 0x0
 int string forgot_password 0x0
+int string format_quantity 0x0
+int string format_time 0x0
 int string greeting_afternoon 0x0
 int string greeting_evening 0x0
 int string greeting_morning 0x0
@@ -158,8 +160,11 @@ int string nav_profile 0x0
 int string new_here 0x0
 int string range_km 0x0
 int string subtitle_post_food 0x0
+int string time_am 0x0
+int string time_pm 0x0
 int string time_to 0x0
 int string title_post_food 0x0
+int string title_select_time 0x0
 int string toast_coming_soon 0x0
 int string within_km 0x0
 int style Base_Theme_Sagana 0x0
