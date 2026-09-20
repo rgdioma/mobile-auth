@@ -20,4 +20,5 @@
     <color name="white_muted">#E6FFFFFF</color>
     <color name="placeholder_stripe">#FFE9AE</color>
     <color name="placeholder_ink">#9A6B00</color>
+    <color name="leaf_light">#EAF5EE</color>
 </resources>

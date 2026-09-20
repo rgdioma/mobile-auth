@@ -48,7 +48,7 @@ public class HomeActivity extends AppCompatActivity {
         } else if (itemId == R.id.nav_pickups) {
             fragment = new PickupsFragment();
         } else if (itemId == R.id.nav_alerts) {
-            fragment = PlaceholderFragment.newInstance(R.string.nav_alerts, R.drawable.ic_nav_alerts);
+            fragment = new AlertsFragment();
         } else {
             fragment = PlaceholderFragment.newInstance(R.string.nav_profile, R.drawable.ic_nav_profile);
         }

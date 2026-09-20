@@ -105,4 +105,19 @@
         <item>Packaged Goods</item>
     </string-array>
 
+    <!-- Alerts -->
+    <string name="title_alerts">Alerts</string>
+    <string name="label_expiry_alerts">Expiry alerts</string>
+    <string name="subtitle_expiry_alerts">Warn me before a pickup window closes</string>
+    <string name="label_new_food">New food nearby</string>
+    <string name="subtitle_new_food">When someone posts within my radius</string>
+    <string name="label_pickup_reminders">Pickup reminders</string>
+    <string name="subtitle_pickup_reminders">On the day of my scheduled pickup</string>
+    <string name="label_recent">Recent</string>
+    <string name="alert_closing_soon">%1$s is\nclosing soon</string>
+    <string name="format_countdown">%1$dm %2$02ds left</string>
+    <string name="countdown_finished">0m 00s left</string>
+    <string name="listings_nearby">%1$d listings within %2$d km</string>
+    <string name="closest_is">Closest is %1$.1f km away</string>
+
 </resources>

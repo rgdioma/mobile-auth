@@ -21,6 +21,7 @@
     <color name="icon_muted">#8C7B72</color>
     <color name="input_border">#F0E3CF</color>
     <color name="leaf">#2F7D4A</color>
+    <color name="leaf_light">#EAF5EE</color>
     <color name="mango">#FFB400</color>
     <color name="placeholder_ink">#9A6B00</color>
     <color name="placeholder_stripe">#FFE9AE</color>
@@ -32,6 +33,7 @@
     <string name="action_demo">Use demo account</string>
     <string name="action_login">Log in</string>
     <string name="action_post_food">Post</string>
+    <string name="alert_closing_soon">%1$s is\nclosing soon</string>
     <string name="app_name">Sagana</string>
     <string name="brand_name">SaluBite</string>
     <string name="brgy_desk">Brgy. desk</string>
@@ -48,6 +50,8 @@
     <string name="chip_packaged">Packaged</string>
     <string name="chip_produce">Produce</string>
     <string name="closest_first">Closest first</string>
+    <string name="closest_is">Closest is %1$.1f km away</string>
+    <string name="countdown_finished">0m 00s left</string>
     <string name="create_account">Create an account</string>
     <string name="default_end_time">05:42 am</string>
     <string name="default_quantity">1</string>
@@ -57,6 +61,7 @@
     <string name="error_email_required">Enter your email</string>
     <string name="error_password_required">Enter your password</string>
     <string name="forgot_password">Forgot password?</string>
+    <string name="format_countdown">%1$dm %2$02ds left</string>
     <string name="format_quantity">%1$d</string>
     <string name="format_time">%1$02d:%2$02d %3$s</string>
     <string name="greeting_afternoon">Good afternoon</string>
@@ -75,15 +80,20 @@
     <string name="label_category">Category</string>
     <string name="label_drop_off">Drop-off point</string>
     <string name="label_email">Email</string>
+    <string name="label_expiry_alerts">Expiry alerts</string>
+    <string name="label_new_food">New food nearby</string>
     <string name="label_password">Password</string>
+    <string name="label_pickup_reminders">Pickup reminders</string>
     <string name="label_pickup_window">Pickup window, today</string>
     <string name="label_quantity">Quantity</string>
+    <string name="label_recent">Recent</string>
     <string name="label_safety_check">The food is fresh, covered, and safe to eat</string>
     <string name="label_time_slot">Time slot</string>
     <string name="label_unit">Unit</string>
     <string name="label_what_food">What food is it?</string>
     <string name="label_your_pickups">Your pickups</string>
     <string name="listing_count">%1$d listings</string>
+    <string name="listings_nearby">%1$d listings within %2$d km</string>
     <string name="login_tagline">Extra food, shared with neighbors nearby.</string>
     <string name="nav_alerts">Alerts</string>
     <string name="nav_home">Home</string>
@@ -95,6 +105,9 @@
     <string name="pickup_banner_text">Choose food on Home first, then pick a day and time here.</string>
     <string name="pickup_count_zero">0</string>
     <string name="range_km">1–5 km</string>
+    <string name="subtitle_expiry_alerts">Warn me before a pickup window closes</string>
+    <string name="subtitle_new_food">When someone posts within my radius</string>
+    <string name="subtitle_pickup_reminders">On the day of my scheduled pickup</string>
     <string name="subtitle_post_food">Tell people what you have, how much, and when they can get it.</string>
     <string name="time_11am">11:00 AM</string>
     <string name="time_1pm">1:00 PM</string>
@@ -105,6 +118,7 @@
     <string name="time_am">am</string>
     <string name="time_pm">pm</string>
     <string name="time_to">to</string>
+    <string name="title_alerts">Alerts</string>
     <string name="title_pickups">Pickups</string>
     <string name="title_post_food">Post extra food</string>
     <string name="title_select_time">Select time</string>
