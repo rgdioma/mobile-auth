@@ -88,6 +88,26 @@
     <string name="listing_count">%1$d listings</string>
     <string name="brgy_desk">Brgy. desk</string>
 
+    <!-- Profile -->
+    <string name="cd_avatar">Profile photo</string>
+    <string name="hint_profile_photo">Put: profile photo</string>
+    <string name="default_profile_name">Demo User</string>
+    <string name="profile_role">Community member · Brgy. Tangub</string>
+    <string name="profile_email">demo@sagana.ph</string>
+    <string name="profile_mobile">09171234567</string>
+    <string name="stat_posted">Posted</string>
+    <string name="stat_pickups">Pickups</string>
+    <string name="stat_received">Received</string>
+    <string name="stat_zero">0</string>
+    <string name="action_edit_profile">Edit profile</string>
+    <string name="label_why_app">Why this app exists</string>
+    <string name="sdg_url">https://sdgs.un.org/goals/goal2</string>
+    <string name="sdg_badge">SDG 2</string>
+    <string name="sdg_title">Zero hunger</string>
+    <string name="sdg_body">End hunger, achieve food security and improved nutrition, and promote sustainable agriculture. Every meal rescued in Sagana goes to a family nearby instead of the bin.</string>
+    <string name="sdg_link">Read about SDG 2 ›</string>
+    <string name="action_logout">Log out</string>
+
     <!-- Bottom navigation -->
     <string name="nav_home">Home</string>
     <string name="nav_post">Post</string>

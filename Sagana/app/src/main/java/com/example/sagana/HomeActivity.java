@@ -50,7 +50,7 @@ public class HomeActivity extends AppCompatActivity {
         } else if (itemId == R.id.nav_alerts) {
             fragment = new AlertsFragment();
         } else {
-            fragment = PlaceholderFragment.newInstance(R.string.nav_profile, R.drawable.ic_nav_profile);
+            fragment = new ProfileFragment();
         }
 
         getSupportFragmentManager().beginTransaction()
