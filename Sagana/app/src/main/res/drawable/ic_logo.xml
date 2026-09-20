@@ -1,50 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- SaluBite logo: steaming bowl with a heart on a chili-red circle -->
+<!-- SaluBite logo: updated from brand assets -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="88dp"
-    android:height="88dp"
-    android:viewportWidth="88"
-    android:viewportHeight="88">
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
 
     <!-- Background circle -->
     <path
         android:fillColor="@color/chili"
-        android:pathData="M44,0 A44,44 0 1 1 44,88 A44,44 0 1 1 44,0 Z" />
+        android:pathData="M48,2A46,46 0,1,1 48,94A46,46 0,1,1 48,2" />
 
     <!-- Steam -->
     <path
+        android:pathData="M36,30c-3,-4 3,-7 0,-11M48,28c-3,-4 3,-7 0,-11M60,30c-3,-4 3,-7 0,-11"
+        android:strokeWidth="3.5"
         android:strokeColor="@color/mango"
-        android:strokeWidth="2.5"
-        android:strokeLineCap="round"
-        android:pathData="M35,35 C33,32 37,30 35,27 C33,24 37,22 35,19" />
-    <path
-        android:strokeColor="@color/mango"
-        android:strokeWidth="2.5"
-        android:strokeLineCap="round"
-        android:pathData="M44,35 C42,32 46,30 44,27 C42,24 46,22 44,19" />
-    <path
-        android:strokeColor="@color/mango"
-        android:strokeWidth="2.5"
-        android:strokeLineCap="round"
-        android:pathData="M53,35 C51,32 55,30 53,27 C51,24 55,22 53,19" />
+        android:strokeLineCap="round" />
 
-    <!-- Bowl rim -->
+    <!-- Bowl -->
     <path
-        android:fillColor="@color/mango"
-        android:pathData="M19,40 H69 A2,2 0 0 1 69,44 H19 A2,2 0 0 1 19,40 Z" />
-
-    <!-- Bowl body -->
-    <path
-        android:fillColor="@color/mango"
-        android:pathData="M21,44 H67 A23,21 0 0 1 21,44 Z" />
-
-    <!-- Bowl foot -->
-    <path
-        android:fillColor="@color/mango"
-        android:pathData="M35,66 H53 V70 A1.5,1.5 0 0 1 51.5,71.5 H36.5 A1.5,1.5 0 0 1 35,70 Z" />
+        android:pathData="M18,44h60c0,17 -13,30 -30,30S18,61 18,44z"
+        android:fillColor="@color/mango" />
 
     <!-- Heart -->
     <path
-        android:fillColor="@color/chili"
-        android:pathData="M44,60 C35,54 35,47.5 39.5,46.5 C41.5,46 43.2,47.2 44,48.8 C44.8,47.2 46.5,46 48.5,46.5 C53,47.5 53,54 44,60 Z" />
+        android:pathData="M48,66c-7,-5 -12,-9 -12,-14a5.5,5.5 0,0 1,12 -2 5.5,5.5 0,0 1,12 2c0,5 -5,9 -12,14z"
+        android:fillColor="@color/chili" />
+
+    <!-- Base -->
+    <path
+        android:pathData="M34,75h28a2.5,2.5 0,0 1 0,5h-28a2.5,2.5 0,0 1 0,-5z"
+        android:fillColor="@color/mango" />
 </vector>
