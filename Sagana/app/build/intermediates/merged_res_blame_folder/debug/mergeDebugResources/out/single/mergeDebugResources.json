@@ -1,190 +1,226 @@
 [
     {
-        "merged": "com.example.sagana.app-debug-34:/layout_activity_home.xml.flat",
-        "source": "com.example.sagana.app-main-36:/layout/activity_home.xml"
+        "merged": "com.example.sagana.app-debug-34:/color_time_chip_bg.xml.flat",
+        "source": "com.example.sagana.app-main-36:/color/time_chip_bg.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/color_chip_text.xml.flat",
-        "source": "com.example.sagana.app-main-36:/color/chip_text.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\layout\\activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-xhdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_launcher_foreground.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_launcher_foreground.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_pin.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_pin.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\xml_data_extraction_rules.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\xml\\data_extraction_rules.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_bg_pill.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\bg_pill.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-anydpi-v26\\ic_launcher.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-hdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/drawable_ic_timer.xml.flat",
-        "source": "com.example.sagana.app-main-36:/drawable/ic_timer.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_bg_photo_stripes.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\bg_photo_stripes.xml"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/layout_fragment_home.xml.flat",
-        "source": "com.example.sagana.app-main-36:/layout/fragment_home.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_nav_alerts.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_nav_alerts.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-hdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-xhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/drawable_bg_pill.xml.flat",
-        "source": "com.example.sagana.app-main-36:/drawable/bg_pill.xml"
+        "merged": "com.example.sagana.app-debug-34:/color_time_chip_text.xml.flat",
+        "source": "com.example.sagana.app-main-36:/color/time_chip_text.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-xxhdpi\\ic_launcher.webp"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/drawable_bg_photo_stripes.xml.flat",
-        "source": "com.example.sagana.app-main-36:/drawable/bg_photo_stripes.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\layout_fragment_post.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\layout\\fragment_post.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_launcher_background.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\layout_fragment_home.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\layout\\fragment_home.xml"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/layout_fragment_placeholder.xml.flat",
-        "source": "com.example.sagana.app-main-36:/layout/fragment_placeholder.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_logo.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_logo.xml"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/color_chip_background.xml.flat",
-        "source": "com.example.sagana.app-main-36:/color/chip_background.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_bg_circle_translucent.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\bg_circle_translucent.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-xhdpi\\ic_launcher.webp"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/drawable_ic_nav_pickups.xml.flat",
-        "source": "com.example.sagana.app-main-36:/drawable/ic_nav_pickups.xml"
+        "merged": "com.example.sagana.app-debug-34:/layout_fragment_pickups.xml.flat",
+        "source": "com.example.sagana.app-main-36:/layout/fragment_pickups.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_lock.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_lock.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_image.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_image.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_visibility_off.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_visibility_off.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_plus.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_plus.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_verified.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_verified.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\xml_backup_rules.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\xml\\backup_rules.xml"
+        "merged": "com.example.sagana.app-debug-34:/drawable_bg_time_slot.xml.flat",
+        "source": "com.example.sagana.app-main-36:/drawable/bg_time_slot.xml"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/drawable_ic_pin.xml.flat",
-        "source": "com.example.sagana.app-main-36:/drawable/ic_pin.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\color_nav_item.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\color\\nav_item.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\xml\\backup_rules.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_email.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_email.xml"
+        "merged": "com.example.sagana.app-debug-34:/drawable_ic_restaurant.xml.flat",
+        "source": "com.example.sagana.app-main-36:/drawable/ic_restaurant.xml"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/drawable_ic_nav_profile.xml.flat",
-        "source": "com.example.sagana.app-main-36:/drawable/ic_nav_profile.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\color_chip_text.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\color\\chip_text.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_bg_input.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\bg_input.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_bg_photo_placeholder.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\bg_photo_placeholder.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-xxxhdpi\\ic_launcher.webp"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\layout_fragment_placeholder.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\layout\\fragment_placeholder.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-mdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\xml\\data_extraction_rules.xml"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/drawable_ic_image.xml.flat",
-        "source": "com.example.sagana.app-main-36:/drawable/ic_image.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-mdpi\\ic_launcher.webp"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_nav_pickups.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_nav_pickups.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_search.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_search.xml"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/color_nav_item.xml.flat",
-        "source": "com.example.sagana.app-main-36:/color/nav_item.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\layout_item_listing.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\layout\\item_listing.xml"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/layout_item_listing.xml.flat",
-        "source": "com.example.sagana.app-main-36:/layout/item_listing.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_bg_input.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\bg_input.xml"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/drawable_ic_nav_alerts.xml.flat",
-        "source": "com.example.sagana.app-main-36:/drawable/ic_nav_alerts.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_email.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_email.xml"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/menu_bottom_nav.xml.flat",
-        "source": "com.example.sagana.app-main-36:/menu/bottom_nav.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_visibility.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_visibility.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_visibility.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_visibility.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-hdpi\\ic_launcher.webp"
+        "merged": "com.example.sagana.app-debug-34:/drawable_bg_calendar.xml.flat",
+        "source": "com.example.sagana.app-main-36:/drawable/bg_calendar.xml"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/drawable_ic_nav_home.xml.flat",
-        "source": "com.example.sagana.app-main-36:/drawable/ic_nav_home.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/drawable_ic_nav_post.xml.flat",
-        "source": "com.example.sagana.app-main-36:/drawable/ic_nav_post.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_nav_post.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_nav_post.xml"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/drawable_bg_home_header.xml.flat",
-        "source": "com.example.sagana.app-main-36:/drawable/bg_home_header.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\layout_activity_home.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\layout\\activity_home.xml"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/drawable_ic_verified.xml.flat",
-        "source": "com.example.sagana.app-main-36:/drawable/ic_verified.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_timer.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_timer.xml"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/drawable_bg_circle_translucent.xml.flat",
-        "source": "com.example.sagana.app-main-36:/drawable/bg_circle_translucent.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_nav_profile.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_nav_profile.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_logo.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_logo.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_nav_home.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_nav_home.xml"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/layout_activity_main.xml.flat",
-        "source": "com.example.sagana.app-main-36:/layout/activity_main.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_visibility_off.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_visibility_off.xml"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/drawable_ic_search.xml.flat",
-        "source": "com.example.sagana.app-main-36:/drawable/ic_search.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\color_chip_background.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\color\\chip_background.xml"
     },
     {
-        "merged": "com.example.sagana.app-debug-34:/drawable_bg_photo_placeholder.xml.flat",
-        "source": "com.example.sagana.app-main-36:/drawable/bg_photo_placeholder.xml"
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_bg_home_header.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\bg_home_header.xml"
+    },
+    {
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\menu_bottom_nav.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\menu\\bottom_nav.xml"
+    },
+    {
+        "merged": "com.example.sagana.app-debug-34:/drawable_bg_banner.xml.flat",
+        "source": "com.example.sagana.app-main-36:/drawable/bg_banner.xml"
+    },
+    {
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_minus.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_minus.xml"
+    },
+    {
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\drawable_ic_lock.xml.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\drawable\\ic_lock.xml"
+    },
+    {
+        "merged": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-debug-34:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\alvin\\.gradle\\daemon\\9.6.0\\com.example.sagana.app-main-36:\\mipmap-xhdpi\\ic_launcher.webp"
     }
 ]
