@@ -1426,6 +1426,7 @@ int color highlighted_text_material_light 0x7f050065
 int color icon_muted 0x7f050066
 int color input_border 0x7f050067
 int color leaf 0x7f050068
+int color leaf_light 0x7f0502fc
 int color m3_appbar_overlay_color 0x7f050069
 int color m3_assist_chip_icon_tint_color 0x7f05006a
 int color m3_assist_chip_stroke_color 0x7f05006b
@@ -2077,6 +2078,7 @@ int color switch_thumb_material_dark 0x7f0502f0
 int color switch_thumb_material_light 0x7f0502f1
 int color switch_thumb_normal_material_dark 0x7f0502f2
 int color switch_thumb_normal_material_light 0x7f0502f3
+int color switch_track_tint 0x7f0502fd
 int color text_secondary 0x7f0502f4
 int color time_chip_bg 0x7f0502fa
 int color time_chip_text 0x7f0502fb
@@ -2963,6 +2965,7 @@ int drawable avd_hide_password 0x7f070078
 int drawable avd_show_password 0x7f070079
 int drawable bg_banner 0x7f0700fd
 int drawable bg_calendar 0x7f0700fe
+int drawable bg_circle_solid 0x7f070101
 int drawable bg_circle_translucent 0x7f07007a
 int drawable bg_home_header 0x7f07007b
 int drawable bg_input 0x7f07007c
@@ -2990,6 +2993,7 @@ int drawable ic_call_answer_video 0x7f070090
 int drawable ic_call_answer_video_low 0x7f070091
 int drawable ic_call_decline 0x7f070092
 int drawable ic_call_decline_low 0x7f070093
+int drawable ic_chevron_right 0x7f070102
 int drawable ic_clear_black_24 0x7f070094
 int drawable ic_clock_black_24dp 0x7f070095
 int drawable ic_email 0x7f070096
@@ -3021,6 +3025,7 @@ int drawable ic_timer 0x7f0700ac
 int drawable ic_verified 0x7f0700ad
 int drawable ic_visibility 0x7f0700ae
 int drawable ic_visibility_off 0x7f0700af
+int drawable ic_warning_triangle 0x7f070103
 int drawable m3_appbar_background 0x7f0700b0
 int drawable m3_avd_hide_password 0x7f0700b1
 int drawable m3_avd_show_password 0x7f0700b2
@@ -3167,6 +3172,7 @@ int id action_text 0x7f080043
 int id actions 0x7f080044
 int id activity_chooser_view_content 0x7f080045
 int id add 0x7f080046
+int id alertContainer 0x7f080220
 int id alertTitle 0x7f080047
 int id aligned 0x7f080048
 int id all 0x7f080049
@@ -3329,11 +3335,13 @@ int id homeRoot 0x7f0800dd
 int id honorRequest 0x7f0800de
 int id horizontal_only 0x7f0800df
 int id icon 0x7f0800e0
+int id iconContainer 0x7f080221
 int id icon_group 0x7f0800e1
 int id ifRoom 0x7f0800e2
 int id ignore 0x7f0800e3
 int id ignoreRequest 0x7f0800e4
 int id image 0x7f0800e5
+int id imageArrow 0x7f080222
 int id imageIcon 0x7f0800e6
 int id imageLogo 0x7f0800e7
 int id immediateStop 0x7f0800e8
@@ -3555,6 +3563,9 @@ int id stretch 0x7f0801bc
 int id submenuarrow 0x7f0801bd
 int id submit_area 0x7f0801be
 int id supportScrollUp 0x7f0801bf
+int id switchExpiry 0x7f080223
+int id switchNewFood 0x7f080224
+int id switchReminders 0x7f080225
 int id tabMode 0x7f0801c0
 int id tag_accessibility_actions 0x7f0801c1
 int id tag_accessibility_clickable_spans 0x7f0801c2
@@ -3580,10 +3591,12 @@ int id textEnd 0x7f0801d4
 int id textForgotPassword 0x7f0801d5
 int id textGreeting 0x7f0801d6
 int id textListingCount 0x7f0801d7
+int id textPill 0x7f080226
 int id textPlaceholder 0x7f0801d8
 int id textSpacerNoButtons 0x7f0801d9
 int id textSpacerNoTitle 0x7f0801da
 int id textStart 0x7f0801db
+int id textSubtitle 0x7f080227
 int id textTagline 0x7f0801dc
 int id textTimeLeft 0x7f0801dd
 int id textTitle 0x7f0801de
@@ -3772,10 +3785,12 @@ int layout design_navigation_menu 0x7f0b002a
 int layout design_navigation_menu_item 0x7f0b002b
 int layout design_text_input_end_icon 0x7f0b002c
 int layout design_text_input_start_icon 0x7f0b002d
+int layout fragment_alerts 0x7f0b0070
 int layout fragment_home 0x7f0b002e
 int layout fragment_pickups 0x7f0b006f
 int layout fragment_placeholder 0x7f0b002f
 int layout fragment_post 0x7f0b006e
+int layout item_alert 0x7f0b0071
 int layout item_listing 0x7f0b0030
 int layout m3_alert_dialog 0x7f0b0031
 int layout m3_alert_dialog_actions 0x7f0b0032
@@ -3872,6 +3887,7 @@ int string abc_toolbar_collapse_description 0x7f10001a
 int string action_demo 0x7f10001b
 int string action_login 0x7f10001c
 int string action_post_food 0x7f1000cf
+int string alert_closing_soon 0x7f1000f7
 int string androidx_startup 0x7f10001d
 int string app_name 0x7f10001e
 int string appbar_scrolling_view_behavior 0x7f10001f
@@ -3907,6 +3923,8 @@ int string chip_packaged 0x7f100039
 int string chip_produce 0x7f10003a
 int string clear_text_end_icon_content_description 0x7f10003b
 int string closest_first 0x7f10003c
+int string closest_is 0x7f1000f8
+int string countdown_finished 0x7f100102
 int string create_account 0x7f10003d
 int string default_end_time 0x7f1000d1
 int string default_quantity 0x7f1000d2
@@ -3921,6 +3939,7 @@ int string exposed_dropdown_menu_content_description 0x7f100044
 int string fab_transformation_scrim_behavior 0x7f100045
 int string fab_transformation_sheet_behavior 0x7f100046
 int string forgot_password 0x7f100047
+int string format_countdown 0x7f100103
 int string format_quantity 0x7f1000e4
 int string format_time 0x7f1000e5
 int string greeting_afternoon 0x7f100048
@@ -3942,15 +3961,20 @@ int string label_add_photo 0x7f1000d9
 int string label_category 0x7f1000da
 int string label_drop_off 0x7f1000db
 int string label_email 0x7f100052
+int string label_expiry_alerts 0x7f1000f9
+int string label_new_food 0x7f1000fa
 int string label_password 0x7f100053
+int string label_pickup_reminders 0x7f1000fb
 int string label_pickup_window 0x7f1000dc
 int string label_quantity 0x7f1000dd
+int string label_recent 0x7f1000fc
 int string label_safety_check 0x7f1000de
 int string label_time_slot 0x7f1000eb
 int string label_unit 0x7f1000df
 int string label_what_food 0x7f1000e0
 int string label_your_pickups 0x7f1000ec
 int string listing_count 0x7f100054
+int string listings_nearby 0x7f1000fd
 int string login_tagline 0x7f100055
 int string m3_exceed_max_badge_text_suffix 0x7f100056
 int string m3_ref_typeface_brand_medium 0x7f100057
@@ -4074,6 +4098,9 @@ int string searchview_navigation_content_description 0x7f1000c9
 int string side_sheet_accessibility_pane_title 0x7f1000ca
 int string side_sheet_behavior 0x7f1000cb
 int string status_bar_notification_info_overflow 0x7f1000cc
+int string subtitle_expiry_alerts 0x7f1000fe
+int string subtitle_new_food 0x7f1000ff
+int string subtitle_pickup_reminders 0x7f100100
 int string subtitle_post_food 0x7f1000e1
 int string time_11am 0x7f1000f0
 int string time_1pm 0x7f1000f1
@@ -4084,6 +4111,7 @@ int string time_9am 0x7f1000f5
 int string time_am 0x7f1000e6
 int string time_pm 0x7f1000e7
 int string time_to 0x7f1000e2
+int string title_alerts 0x7f100101
 int string title_pickups 0x7f1000f6
 int string title_post_food 0x7f1000e3
 int string title_select_time 0x7f1000e8
