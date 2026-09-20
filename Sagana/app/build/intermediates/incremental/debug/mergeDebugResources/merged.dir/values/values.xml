@@ -2005,6 +2005,7 @@
     <string description="The content description of bottom sheet drag handles [CHAR LIMIT=NONE]" name="bottomsheet_drag_handle_content_description">Drag handle</string>
     <string name="brand_name">SaluBite</string>
     <string name="brgy_desk">Brgy. desk</string>
+    <string name="browse_food">Browse food</string>
     <string name="call_notification_answer_action">Answer</string>
     <string name="call_notification_answer_video_action">Video</string>
     <string name="call_notification_decline_action">Decline</string>
@@ -2012,6 +2013,7 @@
     <string name="call_notification_incoming_text">Incoming call</string>
     <string name="call_notification_ongoing_text">Ongoing call</string>
     <string name="call_notification_screening_text">Screening an incoming call</string>
+    <string name="cd_food_icon">Food icon</string>
     <string name="cd_hide_password">Hide password</string>
     <string name="cd_logo">SaluBite logo</string>
     <string name="cd_notifications">Notifications</string>
@@ -2068,8 +2070,10 @@
     <string name="label_pickup_window">Pickup window, today</string>
     <string name="label_quantity">Quantity</string>
     <string name="label_safety_check">The food is fresh, covered, and safe to eat</string>
+    <string name="label_time_slot">Time slot</string>
     <string name="label_unit">Unit</string>
     <string name="label_what_food">What food is it?</string>
+    <string name="label_your_pickups">Your pickups</string>
     <string name="listing_count">%1$d listings</string>
     <string name="login_tagline">Extra food, shared with neighbors nearby.</string>
     <string name="m3_exceed_max_badge_text_suffix" translatable="false"><ns2:g example="Some te" id="part of a long text">%1$s</ns2:g><ns2:g example="…" id="suffix">%2$s</ns2:g></string>
@@ -2184,11 +2188,14 @@
     <string name="nav_post">Post</string>
     <string name="nav_profile">Profile</string>
     <string name="new_here">New here?</string>
+    <string name="no_pickups_text">No pickups yet. Reserve food from Home and it shows up here with a handover code.</string>
     <string name="password_toggle_content_description">Show password</string>
     <string name="path_password_eye" translatable="false">M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z</string>
     <string name="path_password_eye_mask_strike_through" translatable="false">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
+    <string name="pickup_banner_text">Choose food on Home first, then pick a day and time here.</string>
+    <string name="pickup_count_zero">0</string>
     <string name="range_km">1–5 km</string>
     <string name="search_menu_title">Search</string>
     <string name="searchbar_scrolling_view_behavior" translatable="false">
@@ -2200,9 +2207,16 @@
     <string name="side_sheet_behavior" translatable="false">com.google.android.material.sidesheet.SideSheetBehavior</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="subtitle_post_food">Tell people what you have, how much, and when they can get it.</string>
+    <string name="time_11am">11:00 AM</string>
+    <string name="time_1pm">1:00 PM</string>
+    <string name="time_3pm">3:00 PM</string>
+    <string name="time_5pm">5:00 PM</string>
+    <string name="time_7pm">7:00 PM</string>
+    <string name="time_9am">9:00 AM</string>
     <string name="time_am">am</string>
     <string name="time_pm">pm</string>
     <string name="time_to">to</string>
+    <string name="title_pickups">Pickups</string>
     <string name="title_post_food">Post extra food</string>
     <string name="title_select_time">Select time</string>
     <string name="toast_coming_soon">Coming soon</string>
@@ -6627,6 +6641,9 @@
     <item name="windowNoTitle">true</item>
   </style>
     <style name="Theme.Sagana" parent="Base.Theme.Sagana"/>
+    <style name="Theme.Sagana.Calendar" parent="Theme.Sagana">
+        <item name="android:colorAccent">@color/chili</item>
+    </style>
     <style name="ThemeOverlay.AppCompat" parent="Base.ThemeOverlay.AppCompat"/>
     <style name="ThemeOverlay.AppCompat.ActionBar" parent="Base.ThemeOverlay.AppCompat.ActionBar"/>
     <style name="ThemeOverlay.AppCompat.Dark" parent="Base.ThemeOverlay.AppCompat.Dark"/>
@@ -9265,6 +9282,16 @@
     </style>
     <style name="Widget.SaluBite.NavIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@color/chili_light</item>
+    </style>
+    <style name="Widget.SaluBite.TimeChip" parent="Widget.Material3.Chip.Suggestion">
+        <item name="chipBackgroundColor">@color/time_chip_bg</item>
+        <item name="android:textColor">@color/time_chip_text</item>
+        <item name="chipStrokeColor">@color/input_border</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipCornerRadius">12dp</item>
+        <item name="chipMinHeight">40dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
     </style>
     <style name="Widget.Support.CoordinatorLayout" parent="android:Widget">
         <item name="statusBarBackground">#000000</item>

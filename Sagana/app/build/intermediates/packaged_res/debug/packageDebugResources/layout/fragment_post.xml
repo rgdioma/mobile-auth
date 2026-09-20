@@ -29,45 +29,39 @@
             android:textSize="16sp" />
 
         <!-- Photo Picker -->
-        <FrameLayout
+        <LinearLayout
             android:id="@+id/photoPicker"
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_marginTop="24dp"
             android:background="@drawable/bg_photo_placeholder"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/cd_photo_picker"
+                android:src="@drawable/ic_image"
+                app:tint="@color/placeholder_ink" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_marginTop="8dp"
+                android:text="@string/label_add_photo"
+                android:textColor="@color/placeholder_ink"
+                android:textStyle="bold" />
 
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:contentDescription="@string/cd_photo_picker"
-                    android:src="@drawable/ic_image"
-                    app:tint="@color/placeholder_ink" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/label_add_photo"
-                    android:textColor="@color/placeholder_ink"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/hint_add_photo"
-                    android:textColor="@color/placeholder_ink"
-                    android:textSize="12sp" />
-            </LinearLayout>
-        </FrameLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_add_photo"
+                android:textColor="@color/placeholder_ink"
+                android:textSize="12sp" />
+        </LinearLayout>
 
         <!-- What food is it? -->
         <TextView

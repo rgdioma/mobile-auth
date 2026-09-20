@@ -75,6 +75,22 @@
     <string name="time_pm">pm</string>
     <string name="title_select_time">Select time</string>
 
+    <!-- Pickups -->
+    <string name="title_pickups">Pickups</string>
+    <string name="pickup_banner_text">Choose food on Home first, then pick a day and time here.</string>
+    <string name="browse_food">Browse food</string>
+    <string name="label_time_slot">Time slot</string>
+    <string name="label_your_pickups">Your pickups</string>
+    <string name="no_pickups_text">No pickups yet. Reserve food from Home and it shows up here with a handover code.</string>
+    <string name="pickup_count_zero">0</string>
+    <string name="cd_food_icon">Food icon</string>
+    <string name="time_9am">9:00 AM</string>
+    <string name="time_11am">11:00 AM</string>
+    <string name="time_1pm">1:00 PM</string>
+    <string name="time_3pm">3:00 PM</string>
+    <string name="time_5pm">5:00 PM</string>
+    <string name="time_7pm">7:00 PM</string>
+
     <string-array name="units">
         <item>packs</item>
         <item>kg</item>

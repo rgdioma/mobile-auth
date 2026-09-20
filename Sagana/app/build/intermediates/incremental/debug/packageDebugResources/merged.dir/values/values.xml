@@ -35,6 +35,8 @@
     <string name="app_name">Sagana</string>
     <string name="brand_name">SaluBite</string>
     <string name="brgy_desk">Brgy. desk</string>
+    <string name="browse_food">Browse food</string>
+    <string name="cd_food_icon">Food icon</string>
     <string name="cd_hide_password">Hide password</string>
     <string name="cd_logo">SaluBite logo</string>
     <string name="cd_notifications">Notifications</string>
@@ -77,8 +79,10 @@
     <string name="label_pickup_window">Pickup window, today</string>
     <string name="label_quantity">Quantity</string>
     <string name="label_safety_check">The food is fresh, covered, and safe to eat</string>
+    <string name="label_time_slot">Time slot</string>
     <string name="label_unit">Unit</string>
     <string name="label_what_food">What food is it?</string>
+    <string name="label_your_pickups">Your pickups</string>
     <string name="listing_count">%1$d listings</string>
     <string name="login_tagline">Extra food, shared with neighbors nearby.</string>
     <string name="nav_alerts">Alerts</string>
@@ -87,11 +91,21 @@
     <string name="nav_post">Post</string>
     <string name="nav_profile">Profile</string>
     <string name="new_here">New here?</string>
+    <string name="no_pickups_text">No pickups yet. Reserve food from Home and it shows up here with a handover code.</string>
+    <string name="pickup_banner_text">Choose food on Home first, then pick a day and time here.</string>
+    <string name="pickup_count_zero">0</string>
     <string name="range_km">1–5 km</string>
     <string name="subtitle_post_food">Tell people what you have, how much, and when they can get it.</string>
+    <string name="time_11am">11:00 AM</string>
+    <string name="time_1pm">1:00 PM</string>
+    <string name="time_3pm">3:00 PM</string>
+    <string name="time_5pm">5:00 PM</string>
+    <string name="time_7pm">7:00 PM</string>
+    <string name="time_9am">9:00 AM</string>
     <string name="time_am">am</string>
     <string name="time_pm">pm</string>
     <string name="time_to">to</string>
+    <string name="title_pickups">Pickups</string>
     <string name="title_post_food">Post extra food</string>
     <string name="title_select_time">Select time</string>
     <string name="toast_coming_soon">Coming soon</string>
@@ -120,6 +134,9 @@
         <item name="android:textStyle">bold</item>
     </style>
     <style name="Theme.Sagana" parent="Base.Theme.Sagana"/>
+    <style name="Theme.Sagana.Calendar" parent="Theme.Sagana">
+        <item name="android:colorAccent">@color/chili</item>
+    </style>
     <style name="Widget.SaluBite.Chip" parent="Widget.Material3.Chip.Filter">
         <item name="chipBackgroundColor">@color/chip_background</item>
         <item name="android:textColor">@color/chip_text</item>
@@ -134,5 +151,15 @@
     </style>
     <style name="Widget.SaluBite.NavIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@color/chili_light</item>
+    </style>
+    <style name="Widget.SaluBite.TimeChip" parent="Widget.Material3.Chip.Suggestion">
+        <item name="chipBackgroundColor">@color/time_chip_bg</item>
+        <item name="android:textColor">@color/time_chip_text</item>
+        <item name="chipStrokeColor">@color/input_border</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipCornerRadius">12dp</item>
+        <item name="chipMinHeight">40dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
     </style>
 </resources>
