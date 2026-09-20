@@ -45,6 +45,44 @@
         <item name="android:paddingRight">16dp</item>
     </style>
 
+    <!-- Registration -->
+    <style name="Widget.SaluBite.ErrorLabel" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textColor">@color/chili</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="Widget.SaluBite.PasswordRule" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:drawableStart">@drawable/ic_rule_unmet</item>
+        <item name="android:drawablePadding">6dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Widget.SaluBite.RoleChoice" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/bg_choice</item>
+        <item name="android:buttonTint">@color/chili</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:minHeight">64dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textColor">@color/adobo</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <!-- Calendar -->
     <style name="Theme.Sagana.Calendar" parent="Theme.Sagana">
         <item name="android:colorAccent">@color/chili</item>

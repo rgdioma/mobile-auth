@@ -23,6 +23,53 @@
     <string name="toast_coming_soon">Coming soon</string>
     <string name="demo_display_name">Demo</string>
 
+    <!-- Registration -->
+    <string name="title_create_account">Create account</string>
+    <string name="subtitle_create_account">Post extra food or pick some up at your barangay desk. Barangay staff sign up here too.</string>
+    <string name="cd_back">Back</string>
+    <string name="label_full_name">Full name</string>
+    <string name="hint_full_name">Juan dela Cruz</string>
+    <string name="label_mobile">Mobile number</string>
+    <string name="hint_mobile">09171234567</string>
+    <string name="label_barangay">Barangay</string>
+    <string name="hint_new_password">Make it strong</string>
+    <string name="label_confirm_password">Confirm password</string>
+    <string name="hint_confirm_password">Type it again</string>
+    <string name="rule_length">8 or more characters</string>
+    <string name="rule_uppercase">An uppercase letter</string>
+    <string name="rule_lowercase">A lowercase letter</string>
+    <string name="rule_number">A number</string>
+    <string name="rule_symbol">A symbol like @ # !</string>
+    <string name="label_joining_as">I\'m joining as</string>
+    <string name="role_member">Community\nmember</string>
+    <string name="role_staff">Barangay desk\nstaff</string>
+    <string name="role_hint">Members can both donate and receive food.</string>
+    <string name="label_terms">I agree to the terms and to hand over or receive food only at verified barangay desks.</string>
+    <string name="action_create_account">Create account</string>
+    <string name="have_account">Have an account?</string>
+
+    <string name="error_name_required">Enter your full name</string>
+    <string name="error_name_invalid">Use letters only, at least 2 characters</string>
+    <string name="error_mobile_required">Enter your mobile number</string>
+    <string name="error_mobile_invalid">Use an 11-digit number starting with 09</string>
+    <string name="error_barangay_required">Choose your barangay</string>
+    <string name="error_password_weak">Password must meet all five rules below</string>
+    <string name="error_confirm_required">Type your password again</string>
+    <string name="error_confirm_mismatch">Passwords do not match</string>
+    <string name="error_role_required">Choose how you\'re joining</string>
+    <string name="error_terms_required">Please agree to the terms first</string>
+    <string name="toast_account_created">Account created. Welcome, %1$s!</string>
+
+    <string-array name="barangays">
+        <item>Choose your barangay</item>
+        <item>Brgy. Tangub</item>
+        <item>Brgy. San Roque</item>
+        <item>Brgy. Pala-o</item>
+        <item>Brgy. Poblacion</item>
+        <item>Brgy. Santo Niño</item>
+        <item>Brgy. Buru-un</item>
+    </string-array>
+
     <!-- Home -->
     <string name="greeting_morning">Good morning</string>
     <string name="greeting_afternoon">Good afternoon</string>

@@ -1,0 +1,31 @@
+# Per-machine SDK location, must not be shared
+local.properties
+
+# Gradle / build output
+.gradle/
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.ap_
+*.dex
+*.class
+
+# Android Studio / IntelliJ
+*.iml
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+.idea/deploymentTargetSelector.xml
+.idea/deviceManager.xml
+.idea/discord.xml
+.idea/claudeCodeEditorTabs.xml
+.idea/claudeCodeTabState.xml
+
+# OS junk
+.DS_Store
+Thumbs.db

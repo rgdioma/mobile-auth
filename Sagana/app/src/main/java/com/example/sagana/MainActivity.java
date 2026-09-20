@@ -62,7 +62,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.textForgotPassword).setOnClickListener(v -> showComingSoon());
-        findViewById(R.id.textCreateAccount).setOnClickListener(v -> showComingSoon());
+        findViewById(R.id.textCreateAccount).setOnClickListener(
+                v -> startActivity(new Intent(this, RegisterActivity.class))
+        );
     }
 
     private void togglePasswordVisibility() {

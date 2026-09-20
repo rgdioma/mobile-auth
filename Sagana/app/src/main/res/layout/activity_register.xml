@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/registerRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/rice"
+    android:fillViewport="true"
+    tools:context=".RegisterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="32dp">
+
+        <!-- Title row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/buttonBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/cd_back"
+                android:src="@drawable/ic_arrow_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/title_create_account"
+                android:textColor="@color/adobo"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/subtitle_create_account"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp" />
+
+        <!-- Full name -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:labelFor="@+id/editFullName"
+            android:text="@string/label_full_name"
+            android:textColor="@color/adobo"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editFullName"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:autofillHints="name"
+            android:background="@drawable/bg_input"
+            android:hint="@string/hint_full_name"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName|textCapWords"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="@color/adobo"
+            android:textColorHint="@color/icon_muted"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/errorFullName"
+            style="@style/Widget.SaluBite.ErrorLabel"
+            tools:text="Enter your full name"
+            tools:visibility="visible" />
+
+        <!-- Email -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:labelFor="@+id/editEmail"
+            android:text="@string/label_email"
+            android:textColor="@color/adobo"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editEmail"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:autofillHints="emailAddress"
+            android:background="@drawable/bg_input"
+            android:hint="@string/hint_email"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="@color/adobo"
+            android:textColorHint="@color/icon_muted"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/errorEmail"
+            style="@style/Widget.SaluBite.ErrorLabel" />
+
+        <!-- Mobile number -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:labelFor="@+id/editMobile"
+            android:text="@string/label_mobile"
+            android:textColor="@color/adobo"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editMobile"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:autofillHints="phone"
+            android:background="@drawable/bg_input"
+            android:hint="@string/hint_mobile"
+            android:imeOptions="actionNext"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="@color/adobo"
+            android:textColorHint="@color/icon_muted"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/errorMobile"
+            style="@style/Widget.SaluBite.ErrorLabel" />
+
+        <!-- Barangay -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/label_barangay"
+            android:textColor="@color/adobo"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinnerBarangay"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_input"
+            android:entries="@array/barangays"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:id="@+id/errorBarangay"
+            style="@style/Widget.SaluBite.ErrorLabel" />
+
+        <!-- Password -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:labelFor="@+id/editPassword"
+            android:text="@string/label_password"
+            android:textColor="@color/adobo"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:addStatesFromChildren="true"
+            android:background="@drawable/bg_input"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="4dp">
+
+            <EditText
+                android:id="@+id/editPassword"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:autofillHints="newPassword"
+                android:background="@null"
+                android:hint="@string/hint_new_password"
+                android:imeOptions="actionNext"
+                android:inputType="textPassword"
+                android:textColor="@color/adobo"
+                android:textColorHint="@color/icon_muted"
+                android:textSize="15sp" />
+
+            <ImageButton
+                android:id="@+id/buttonTogglePassword"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/cd_show_password"
+                android:src="@drawable/ic_visibility" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressStrength"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_marginTop="10dp"
+            android:max="5"
+            android:progress="0"
+            android:progressDrawable="@drawable/bg_strength_bar" />
+
+        <!-- Password rules, two columns like the design -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/ruleLength"
+                    style="@style/Widget.SaluBite.PasswordRule"
+                    android:text="@string/rule_length" />
+
+                <TextView
+                    android:id="@+id/ruleLowercase"
+                    style="@style/Widget.SaluBite.PasswordRule"
+                    android:text="@string/rule_lowercase" />
+
+                <TextView
+                    android:id="@+id/ruleSymbol"
+                    style="@style/Widget.SaluBite.PasswordRule"
+                    android:text="@string/rule_symbol" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/ruleUppercase"
+                    style="@style/Widget.SaluBite.PasswordRule"
+                    android:text="@string/rule_uppercase" />
+
+                <TextView
+                    android:id="@+id/ruleNumber"
+                    style="@style/Widget.SaluBite.PasswordRule"
+                    android:text="@string/rule_number" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/errorPassword"
+            style="@style/Widget.SaluBite.ErrorLabel" />
+
+        <!-- Confirm password -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:labelFor="@+id/editConfirmPassword"
+            android:text="@string/label_confirm_password"
+            android:textColor="@color/adobo"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:autofillHints="newPassword"
+            android:background="@drawable/bg_input"
+            android:hint="@string/hint_confirm_password"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="@color/adobo"
+            android:textColorHint="@color/icon_muted"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/errorConfirmPassword"
+            style="@style/Widget.SaluBite.ErrorLabel" />
+
+        <!-- Role -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/label_joining_as"
+            android:textColor="@color/adobo"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupRole"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioMember"
+                style="@style/Widget.SaluBite.RoleChoice"
+                android:layout_marginEnd="6dp"
+                android:text="@string/role_member" />
+
+            <RadioButton
+                android:id="@+id/radioStaff"
+                style="@style/Widget.SaluBite.RoleChoice"
+                android:layout_marginStart="6dp"
+                android:text="@string/role_staff" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/role_hint"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/errorRole"
+            style="@style/Widget.SaluBite.ErrorLabel" />
+
+        <!-- Terms -->
+        <CheckBox
+            android:id="@+id/checkTerms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:buttonTint="@color/chili"
+            android:paddingStart="8dp"
+            android:paddingEnd="0dp"
+            android:text="@string/label_terms"
+            android:textColor="@color/adobo"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/errorTerms"
+            style="@style/Widget.SaluBite.ErrorLabel" />
+
+        <Button
+            android:id="@+id/buttonCreateAccount"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/chili"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/action_create_account"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:cornerRadius="14dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/have_account"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:background="?attr/selectableItemBackground"
+                android:text="@string/action_login"
+                android:textColor="@color/chili"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
