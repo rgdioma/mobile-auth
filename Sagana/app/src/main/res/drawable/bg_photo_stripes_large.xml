@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Wide version of the striped placeholder, for the food details hero image -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="340dp"
+    android:height="190dp"
+    android:viewportWidth="340"
+    android:viewportHeight="190">
+    <group>
+        <clip-path android:pathData="M16,0 H324 A16,16 0 0 1 340,16 V174 A16,16 0 0 1 324,190 H16 A16,16 0 0 1 0,174 V16 A16,16 0 0 1 16,0 Z" />
+        <path
+            android:fillColor="@color/butter"
+            android:pathData="M0,0 H340 V190 H0 Z" />
+        <path
+            android:strokeColor="@color/placeholder_stripe"
+            android:strokeWidth="11"
+            android:pathData="M26,0 L-164,190 M52,0 L-138,190 M78,0 L-112,190 M104,0 L-86,190 M130,0 L-60,190 M156,0 L-34,190 M182,0 L-8,190 M208,0 L18,190 M234,0 L44,190 M260,0 L70,190 M286,0 L96,190 M312,0 L122,190 M338,0 L148,190 M364,0 L174,190 M390,0 L200,190 M416,0 L226,190 M442,0 L252,190 M468,0 L278,190 M494,0 L304,190 M520,0 L330,190" />
+    </group>
+</vector>

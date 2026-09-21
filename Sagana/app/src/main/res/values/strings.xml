@@ -2,7 +2,7 @@
     <string name="app_name">Sagana</string>
 
     <!-- Login -->
-    <string name="brand_name">SaluBite</string>
+    <string name="brand_name">Sagana</string>
     <string name="login_tagline">Extra food, shared with neighbors nearby.</string>
     <string name="label_email">Email</string>
     <string name="hint_email">juan@email.com</string>
@@ -13,7 +13,7 @@
     <string name="action_demo">Use demo account</string>
     <string name="new_here">New here?</string>
     <string name="create_account">Create an account</string>
-    <string name="cd_logo">SaluBite logo</string>
+    <string name="cd_logo">Sagana logo</string>
     <string name="cd_show_password">Show password</string>
     <string name="cd_hide_password">Hide password</string>
 
@@ -87,6 +87,24 @@
     <string name="closest_first">Closest first</string>
     <string name="listing_count">%1$d listings</string>
     <string name="brgy_desk">Brgy. desk</string>
+
+    <!-- Food details -->
+    <string name="title_food_details">Food details</string>
+    <string name="photo_hint_card">Put: %1$s</string>
+    <string name="photo_hint_details">Put: Photo of %1$s</string>
+    <string name="food_subtitle">%1$s · %2$s · %3$s away</string>
+    <string name="label_window_closes">Pickup window closes in</string>
+    <string name="window_note">Food that isn\'t picked up in time gets taken off the list so nobody receives it past safe limits.</string>
+    <string name="format_countdown_long">%1$d:%2$02d:%3$02d</string>
+    <string name="format_countdown_short">%1$d:%2$02d</string>
+    <string name="window_closed">Closed</string>
+    <string name="donor_type">Small eatery</string>
+    <string name="donor_rating">4.5 donor rating</string>
+    <string name="label_donor_notes">Donor notes</string>
+    <string name="donor_notes">Cooked this morning. Keep covered, eat within the day.</string>
+    <string name="handover_note">Pickup at Brgy. Tangub social welfare desk. Staff check the food and log the handover.</string>
+    <string name="action_reserve">Reserve and schedule pickup</string>
+    <string name="toast_reserved">Reserved. Pick a time under Pickups.</string>
 
     <!-- Profile -->
     <string name="cd_avatar">Profile photo</string>
