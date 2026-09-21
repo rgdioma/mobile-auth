@@ -3,6 +3,8 @@ package com.example.sagana;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +23,7 @@ public class FoodDetailsActivity extends AppCompatActivity {
     public static final String EXTRA_DISTANCE = "com.example.sagana.DISTANCE";
     public static final String EXTRA_DONOR = "com.example.sagana.DONOR";
     public static final String EXTRA_PHOTO_HINT = "com.example.sagana.PHOTO_HINT";
+    public static final String EXTRA_PHOTO_NAME = "com.example.sagana.PHOTO_NAME";
     public static final String EXTRA_REMAINING_MILLIS = "com.example.sagana.REMAINING_MILLIS";
 
     /** The full pickup window every listing starts with, used to fill the bar. */
@@ -70,6 +73,13 @@ public class FoodDetailsActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.textDonor)).setText(donor);
         ((TextView) findViewById(R.id.textPhotoHint)).setText(
                 getString(R.string.photo_hint_details, photoHint));
+
+        int photoRes = FoodPhotos.resolve(this, getIntent().getStringExtra(EXTRA_PHOTO_NAME));
+        if (photoRes != 0) {
+            ((ImageView) findViewById(R.id.imagePhoto)).setImageResource(photoRes);
+            findViewById(R.id.photoCard).setVisibility(View.VISIBLE);
+            findViewById(R.id.photoPlaceholder).setVisibility(View.GONE);
+        }
 
         findViewById(R.id.buttonBack).setOnClickListener(v -> finish());
         findViewById(R.id.buttonReserve).setOnClickListener(v -> {

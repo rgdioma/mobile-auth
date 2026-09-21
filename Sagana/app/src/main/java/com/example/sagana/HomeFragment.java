@@ -5,6 +5,7 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -71,6 +72,13 @@ public class HomeFragment extends Fragment {
         ((TextView) card.findViewById(R.id.textPlaceholder)).setText(
                 getString(R.string.photo_hint_card, listing.photoHint));
 
+        int photoRes = FoodPhotos.resolve(card.getContext(), listing.photoName);
+        if (photoRes != 0) {
+            ((ImageView) card.findViewById(R.id.imagePhoto)).setImageResource(photoRes);
+            card.findViewById(R.id.photoCard).setVisibility(View.VISIBLE);
+            card.findViewById(R.id.photoPlaceholder).setVisibility(View.GONE);
+        }
+
         int pillColor = listing.urgent ? R.color.chili : R.color.mango;
         int textColor = listing.urgent ? R.color.white : R.color.adobo;
         
@@ -95,6 +103,7 @@ public class HomeFragment extends Fragment {
         intent.putExtra(FoodDetailsActivity.EXTRA_DISTANCE, listing.distance);
         intent.putExtra(FoodDetailsActivity.EXTRA_DONOR, listing.donor);
         intent.putExtra(FoodDetailsActivity.EXTRA_PHOTO_HINT, listing.photoHint);
+        intent.putExtra(FoodDetailsActivity.EXTRA_PHOTO_NAME, listing.photoName);
         intent.putExtra(FoodDetailsActivity.EXTRA_REMAINING_MILLIS, listing.remainingMillis);
         startActivity(intent);
     }
@@ -117,18 +126,20 @@ public class HomeFragment extends Fragment {
         final String category;
         final String distance;
         final String photoHint;
+        final String photoName;
         final String timeLeft;
         final boolean urgent;
         final long remainingMillis;
 
         Listing(String title, String quantity, String donor, String category, String distance,
-                String photoHint, String timeLeft, boolean urgent, long remainingMillis) {
+                String photoHint, String photoName, String timeLeft, boolean urgent, long remainingMillis) {
             this.title = title;
             this.quantity = quantity;
             this.donor = donor;
             this.category = category;
             this.distance = distance;
             this.photoHint = photoHint;
+            this.photoName = photoName;
             this.timeLeft = timeLeft;
             this.urgent = urgent;
             this.remainingMillis = remainingMillis;
@@ -140,24 +151,25 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    // photoName maps to res/drawable/<name>; the placeholder shows until that file exists.
     private static final List<Listing> SAMPLE_LISTINGS = Arrays.asList(
             new Listing("Pancit bihon", "8 packs", "Aling Nena's Carinderia", "Cooked", "0.4 km",
-                    "pancit bihon in foil trays", "29m 42s left", true,
+                    "pancit bihon in foil trays", "food_pancit_bihon", "29m 42s left", true,
                     TimeUnit.MINUTES.toMillis(29) + TimeUnit.SECONDS.toMillis(42)),
             new Listing("Pandesal", "3 dozen", "Golden Crust Bakery", "Bread", "0.9 km",
-                    "pandesal in a paper bag", "2h 19m left", false,
+                    "pandesal in a paper bag", "food_pandesal", "2h 19m left", false,
                     TimeUnit.HOURS.toMillis(2) + TimeUnit.MINUTES.toMillis(19)),
             new Listing("Saba bananas", "2 bunches", "Dela Cruz household", "Produce", "1.3 km",
-                    "two banana bunches", "5h 04m left", false,
+                    "two banana bunches", "food_saba_bananas", "5h 04m left", false,
                     TimeUnit.HOURS.toMillis(5) + TimeUnit.MINUTES.toMillis(4)),
             new Listing("Chicken adobo", "5 servings", "Tita Baby's Kitchen", "Cooked", "1.8 km",
-                    "adobo in lidded tubs", "48m 10s left", true,
+                    "adobo in lidded tubs", "food_chicken_adobo", "48m 10s left", true,
                     TimeUnit.MINUTES.toMillis(48) + TimeUnit.SECONDS.toMillis(10)),
             new Listing("Rice", "4 kg", "Brgy. San Roque pantry", "Packaged", "2.6 km",
-                    "rice in a sealed sack", "1 day left", false,
+                    "rice in a sealed sack", "food_rice", "1 day left", false,
                     TimeUnit.DAYS.toMillis(1)),
             new Listing("Canned sardines", "12 cans", "Santos sari-sari store", "Packaged", "3.4 km",
-                    "sardine cans on a tray", "3 days left", false,
+                    "sardine cans on a tray", "food_canned_sardines", "3 days left", false,
                     TimeUnit.DAYS.toMillis(3))
     );
 }

@@ -43,33 +43,58 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!-- Photo placeholder -->
-        <LinearLayout
+        <!-- Food photo, falling back to the striped placeholder until one is added -->
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="190dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/bg_photo_placeholder_large"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_marginTop="16dp">
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:importantForAccessibility="no"
-                android:src="@drawable/ic_image" />
-
-            <TextView
-                android:id="@+id/textPhotoHint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+            <LinearLayout
+                android:id="@+id/photoPlaceholder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_photo_placeholder_large"
                 android:gravity="center"
-                android:textColor="@color/placeholder_ink"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                tools:text="Put: Photo of pancit bihon in foil trays" />
-        </LinearLayout>
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_image" />
+
+                <TextView
+                    android:id="@+id/textPhotoHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:textColor="@color/placeholder_ink"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    tools:text="Put: Photo of pancit bihon in foil trays" />
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/photoCard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/imagePhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:importantForAccessibility="no"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/ic_image" />
+            </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
 
         <TextView
             android:id="@+id/textTitle"
