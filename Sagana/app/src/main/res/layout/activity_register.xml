@@ -51,38 +51,92 @@
             android:textColor="@color/text_secondary"
             android:textSize="14sp" />
 
-        <!-- Full name -->
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- First name and last name, side by side -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:labelFor="@+id/editFullName"
-            android:text="@string/label_full_name"
-            android:textColor="@color/adobo"
-            android:textSize="13sp"
-            android:textStyle="bold" />
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/editFullName"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginTop="8dp"
-            android:autofillHints="name"
-            android:background="@drawable/bg_input"
-            android:hint="@string/hint_full_name"
-            android:imeOptions="actionNext"
-            android:inputType="textPersonName|textCapWords"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:textColor="@color/adobo"
-            android:textColorHint="@color/icon_muted"
-            android:textSize="15sp" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/errorFullName"
-            style="@style/Widget.SaluBite.ErrorLabel"
-            tools:text="Enter your full name"
-            tools:visibility="visible" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@+id/editFirstName"
+                    android:text="@string/label_first_name"
+                    android:textColor="@color/adobo"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/editFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:autofillHints="personGivenName"
+                    android:background="@drawable/bg_input"
+                    android:hint="@string/hint_first_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName|textCapWords"
+                    android:maxLength="40"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:textColor="@color/adobo"
+                    android:textColorHint="@color/icon_muted"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/errorFirstName"
+                    style="@style/Widget.SaluBite.ErrorLabel"
+                    tools:text="Enter your first name"
+                    tools:visibility="visible" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@+id/editLastName"
+                    android:text="@string/label_last_name"
+                    android:textColor="@color/adobo"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/editLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:autofillHints="personFamilyName"
+                    android:background="@drawable/bg_input"
+                    android:hint="@string/hint_last_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName|textCapWords"
+                    android:maxLength="40"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:textColor="@color/adobo"
+                    android:textColorHint="@color/icon_muted"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/errorLastName"
+                    style="@style/Widget.SaluBite.ErrorLabel" />
+            </LinearLayout>
+        </LinearLayout>
 
         <!-- Email -->
         <TextView
@@ -350,6 +404,53 @@
         <TextView
             android:id="@+id/errorRole"
             style="@style/Widget.SaluBite.ErrorLabel" />
+
+        <!-- Staff ID, only for barangay desk staff -->
+        <LinearLayout
+            android:id="@+id/staffField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/editStaffId"
+                android:text="@string/label_staff_id"
+                android:textColor="@color/adobo"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editStaffId"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints="none"
+                android:background="@drawable/bg_input"
+                android:hint="@string/hint_staff_id"
+                android:inputType="textCapCharacters"
+                android:maxLength="9"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="@color/adobo"
+                android:textColorHint="@color/icon_muted"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/staff_id_hint"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/errorStaffId"
+                style="@style/Widget.SaluBite.ErrorLabel" />
+        </LinearLayout>
 
         <!-- Terms -->
         <CheckBox

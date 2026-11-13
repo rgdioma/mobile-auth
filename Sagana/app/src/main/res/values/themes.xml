@@ -14,4 +14,10 @@
     </style>
 
     <style name="Theme.Sagana" parent="Base.Theme.Sagana" />
+
+    <!-- Opening screen: red from the very first frame so there is no white flash -->
+    <style name="Theme.Sagana.Splash" parent="Theme.Sagana">
+        <item name="android:windowBackground">@color/chili</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
 </resources>

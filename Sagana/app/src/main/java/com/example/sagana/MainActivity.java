@@ -7,7 +7,6 @@ import android.util.Patterns;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,10 +14,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+/** Login screen. Checks the email and password against the users table (READ). */
 public class MainActivity extends AppCompatActivity {
 
-    private static final String DEMO_EMAIL = "juan@email.com";
-    private static final String DEMO_PASSWORD = "demo1234";
+    private static final String DEMO_EMAIL = "demo@sagana.ph";
+    private static final String DEMO_PASSWORD = "Food@1234";
+    private static final String STAFF_EMAIL = "staff@sagana.ph";
+    private static final String STAFF_PASSWORD = "Desk@1234";
 
     private EditText editEmail;
     private EditText editPassword;
@@ -60,10 +62,16 @@ public class MainActivity extends AppCompatActivity {
             editPassword.setText(DEMO_PASSWORD);
             attemptLogin();
         });
+        findViewById(R.id.textStaffDemo).setOnClickListener(v -> {
+            editEmail.setText(STAFF_EMAIL);
+            editPassword.setText(STAFF_PASSWORD);
+            attemptLogin();
+        });
 
-        findViewById(R.id.textForgotPassword).setOnClickListener(v -> showComingSoon());
+        findViewById(R.id.textForgotPassword).setOnClickListener(v ->
+                Toast.makeText(this, R.string.toast_coming_soon, Toast.LENGTH_SHORT).show());
         findViewById(R.id.textCreateAccount).setOnClickListener(
-                v -> startActivity(new Intent(this, RegisterActivity.class))
+                v -> Nav.push(this, new Intent(this, RegisterActivity.class))
         );
     }
 
@@ -103,21 +111,18 @@ public class MainActivity extends AppCompatActivity {
             editPassword.setError(getString(R.string.error_password_required));
             editPassword.requestFocus();
         } else {
-            String displayName;
-            if (DEMO_EMAIL.equals(email)) {
-                displayName = getString(R.string.demo_display_name);
-            } else {
-                String prefix = email.split("@")[0];
-                displayName = prefix.substring(0, 1).toUpperCase() + prefix.substring(1);
+            DatabaseHelper.User user = DatabaseHelper.get(this).login(email, password);
+            if (user == null) {
+                editPassword.setError(getString(R.string.error_login_wrong));
+                editPassword.requestFocus();
+                return;
             }
+            Session.login(this, user.email);
+            Toast.makeText(this, getString(R.string.toast_welcome_back, user.firstName()), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, HomeActivity.class);
-            intent.putExtra(HomeActivity.EXTRA_DISPLAY_NAME, displayName);
-            startActivity(intent);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            Nav.rise(this, intent);
             finish();
         }
-    }
- //test 2
-    private void showComingSoon() {
-        Toast.makeText(this, R.string.toast_coming_soon, Toast.LENGTH_SHORT).show();
     }
 }

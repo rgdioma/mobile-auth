@@ -1,5 +1,7 @@
 package com.example.sagana;
 
+import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -8,18 +10,40 @@ import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
+import android.widget.CalendarView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 
+/**
+ * Feature 4: pickup scheduling. Members choose a day and time slot for the food they
+ * reserved (INSERT INTO bookings). Each booking gets a handover code drawn as a QR code;
+ * the barangay desk staff scan it with ML Kit to hand the food over.
+ */
 public class PickupsFragment extends Fragment {
+
+    private static final int[] SLOT_HOURS = {9, 11, 13, 15, 17, 19};
+
+    private DatabaseHelper db;
+    private DatabaseHelper.User me;
+    private DatabaseHelper.Listing selected;
+    private String selectedDay;
+    private String selectedSlot;
 
     public PickupsFragment() {
         super(R.layout.fragment_pickups);
@@ -28,33 +52,243 @@ public class PickupsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Ui.padForStatusBar(view);
+        db = DatabaseHelper.get(requireContext());
+        me = Session.user(requireContext());
 
-        // Adjust padding for status bar
-        final int basePadding = view.getPaddingTop();
-        ViewCompat.setOnApplyWindowInsetsListener(view, (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.statusBars());
-            v.setPadding(v.getPaddingLeft(), basePadding + systemBars.top, v.getPaddingRight(), v.getPaddingBottom());
-            return insets;
+        long id = -1;
+        if (savedInstanceState != null) id = savedInstanceState.getLong("selected", -1);
+        if (id <= 0 && requireActivity() instanceof HomeActivity) id = ((HomeActivity) requireActivity()).takeReserveId();
+        if (id > 0) selected = db.getListing(id);
+
+        selectedDay = DatabaseHelper.today();
+        CalendarView cal = view.findViewById(R.id.calendarView);
+        cal.setMinDate(System.currentTimeMillis() - 1000);
+        cal.setOnDateChangeListener((v, y, m, d) -> {
+            selectedDay = String.format(Locale.US, "%04d-%02d-%02d", y, m + 1, d);
+            selectedSlot = null;
+            buildSlots(view);
         });
-        ViewCompat.requestApplyInsets(view);
+
+        view.findViewById(R.id.buttonClearSelected).setOnClickListener(v -> {
+            selected = null;
+            showSelected(view);
+        });
+        view.findViewById(R.id.buttonConfirm).setOnClickListener(v -> confirm());
 
         setupBanner(view);
+        showSelected(view);
+        buildSlots(view);
+        renderBookings(true);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle out) {
+        super.onSaveInstanceState(out);
+        if (selected != null) out.putLong("selected", selected.id);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        renderBookings(false); // the desk may have verified a code meanwhile
+    }
+
+    private void showSelected(View view) {
+        boolean has = selected != null;
+        view.findViewById(R.id.bannerChoose).setVisibility(has ? View.GONE : View.VISIBLE);
+        view.findViewById(R.id.cardSelected).setVisibility(has ? View.VISIBLE : View.GONE);
+        view.findViewById(R.id.buttonConfirm).setVisibility(has ? View.VISIBLE : View.GONE);
+        if (has) {
+            ((TextView) view.findViewById(R.id.textSelectedName)).setText(selected.name);
+            ((TextView) view.findViewById(R.id.textSelectedInfo)).setText(selected.qty + " · " + selected.desk);
+            View card = view.findViewById(R.id.cardSelected);
+            card.setScaleX(0.92f);
+            card.setScaleY(0.92f);
+            card.animate().scaleX(1f).scaleY(1f).setDuration(350).setInterpolator(new OvershootInterpolator(2f)).start();
+        }
+    }
+
+    private void buildSlots(View view) {
+        ChipGroup group = view.findViewById(R.id.chipGroupTime);
+        group.removeAllViews();
+        boolean today = DatabaseHelper.today().equals(selectedDay);
+        int hourNow = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        LayoutInflater inf = LayoutInflater.from(requireContext());
+        for (int h : SLOT_HOURS) {
+            Chip chip = (Chip) inf.inflate(R.layout.item_time_chip, group, false);
+            String label = slotLabel(h);
+            chip.setText(label);
+            chip.setId(View.generateViewId());
+            boolean past = today && h <= hourNow;
+            chip.setEnabled(!past);
+            chip.setAlpha(past ? 0.4f : 1f);
+            chip.setChecked(label.equals(selectedSlot));
+            chip.setOnCheckedChangeListener((b, checked) -> {
+                if (checked) selectedSlot = label;
+                else if (label.equals(selectedSlot)) selectedSlot = null;
+            });
+            group.addView(chip);
+        }
+    }
+
+    private static String slotLabel(int hour) {
+        int h12 = hour % 12 == 0 ? 12 : hour % 12;
+        return h12 + ":00 " + (hour < 12 ? "AM" : "PM");
+    }
+
+    // ------------------------------------------------------------------ booking (CREATE)
+    private void confirm() {
+        if (selected == null || me == null) return;
+        if (selectedSlot == null) {
+            Toast.makeText(requireContext(), R.string.toast_pick_slot, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!selected.isOpen()) {
+            Toast.makeText(requireContext(), R.string.toast_listing_closed, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        new AlertDialog.Builder(requireContext())
+                .setTitle(R.string.confirm_pickup_title)
+                .setMessage(getString(R.string.confirm_pickup_body, selected.name, selected.qty,
+                        Ui.prettyDay(selectedDay), selectedSlot, selected.desk))
+                .setPositiveButton(R.string.action_confirm_pickup, (d, w) -> saveBooking())
+                .setNegativeButton(R.string.action_not_yet, null)
+                .show();
+    }
+
+    private void saveBooking() {
+        DatabaseHelper.Booking b = new DatabaseHelper.Booking();
+        b.listingId = selected.id;
+        b.owner = me.email;
+        b.receiver = me.name;
+        b.food = selected.name;
+        b.qty = selected.qty;
+        b.donor = selected.donor;
+        b.category = selected.category;
+        b.desk = selected.desk;
+        b.date = selectedDay;
+        b.slot = selectedSlot;
+        b.code = QrCodes.newCode(db);
+        db.insertBooking(b);
+
+        selected = null;
+        selectedSlot = null;
+        View view = requireView();
+        showSelected(view);
+        buildSlots(view);
+        renderBookings(true);
+        showQr(b, true);
+    }
+
+    // ------------------------------------------------------------------ list
+    private void renderBookings(boolean animate) {
+        View view = getView();
+        if (view == null || me == null) return;
+        List<DatabaseHelper.Booking> list = db.getMyBookings(me.email);
+        ((TextView) view.findViewById(R.id.textPickupCount)).setText(String.valueOf(list.size()));
+        view.findViewById(R.id.textNoPickups).setVisibility(list.isEmpty() ? View.VISIBLE : View.GONE);
+        LinearLayout box = view.findViewById(R.id.bookingContainer);
+        box.removeAllViews();
+        LayoutInflater inf = LayoutInflater.from(requireContext());
+        for (DatabaseHelper.Booking b : list) box.addView(bindBooking(inf.inflate(R.layout.item_booking, box, false), b));
+        if (animate) Ui.stagger(box);
+    }
+
+    private View bindBooking(View card, DatabaseHelper.Booking b) {
+        ((TextView) card.findViewById(R.id.textFood)).setText(b.food);
+        ((TextView) card.findViewById(R.id.textInfo)).setText(
+                b.qty + " · " + Ui.prettyDay(b.date) + ", " + b.slot + "\n" + b.desk);
+
+        TextView status = card.findViewById(R.id.textStatus);
+        boolean scheduled = "Scheduled".equals(b.status), verified = "Verified".equals(b.status);
+        status.setText(scheduled ? R.string.status_scheduled : verified ? R.string.status_verified : R.string.status_received);
+        int bg = scheduled ? R.color.mango : R.color.leaf_light;
+        int fg = scheduled ? R.color.adobo : R.color.leaf;
+        status.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), bg)));
+        status.setTextColor(ContextCompat.getColor(requireContext(), fg));
+
+        if (scheduled) {
+            card.findViewById(R.id.sectionCode).setVisibility(View.VISIBLE);
+            ((TextView) card.findViewById(R.id.textCode)).setText(b.code);
+            Bitmap qr = QrCodes.render(b.code, Ui.dp(requireContext(), 96));
+            ImageView qrView = card.findViewById(R.id.imageQr);
+            qrView.setImageBitmap(qr);
+            qrView.setOnClickListener(v -> showQr(b, false));
+            card.findViewById(R.id.buttonEnlarge).setOnClickListener(v -> showQr(b, false));
+            card.findViewById(R.id.buttonCancel).setOnClickListener(v -> new AlertDialog.Builder(requireContext())
+                    .setTitle(R.string.cancel_pickup_title)
+                    .setMessage(getString(R.string.cancel_pickup_body, b.food))
+                    .setPositiveButton(R.string.action_cancel_pickup, (d, w) -> {
+                        db.cancelBooking(b.id);                      // DELETE
+                        Toast.makeText(requireContext(), R.string.toast_pickup_cancelled, Toast.LENGTH_SHORT).show();
+                        renderBookings(false);
+                    })
+                    .setNegativeButton(R.string.action_keep, null)
+                    .show());
+        } else if (verified) {
+            card.findViewById(R.id.sectionVerified).setVisibility(View.VISIBLE);
+            ((TextView) card.findViewById(R.id.textVerified)).setText(getString(R.string.verified_note, Ui.clock(b.verifiedAt)));
+            card.findViewById(R.id.buttonReceived).setOnClickListener(v -> new AlertDialog.Builder(requireContext())
+                    .setTitle(R.string.received_title)
+                    .setMessage(R.string.received_body)
+                    .setPositiveButton(R.string.action_received_yes, (d, w) -> {
+                        db.markReceived(b.id);                       // UPDATE
+                        Toast.makeText(requireContext(), R.string.toast_handover_confirmed, Toast.LENGTH_SHORT).show();
+                        renderBookings(false);
+                    })
+                    .setNegativeButton(R.string.action_cancel, null)
+                    .show());
+        } else if (b.rating == 0) {
+            card.findViewById(R.id.sectionRate).setVisibility(View.VISIBLE);
+            ((TextView) card.findViewById(R.id.textRatePrompt)).setText(getString(R.string.rate_prompt, b.donor));
+            RatingBar input = card.findViewById(R.id.ratingInput);
+            card.findViewById(R.id.buttonRate).setOnClickListener(v -> {
+                int stars = Math.round(input.getRating());
+                if (stars == 0) {
+                    Toast.makeText(requireContext(), R.string.toast_tap_stars, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                db.rateBooking(b.id, stars);                         // UPDATE
+                Toast.makeText(requireContext(), R.string.toast_thanks_rating, Toast.LENGTH_SHORT).show();
+                renderBookings(false);
+            });
+        } else {
+            card.findViewById(R.id.sectionRated).setVisibility(View.VISIBLE);
+            ((RatingBar) card.findViewById(R.id.ratingShown)).setRating(b.rating);
+        }
+        return card;
+    }
+
+    /** Big QR for the desk staff to scan. */
+    private void showQr(DatabaseHelper.Booking b, boolean justBooked) {
+        View content = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_qr, null);
+        ImageView img = content.findViewById(R.id.imageQrLarge);
+        img.setImageBitmap(QrCodes.render(b.code, Ui.dp(requireContext(), 240)));
+        ((TextView) content.findViewById(R.id.textQrCode)).setText(b.code);
+        ((TextView) content.findViewById(R.id.textQrInfo)).setText(
+                b.food + " · " + Ui.prettyDay(b.date) + ", " + b.slot + "\n" + b.desk);
+        img.setScaleX(0.7f);
+        img.setScaleY(0.7f);
+        img.animate().scaleX(1f).scaleY(1f).setDuration(400).setInterpolator(new OvershootInterpolator(2f)).start();
+        new AlertDialog.Builder(requireContext())
+                .setTitle(justBooked ? R.string.pickup_confirmed_title : R.string.handover_qr_title)
+                .setView(content)
+                .setPositiveButton(R.string.action_done, null)
+                .show();
     }
 
     private void setupBanner(View view) {
         TextView textBanner = view.findViewById(R.id.textBanner);
-        String fullText = getString(R.string.pickup_banner_text) + " " + getString(R.string.browse_food);
+        String browse = getString(R.string.browse_food);
+        String fullText = getString(R.string.pickup_banner_text) + " " + browse;
         SpannableString ss = new SpannableString(fullText);
-
-        String browseFood = getString(R.string.browse_food);
-        int start = fullText.indexOf(browseFood);
-        int end = start + browseFood.length();
-
-        ClickableSpan clickableSpan = new ClickableSpan() {
+        int start = fullText.indexOf(browse), end = start + browse.length();
+        ss.setSpan(new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
-                // Navigate to home or show message
-                Toast.makeText(getContext(), R.string.toast_coming_soon, Toast.LENGTH_SHORT).show();
+                if (requireActivity() instanceof HomeActivity)
+                    ((HomeActivity) requireActivity()).selectTab(R.id.nav_home);
             }
 
             @Override
@@ -63,11 +297,8 @@ public class PickupsFragment extends Fragment {
                 ds.setUnderlineText(false);
                 ds.setFakeBoldText(true);
             }
-        };
-
-        ss.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         ss.setSpan(new ForegroundColorSpan(ContextCompat.getColor(requireContext(), R.color.chili)), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
         textBanner.setText(ss);
         textBanner.setMovementMethod(LinkMovementMethod.getInstance());
         textBanner.setHighlightColor(Color.TRANSPARENT);

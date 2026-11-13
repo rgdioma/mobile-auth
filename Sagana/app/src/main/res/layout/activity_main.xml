@@ -32,11 +32,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/baloo2_extrabold"
+            android:includeFontPadding="false"
             android:text="@string/brand_name"
             android:textColor="@color/adobo"
-            android:textSize="28sp"
-            android:textStyle="bold" />
+            android:textSize="36sp"
+            />
 
         <TextView
             android:id="@+id/textTagline"
@@ -172,6 +173,18 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:cornerRadius="14dp" />
+
+        <TextView
+            android:id="@+id/textStaffDemo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="?attr/selectableItemBackground"
+            android:padding="4dp"
+            android:text="@string/action_staff_demo"
+            android:textColor="@color/chili"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <!-- Sign-up link -->
         <LinearLayout

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/rice"
@@ -20,8 +21,9 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <!-- Warning Banner -->
+        <!-- Shown until a food is chosen on Home -->
         <LinearLayout
+            android:id="@+id/bannerChoose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -50,11 +52,82 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
+        <!-- The food being reserved -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSelected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/chili"
+            app:strokeWidth="1.5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="14dp">
+
+                <FrameLayout
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:background="@drawable/bg_circle_solid"
+                    android:backgroundTint="@color/butter">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_restaurant"
+                        app:tint="@color/chili" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textSelectedName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/adobo"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        tools:text="Pancit bihon" />
+
+                    <TextView
+                        android:id="@+id/textSelectedInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        tools:text="8 packs · Brgy. Tangub social welfare desk" />
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/buttonClearSelected"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/cd_clear"
+                    android:src="@drawable/ic_close"
+                    app:tint="@color/text_secondary" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
         <!-- Calendar Container -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/bg_calendar"
             android:padding="12dp">
 
@@ -81,85 +154,65 @@
             android:layout_marginTop="12dp"
             app:chipSpacingHorizontal="8dp"
             app:chipSpacingVertical="8dp"
-            app:singleSelection="true">
+            app:singleSelection="true" />
 
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.SaluBite.TimeChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/time_9am" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.SaluBite.TimeChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/time_11am" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.SaluBite.TimeChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/time_1pm" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.SaluBite.TimeChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/time_3pm" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.SaluBite.TimeChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/time_5pm" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.SaluBite.TimeChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/time_7pm" />
-
-        </com.google.android.material.chip.ChipGroup>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/chili"
+            android:text="@string/action_confirm_pickup"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:cornerRadius="14dp" />
 
         <!-- Your Pickups Section -->
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp">
+            android:layout_marginTop="32dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
+                android:layout_weight="1"
                 android:text="@string/label_your_pickups"
                 android:textColor="@color/adobo"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/textPickupCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:text="@string/pickup_count_zero"
                 android:textColor="@color/icon_muted" />
-        </RelativeLayout>
+        </LinearLayout>
 
-        <FrameLayout
+        <TextView
+            android:id="@+id/textNoPickups"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_input"
-            android:padding="24dp">
+            android:gravity="center"
+            android:padding="24dp"
+            android:text="@string/no_pickups_text"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/no_pickups_text"
-                android:textColor="@color/text_secondary"
-                android:textSize="14sp" />
-        </FrameLayout>
+        <LinearLayout
+            android:id="@+id/bookingContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

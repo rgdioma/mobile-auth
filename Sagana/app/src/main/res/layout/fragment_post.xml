@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/rice"
@@ -12,15 +13,34 @@
         android:orientation="vertical"
         android:padding="24dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/title_post_food"
-            android:textColor="@color/adobo"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/buttonBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="12dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/cd_back"
+                android:src="@drawable/ic_arrow_back"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/textPostTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_post_food"
+                android:textColor="@color/adobo"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <TextView
+            android:id="@+id/textPostSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -28,40 +48,128 @@
             android:textColor="@color/text_secondary"
             android:textSize="16sp" />
 
-        <!-- Photo Picker -->
+        <!-- Manage my listings (read / update / delete) -->
         <LinearLayout
-            android:id="@+id/photoPicker"
+            android:id="@+id/rowMyListings"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/bg_photo_placeholder"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="56dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_calendar"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="12dp">
 
             <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:contentDescription="@string/cd_photo_picker"
-                android:src="@drawable/ic_image"
-                app:tint="@color/placeholder_ink" />
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_list"
+                app:tint="@color/chili" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/label_add_photo"
-                android:textColor="@color/placeholder_ink"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:text="@string/manage_my_listings"
+                android:textColor="@color/adobo"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/textMyCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/hint_add_photo"
-                android:textColor="@color/placeholder_ink"
-                android:textSize="12sp" />
+                android:background="@drawable/bg_badge"
+                android:backgroundTint="@color/leaf_light"
+                android:paddingHorizontal="9dp"
+                android:paddingVertical="2dp"
+                android:textColor="@color/leaf"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="1" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="6dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_chevron_right" />
         </LinearLayout>
+
+        <!-- Photo Picker -->
+        <FrameLayout
+            android:id="@+id/photoFrame"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
+
+            <LinearLayout
+                android:id="@+id/photoPicker"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_photo_placeholder"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/cd_photo_picker"
+                    android:src="@drawable/ic_image"
+                    app:tint="@color/placeholder_ink" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/label_add_photo"
+                    android:textColor="@color/placeholder_ink"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hint_add_photo"
+                    android:textColor="@color/placeholder_ink"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/photoCard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp">
+
+                <ImageView
+                    android:id="@+id/imagePreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/cd_food_photo"
+                    android:scaleType="centerCrop" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/bg_badge"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="4dp"
+                    android:text="@string/change_photo"
+                    android:textColor="@color/adobo"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
 
         <!-- What food is it? -->
         <TextView
@@ -81,6 +189,7 @@
             android:background="@drawable/bg_input"
             android:hint="@string/hint_what_food"
             android:inputType="textCapSentences"
+            android:maxLength="40"
             android:paddingHorizontal="16dp"
             android:textColor="@color/adobo"
             android:textColorHint="@color/icon_muted" />
@@ -120,7 +229,7 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
-                        android:contentDescription="@null"
+                        android:contentDescription="@string/cd_less"
                         android:src="@drawable/ic_minus"
                         app:tint="@color/chili" />
 
@@ -140,7 +249,7 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
-                        android:contentDescription="@null"
+                        android:contentDescription="@string/cd_more"
                         android:src="@drawable/ic_plus"
                         app:tint="@color/chili" />
                 </LinearLayout>
@@ -163,8 +272,8 @@
                     android:id="@+id/spinnerUnit"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:layout_marginTop="8dp"
                     android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:background="@drawable/bg_input"
                     android:entries="@array/units"
                     android:paddingHorizontal="16dp"
@@ -215,10 +324,10 @@
                 android:background="@drawable/bg_input"
                 android:gravity="center_vertical"
                 android:paddingHorizontal="16dp"
-                android:text="@string/default_start_time"
                 android:textColor="@color/adobo"
                 app:drawableEndCompat="@drawable/ic_timer"
-                app:drawableTint="@color/adobo" />
+                app:drawableTint="@color/adobo"
+                tools:text="3:00 PM" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -235,10 +344,10 @@
                 android:background="@drawable/bg_input"
                 android:gravity="center_vertical"
                 android:paddingHorizontal="16dp"
-                android:text="@string/default_end_time"
                 android:textColor="@color/adobo"
                 app:drawableEndCompat="@drawable/ic_timer"
-                app:drawableTint="@color/adobo" />
+                app:drawableTint="@color/adobo"
+                tools:text="6:00 PM" />
         </LinearLayout>
 
         <!-- Drop-off point -->
@@ -250,16 +359,37 @@
             android:textColor="@color/adobo"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/etDropOff"
+        <Spinner
+            android:id="@+id/spinnerDesk"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="8dp"
-            android:autofillHints="postalAddress"
             android:background="@drawable/bg_input"
-            android:hint="@string/hint_drop_off"
-            android:inputType="textCapWords"
             android:paddingHorizontal="16dp"
+            android:spinnerMode="dropdown" />
+
+        <!-- Notes -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/label_notes"
+            android:textColor="@color/adobo"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:autofillHints="none"
+            android:background="@drawable/bg_input"
+            android:gravity="top"
+            android:hint="@string/hint_notes"
+            android:inputType="textCapSentences|textMultiLine"
+            android:maxLength="200"
+            android:minHeight="80dp"
+            android:padding="16dp"
             android:textColor="@color/adobo"
             android:textColorHint="@color/icon_muted" />
 
@@ -273,13 +403,17 @@
             android:textColor="@color/adobo"
             app:buttonTint="@color/chili" />
 
+        <TextView
+            android:id="@+id/textPostError"
+            style="@style/Widget.SaluBite.ErrorLabel"
+            android:layout_marginTop="8dp" />
+
         <!-- Post Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnPost"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
             android:backgroundTint="@color/chili"
             android:text="@string/action_post_food"
             android:textAllCaps="false"
@@ -287,6 +421,28 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:cornerRadius="12dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDelete"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/action_delete_listing"
+            android:textAllCaps="false"
+            android:textColor="@color/chili"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:cornerRadius="12dp"
+            app:icon="@drawable/ic_delete"
+            app:iconGravity="textStart"
+            app:iconTint="@color/chili"
+            app:strokeColor="@color/chili" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="24dp" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

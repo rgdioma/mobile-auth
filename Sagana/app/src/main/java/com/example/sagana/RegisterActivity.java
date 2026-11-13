@@ -37,7 +37,8 @@ public class RegisterActivity extends AppCompatActivity {
     private static final Pattern DIGIT_PATTERN = Pattern.compile(".*\\d.*");
     private static final Pattern SYMBOL_PATTERN = Pattern.compile(".*[^A-Za-z0-9].*");
 
-    private EditText editFullName;
+    private EditText editFirstName;
+    private EditText editLastName;
     private EditText editEmail;
     private EditText editMobile;
     private EditText editPassword;
@@ -48,7 +49,8 @@ public class RegisterActivity extends AppCompatActivity {
     private ImageButton buttonTogglePassword;
     private ProgressBar progressStrength;
 
-    private TextView errorFullName;
+    private TextView errorFirstName;
+    private TextView errorLastName;
     private TextView errorEmail;
     private TextView errorMobile;
     private TextView errorBarangay;
@@ -62,6 +64,10 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView ruleLowercase;
     private TextView ruleNumber;
     private TextView ruleSymbol;
+
+    private EditText editStaffId;
+    private TextView errorStaffId;
+    private static final Pattern STAFF_PATTERN = Pattern.compile("^BRGY-\\d{4}$");
 
     private boolean isPasswordVisible = false;
 
@@ -79,7 +85,8 @@ public class RegisterActivity extends AppCompatActivity {
             return insets;
         });
 
-        editFullName = findViewById(R.id.editFullName);
+        editFirstName = findViewById(R.id.editFirstName);
+        editLastName = findViewById(R.id.editLastName);
         editEmail = findViewById(R.id.editEmail);
         editMobile = findViewById(R.id.editMobile);
         editPassword = findViewById(R.id.editPassword);
@@ -90,7 +97,8 @@ public class RegisterActivity extends AppCompatActivity {
         buttonTogglePassword = findViewById(R.id.buttonTogglePassword);
         progressStrength = findViewById(R.id.progressStrength);
 
-        errorFullName = findViewById(R.id.errorFullName);
+        errorFirstName = findViewById(R.id.errorFirstName);
+        errorLastName = findViewById(R.id.errorLastName);
         errorEmail = findViewById(R.id.errorEmail);
         errorMobile = findViewById(R.id.errorMobile);
         errorBarangay = findViewById(R.id.errorBarangay);
@@ -120,7 +128,19 @@ public class RegisterActivity extends AppCompatActivity {
         findViewById(R.id.buttonBack).setOnClickListener(v -> finish());
         findViewById(R.id.textLogin).setOnClickListener(v -> finish());
 
+        editStaffId = findViewById(R.id.editStaffId);
+        errorStaffId = findViewById(R.id.errorStaffId);
+        View staffField = findViewById(R.id.staffField);
+        radioGroupRole.setOnCheckedChangeListener((group, id) ->
+                staffField.setVisibility(id == R.id.radioStaff ? View.VISIBLE : View.GONE));
+
         updatePasswordRules("");
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        Nav.pop(this);
     }
 
     private void togglePasswordVisibility() {
@@ -131,7 +151,7 @@ public class RegisterActivity extends AppCompatActivity {
             editPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         }
         // Changing inputType resets the typeface and cursor, so restore both.
-        editPassword.setTypeface(editFullName.getTypeface());
+        editPassword.setTypeface(editFirstName.getTypeface());
         editPassword.setSelection(editPassword.getText().length());
 
         buttonTogglePassword.setImageResource(
@@ -185,7 +205,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void attemptRegister() {
-        String fullName = editFullName.getText().toString().trim();
+        String firstName = editFirstName.getText().toString().trim();
+        String lastName = editLastName.getText().toString().trim();
         String email = editEmail.getText().toString().trim();
         String mobile = editMobile.getText().toString().trim();
         String password = editPassword.getText().toString();
@@ -197,13 +218,23 @@ public class RegisterActivity extends AppCompatActivity {
         boolean valid = true;
         View firstInvalid = null;
 
-        if (TextUtils.isEmpty(fullName)) {
-            showError(errorFullName, R.string.error_name_required);
-            firstInvalid = editFullName;
+        if (TextUtils.isEmpty(firstName)) {
+            showError(errorFirstName, R.string.error_first_name_required);
+            firstInvalid = editFirstName;
             valid = false;
-        } else if (!NAME_PATTERN.matcher(fullName).matches()) {
-            showError(errorFullName, R.string.error_name_invalid);
-            firstInvalid = editFullName;
+        } else if (!NAME_PATTERN.matcher(firstName).matches()) {
+            showError(errorFirstName, R.string.error_name_part_invalid);
+            firstInvalid = editFirstName;
+            valid = false;
+        }
+
+        if (TextUtils.isEmpty(lastName)) {
+            showError(errorLastName, R.string.error_last_name_required);
+            if (firstInvalid == null) firstInvalid = editLastName;
+            valid = false;
+        } else if (!NAME_PATTERN.matcher(lastName).matches()) {
+            showError(errorLastName, R.string.error_name_part_invalid);
+            if (firstInvalid == null) firstInvalid = editLastName;
             valid = false;
         }
 
@@ -213,6 +244,10 @@ public class RegisterActivity extends AppCompatActivity {
             valid = false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             showError(errorEmail, R.string.error_email_invalid);
+            if (firstInvalid == null) firstInvalid = editEmail;
+            valid = false;
+        } else if (DatabaseHelper.get(this).emailTaken(email)) {
+            showError(errorEmail, R.string.error_email_taken);
             if (firstInvalid == null) firstInvalid = editEmail;
             valid = false;
         }
@@ -259,6 +294,14 @@ public class RegisterActivity extends AppCompatActivity {
             valid = false;
         }
 
+        String staffId = editStaffId.getText().toString().trim().toUpperCase(java.util.Locale.US);
+        boolean isStaff = checkedRole == R.id.radioStaff;
+        if (isStaff && !STAFF_PATTERN.matcher(staffId).matches()) {
+            showError(errorStaffId, staffId.isEmpty() ? R.string.error_staff_required : R.string.error_staff_invalid);
+            if (firstInvalid == null) firstInvalid = editStaffId;
+            valid = false;
+        }
+
         if (!checkTerms.isChecked()) {
             showError(errorTerms, R.string.error_terms_required);
             if (firstInvalid == null) firstInvalid = checkTerms;
@@ -275,19 +318,23 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        // TODO: Replace with a real sign-up request.
-        String firstName = fullName.split(" ")[0];
-        Toast.makeText(this, getString(R.string.toast_account_created, firstName), Toast.LENGTH_SHORT).show();
-
-        Intent intent = new Intent(this, HomeActivity.class);
-        intent.putExtra(HomeActivity.EXTRA_DISPLAY_NAME, firstName);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        finish();
+        // Everything checks out: verify the mobile number by SMS before the account is saved.
+        Intent intent = new Intent(this, OtpActivity.class);
+        intent.putExtra(OtpActivity.EXTRA_FIRST_NAME, firstName);
+        intent.putExtra(OtpActivity.EXTRA_LAST_NAME, lastName);
+        intent.putExtra(OtpActivity.EXTRA_EMAIL, email.toLowerCase(java.util.Locale.US));
+        intent.putExtra(OtpActivity.EXTRA_MOBILE, mobile);
+        intent.putExtra(OtpActivity.EXTRA_BARANGAY, spinnerBarangay.getSelectedItem().toString());
+        intent.putExtra(OtpActivity.EXTRA_ROLE, isStaff ? "staff" : "member");
+        intent.putExtra(OtpActivity.EXTRA_STAFF_ID, isStaff ? staffId : null);
+        // only the hash leaves this screen, never the password itself
+        intent.putExtra(OtpActivity.EXTRA_PASS_HASH, DatabaseHelper.hash(email, password));
+        Nav.push(this, intent);
     }
 
     private void clearErrors() {
-        errorFullName.setVisibility(View.GONE);
+        errorFirstName.setVisibility(View.GONE);
+        errorLastName.setVisibility(View.GONE);
         errorEmail.setVisibility(View.GONE);
         errorMobile.setVisibility(View.GONE);
         errorBarangay.setVisibility(View.GONE);
@@ -295,6 +342,7 @@ public class RegisterActivity extends AppCompatActivity {
         errorConfirmPassword.setVisibility(View.GONE);
         errorRole.setVisibility(View.GONE);
         errorTerms.setVisibility(View.GONE);
+        errorStaffId.setVisibility(View.GONE);
     }
 
     private void showError(TextView label, int messageRes) {

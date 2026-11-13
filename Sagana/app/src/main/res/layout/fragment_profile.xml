@@ -17,11 +17,34 @@
         android:paddingEnd="24dp"
         android:paddingBottom="24dp">
 
-        <!-- Avatar -->
-        <LinearLayout
+        <!-- Avatar: the member's photo, or a placeholder until they add one -->
+        <FrameLayout
             android:layout_width="104dp"
             android:layout_height="104dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center_horizontal">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/avatarCard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:cardCornerRadius="52dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/mango"
+            app:strokeWidth="2dp">
+
+            <ImageView
+                android:id="@+id/imageAvatar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/cd_avatar"
+                android:scaleType="centerCrop" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:id="@+id/avatarPlaceholder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@drawable/bg_avatar"
             android:contentDescription="@string/cd_avatar"
             android:gravity="center"
@@ -45,6 +68,7 @@
                 android:textSize="11sp"
                 android:textStyle="bold" />
         </LinearLayout>
+        </FrameLayout>
 
         <TextView
             android:id="@+id/textName"
@@ -62,6 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="2dp"
+            android:id="@+id/textRole"
             android:text="@string/profile_role"
             android:textColor="@color/text_secondary"
             android:textSize="14sp" />
@@ -95,10 +120,12 @@
 
                     <TextView
                         style="@style/Widget.SaluBite.StatNumber"
+                        android:id="@+id/statValue1"
                         android:text="@string/stat_zero" />
 
                     <TextView
                         style="@style/Widget.SaluBite.StatLabel"
+                        android:id="@+id/statLabel1"
                         android:text="@string/stat_posted" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -113,10 +140,12 @@
 
                     <TextView
                         style="@style/Widget.SaluBite.StatNumber"
+                        android:id="@+id/statValue2"
                         android:text="@string/stat_zero" />
 
                     <TextView
                         style="@style/Widget.SaluBite.StatLabel"
+                        android:id="@+id/statLabel2"
                         android:text="@string/stat_pickups" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -130,10 +159,12 @@
 
                     <TextView
                         style="@style/Widget.SaluBite.StatNumber"
+                        android:id="@+id/statValue3"
                         android:text="@string/stat_zero" />
 
                     <TextView
                         style="@style/Widget.SaluBite.StatLabel"
+                        android:id="@+id/statLabel3"
                         android:text="@string/stat_received" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -173,6 +204,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="14dp"
+                        android:id="@+id/textEmail"
                         android:text="@string/profile_email"
                         android:textColor="@color/adobo"
                         android:textSize="15sp" />
@@ -199,6 +231,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="14dp"
+                        android:id="@+id/textMobile"
                         android:text="@string/profile_mobile"
                         android:textColor="@color/adobo"
                         android:textSize="15sp" />
@@ -238,8 +271,167 @@
                         android:importantForAccessibility="no"
                         android:src="@drawable/ic_chevron_right" />
                 </LinearLayout>
+
+                <!-- Members only: My listings and the impact report -->
+                <LinearLayout
+                    android:id="@+id/memberRows"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/input_border" />
+
+                    <LinearLayout
+                        android:id="@+id/rowMyListings"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_list"
+                            app:tint="@color/icon_muted" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="14dp"
+                            android:layout_weight="1"
+                            android:text="@string/title_my_listings"
+                            android:textColor="@color/adobo"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_chevron_right" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/input_border" />
+
+                    <LinearLayout
+                        android:id="@+id/rowReport"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_chart"
+                            app:tint="@color/icon_muted" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="14dp"
+                            android:layout_weight="1"
+                            android:text="@string/title_impact"
+                            android:textColor="@color/adobo"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_chevron_right" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
+
+        <!-- Backup and restore (text file) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/label_backup"
+            android:textColor="@color/adobo"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_calendar"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="2dp"
+                android:text="@string/backup_body"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textDbStats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="monospace"
+                android:textColor="@color/adobo"
+                android:textSize="12sp"
+                tools:text="users 2 · listings 7 · bookings 2 · archive 41" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonBackup"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/chili"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:text="@string/action_backup"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    app:cornerRadius="12dp"
+                    app:icon="@drawable/ic_save"
+                    app:iconGravity="textStart"
+                    app:iconTint="@color/white" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonRestore"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:text="@string/action_restore"
+                    android:textAllCaps="false"
+                    android:textColor="@color/chili"
+                    app:cornerRadius="12dp"
+                    app:icon="@drawable/ic_upload"
+                    app:iconGravity="textStart"
+                    app:iconTint="@color/chili"
+                    app:strokeColor="@color/chili" />
+            </LinearLayout>
+        </LinearLayout>
 
         <!-- Why this app exists -->
         <TextView

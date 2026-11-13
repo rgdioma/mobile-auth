@@ -60,14 +60,15 @@
     <string name="error_terms_required">Please agree to the terms first</string>
     <string name="toast_account_created">Account created. Welcome, %1$s!</string>
 
+    <!-- Must match Geo.BARANGAYS (the first item is the prompt) -->
     <string-array name="barangays">
         <item>Choose your barangay</item>
-        <item>Brgy. Tangub</item>
-        <item>Brgy. San Roque</item>
-        <item>Brgy. Pala-o</item>
-        <item>Brgy. Poblacion</item>
-        <item>Brgy. Santo Niño</item>
-        <item>Brgy. Buru-un</item>
+        <item>Bata</item>
+        <item>Mandalagan</item>
+        <item>Tangub</item>
+        <item>Taculing</item>
+        <item>Villamonte</item>
+        <item>Singcang-Airport</item>
     </string-array>
 
     <!-- Home -->
@@ -78,14 +79,13 @@
     <string name="cd_notifications">Notifications</string>
     <string name="hint_search">Search pandesal, rice, adobo</string>
     <string name="within_km">Within %1$d km of you</string>
-    <string name="range_km">1–5 km</string>
+    <string name="range_km">1–10 km</string>
     <string name="chip_all">All</string>
     <string name="chip_cooked">Cooked</string>
     <string name="chip_bread">Bread</string>
     <string name="chip_produce">Produce</string>
     <string name="chip_packaged">Packaged</string>
     <string name="closest_first">Closest first</string>
-    <string name="listing_count">%1$d listings</string>
     <string name="brgy_desk">Brgy. desk</string>
 
     <!-- Food details -->
@@ -108,7 +108,7 @@
 
     <!-- Profile -->
     <string name="cd_avatar">Profile photo</string>
-    <string name="hint_profile_photo">Put: profile photo</string>
+    <string name="hint_profile_photo">Add photo</string>
     <string name="default_profile_name">Demo User</string>
     <string name="profile_role">Community member · Brgy. Tangub</string>
     <string name="profile_email">demo@sagana.ph</string>
@@ -178,16 +178,20 @@
 
     <string-array name="units">
         <item>packs</item>
+        <item>pcs</item>
+        <item>meals</item>
         <item>kg</item>
-        <item>pieces</item>
-        <item>servings</item>
+        <item>dozen</item>
+        <item>cans</item>
+        <item>bunches</item>
     </string-array>
+    <!-- Must match the Home chips and ReportData.CATEGORIES -->
     <string-array name="categories">
         <item>Choose a category</item>
-        <item>Cooked Food</item>
-        <item>Bread &amp; Pastries</item>
-        <item>Fruits &amp; Vegetables</item>
-        <item>Packaged Goods</item>
+        <item>Cooked</item>
+        <item>Bread</item>
+        <item>Produce</item>
+        <item>Packaged</item>
     </string-array>
 
     <!-- Alerts -->
@@ -202,7 +206,6 @@
     <string name="alert_closing_soon">%1$s is\nclosing soon</string>
     <string name="format_countdown">%1$dm %2$02ds left</string>
     <string name="countdown_finished">0m 00s left</string>
-    <string name="listings_nearby">%1$d listings within %2$d km</string>
     <string name="closest_is">Closest is %1$.1f km away</string>
 
 </resources>
