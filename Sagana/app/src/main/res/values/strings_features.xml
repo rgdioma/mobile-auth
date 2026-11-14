@@ -112,6 +112,8 @@
     <string name="toast_listing_gone">That listing was removed</string>
     <string name="toast_listing_closed">This listing has closed</string>
     <string name="toast_staff_cannot_reserve">Desk staff can\'t reserve food</string>
+    <string name="toast_own_listing">You can\'t reserve your own listing</string>
+    <string name="action_your_listing">This is your listing</string>
 
     <!-- Post / edit listing -->
     <string name="manage_my_listings">Manage my listings</string>
@@ -132,7 +134,9 @@
     <string name="error_food_invalid">Use 3–40 letters or numbers for the food name</string>
     <string name="error_category_required">Pick a category</string>
     <string name="error_window_order">The end time has to be after the start time</string>
-    <string name="error_window_past">The pickup window has to end later than now</string>
+    <string name="error_window_past">That end time has already passed (it\'s %1$s now). Pick a later time, or switch to Tomorrow.</string>
+    <string name="day_today">Today</string>
+    <string name="day_tomorrow">Tomorrow</string>
     <string name="error_safety_required">Confirm the food is safe before posting</string>
     <string name="toast_listing_posted">Listing posted</string>
     <string name="toast_listing_updated">Listing updated</string>
@@ -189,6 +193,18 @@
     <string name="toast_tap_stars">Tap the stars first</string>
     <string name="toast_thanks_rating">Thanks for the rating</string>
     <string name="you_rated">You rated this pickup</string>
+
+    <!-- Reschedule a pickup -->
+    <string name="action_reschedule">Can\'t make it? Reschedule</string>
+    <string name="reschedule_title">Reschedule pickup</string>
+    <string name="reschedule_now">Now: %1$s at %2$s. Pick a new day and time. Your QR code stays the same.</string>
+    <string name="action_save_new_time">Save new time</string>
+    <string name="error_same_schedule">That\'s the same day and time. Pick a different one.</string>
+    <string name="toast_rescheduled">Moved to %1$s at %2$s. The desk will see it.</string>
+    <string name="toast_cannot_reschedule">This pickup can\'t be changed any more (it was handed over or removed).</string>
+    <string name="rescheduled_from">Rescheduled · was %1$s, %2$s</string>
+    <string name="status_rescheduled">Rescheduled</string>
+    <string name="desk_moved_from">Moved from %1$s, %2$s</string>
 
     <!-- Alerts -->
     <string name="alert_pickup_at">Pickup at %1$s, %2$s</string>

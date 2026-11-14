@@ -309,6 +309,41 @@
             android:textColor="@color/adobo"
             android:textStyle="bold" />
 
+        <!-- Which day the window is on. Past times today are rejected, so evening posts use Tomorrow. -->
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggleDay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:checkedButton="@+id/buttonToday"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonToday"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/day_today"
+                android:textAllCaps="false"
+                android:textColor="@color/toggle_text"
+                app:backgroundTint="@color/toggle_bg"
+                app:strokeColor="@color/input_border" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonTomorrow"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/day_tomorrow"
+                android:textAllCaps="false"
+                android:textColor="@color/toggle_text"
+                app:backgroundTint="@color/toggle_bg"
+                app:strokeColor="@color/input_border" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

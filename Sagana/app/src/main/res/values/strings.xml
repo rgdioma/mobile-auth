@@ -144,7 +144,7 @@
     <string name="hint_unit">packs</string>
     <string name="label_category">Category</string>
     <string name="hint_category">Choose a category</string>
-    <string name="label_pickup_window">Pickup window, today</string>
+    <string name="label_pickup_window">Pickup window</string>
     <string name="label_drop_off">Drop-off point</string>
     <string name="hint_drop_off">Brgy. Tangub social welfare desk</string>
     <string name="label_safety_check">The food is fresh, covered, and safe to eat</string>

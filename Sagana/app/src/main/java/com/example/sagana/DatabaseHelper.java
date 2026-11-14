@@ -31,7 +31,9 @@ import java.util.Random;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "sagana.db";
-    private static final int DB_VERSION = 3; // 3: first_name/last_name split, profile photo
+    // 3: first_name/last_name split, profile photo
+    // 4: bookings can be rescheduled (rescheduled, prev_date, prev_slot, updated_at)
+    private static final int DB_VERSION = 4;
     private static final long MIN = 60_000L;
 
     private static DatabaseHelper instance;
@@ -94,7 +96,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "verified_at INTEGER, " +
                 "verified_by TEXT, " +
                 "rating INTEGER DEFAULT 0, " +
-                "created_at INTEGER)");
+                "created_at INTEGER, " +
+                "rescheduled INTEGER DEFAULT 0, " +   // how many times the receiver moved it
+                "prev_date TEXT, prev_slot TEXT, " +  // the schedule it was moved from (shown to desk staff)
+                "updated_at INTEGER)");
 
         db.execSQL("CREATE TABLE archive (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -109,11 +114,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {
-        db.execSQL("DROP TABLE IF EXISTS archive");
-        db.execSQL("DROP TABLE IF EXISTS bookings");
-        db.execSQL("DROP TABLE IF EXISTS listings");
-        db.execSQL("DROP TABLE IF EXISTS users");
-        onCreate(db);
+        if (oldV < 3) {
+            // very old layouts (before the name split) can't be converted: start fresh
+            db.execSQL("DROP TABLE IF EXISTS archive");
+            db.execSQL("DROP TABLE IF EXISTS bookings");
+            db.execSQL("DROP TABLE IF EXISTS listings");
+            db.execSQL("DROP TABLE IF EXISTS users");
+            onCreate(db);
+            return;
+        }
+        // from here on, upgrade in place so members keep their accounts, listings and pickups
+        if (oldV < 4) {
+            db.execSQL("ALTER TABLE bookings ADD COLUMN rescheduled INTEGER DEFAULT 0");
+            db.execSQL("ALTER TABLE bookings ADD COLUMN prev_date TEXT");
+            db.execSQL("ALTER TABLE bookings ADD COLUMN prev_slot TEXT");
+            db.execSQL("ALTER TABLE bookings ADD COLUMN updated_at INTEGER");
+        }
     }
 
     @Override
@@ -318,7 +334,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // ------------------------------------------------------------------ bookings
+    /** True if this listing was posted by that member (they can't reserve their own food). */
+    public boolean isOwnListing(long listingId, String email) {
+        if (email == null) return false;
+        Listing l = getListing(listingId);
+        return l != null && l.owner != null && l.owner.equalsIgnoreCase(email);
+    }
+
+    /** CREATE a pickup. Returns -1 and saves nothing if the member is booking their own listing. */
     public long insertBooking(Booking b) {
+        if (isOwnListing(b.listingId, b.owner)) return -1;
         ContentValues v = new ContentValues();
         v.put("listing_id", b.listingId);
         v.put("owner", b.owner);
@@ -343,8 +368,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public List<Booking> getMyBookings(String owner) {
-        return queryBookings("SELECT * FROM bookings WHERE owner = ? ORDER BY " +
-                "CASE status WHEN 'Scheduled' THEN 0 WHEN 'Verified' THEN 1 ELSE 2 END, pickup_date, slot", new String[]{owner});
+        List<Booking> list = queryBookings("SELECT * FROM bookings WHERE owner = ?", new String[]{owner});
+        // waiting first, then verified, then received; each group earliest first
+        list.sort((a, b) -> {
+            int s = Integer.compare(statusRank(a.status), statusRank(b.status));
+            return s != 0 ? s : BY_SCHEDULE.compare(a, b);
+        });
+        return list;
+    }
+
+    private static int statusRank(String status) {
+        return "Scheduled".equals(status) ? 0 : "Verified".equals(status) ? 1 : 2;
     }
 
     public Booking findByCode(String code) {
@@ -354,8 +388,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /** Pickups waiting at one desk, for the staff Desk screen. */
     public List<Booking> getWaitingAtDesk(String desk) {
-        return queryBookings("SELECT * FROM bookings WHERE desk = ? AND status = 'Scheduled' ORDER BY pickup_date, slot",
+        List<Booking> list = queryBookings("SELECT * FROM bookings WHERE desk = ? AND status = 'Scheduled'",
                 new String[]{desk});
+        list.sort(BY_SCHEDULE);
+        return list;
+    }
+
+    /** Earliest day first, then earliest slot ("9:00 AM" before "11:00 AM" before "1:00 PM"). */
+    private static final java.util.Comparator<Booking> BY_SCHEDULE = (a, b) -> {
+        int d = a.date.compareTo(b.date);
+        return d != 0 ? d : Integer.compare(slotMinutes(a.slot), slotMinutes(b.slot));
+    };
+
+    /** "1:00 PM" -> 780 (minutes after midnight). Unknown text sorts last. */
+    static int slotMinutes(String slot) {
+        try {
+            String[] p = slot.trim().split("[: ]");
+            int h = Integer.parseInt(p[0]) % 12, m = Integer.parseInt(p[1]);
+            return (h + ("PM".equalsIgnoreCase(p[2]) ? 12 : 0)) * 60 + m;
+        } catch (Exception e) {
+            return Integer.MAX_VALUE;
+        }
     }
 
     /** Handovers already done at one desk, newest first, for the staff History screen. */
@@ -401,6 +454,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues v = new ContentValues();
         v.put("rating", stars);
         return getWritableDatabase().update("bookings", v, "id = ?", new String[]{String.valueOf(id)});
+    }
+
+    public Booking getBooking(long id) {
+        List<Booking> r = queryBookings("SELECT * FROM bookings WHERE id = ?", new String[]{String.valueOf(id)});
+        return r.isEmpty() ? null : r.get(0);
+    }
+
+    /**
+     * UPDATE: the receiver can't make it, so they move a waiting pickup to another day or slot.
+     * The QR code stays the same. The old schedule is kept, so desk staff see it was moved.
+     * Returns 1 if it was updated; 0 if it's not theirs, no longer waiting, or nothing changed.
+     */
+    public int rescheduleBooking(long id, String ownerEmail, String newDate, String newSlot) {
+        Booking b = getBooking(id);
+        if (b == null || !"Scheduled".equals(b.status) || !b.owner.equalsIgnoreCase(ownerEmail)) return 0;
+        if (b.date.equals(newDate) && b.slot.equals(newSlot)) return 0;
+        ContentValues v = new ContentValues();
+        v.put("pickup_date", newDate);
+        v.put("slot", newSlot);
+        v.put("prev_date", b.date);
+        v.put("prev_slot", b.slot);
+        v.put("rescheduled", b.rescheduled + 1);
+        v.put("updated_at", System.currentTimeMillis());
+        return getWritableDatabase().update("bookings", v, "id = ? AND status = 'Scheduled'",
+                new String[]{String.valueOf(id)});
     }
 
     public int cancelBooking(long id) {
@@ -710,7 +788,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static class Booking {
         public long id, listingId, verifiedAt;
         public String owner, receiver, food, qty, donor, category, desk, date, slot, code, status, verifiedBy;
-        public int rating;
+        public String prevDate, prevSlot;
+        public long updatedAt;
+        public int rating, rescheduled;
 
         static Booking from(Cursor c) {
             Booking b = new Booking();
@@ -730,6 +810,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             b.verifiedAt = c.getLong(c.getColumnIndexOrThrow("verified_at"));
             b.verifiedBy = c.getString(c.getColumnIndexOrThrow("verified_by"));
             b.rating = c.getInt(c.getColumnIndexOrThrow("rating"));
+            b.rescheduled = c.getInt(c.getColumnIndexOrThrow("rescheduled"));
+            b.prevDate = c.getString(c.getColumnIndexOrThrow("prev_date"));
+            b.prevSlot = c.getString(c.getColumnIndexOrThrow("prev_slot"));
+            b.updatedAt = c.getLong(c.getColumnIndexOrThrow("updated_at"));
             return b;
         }
     }

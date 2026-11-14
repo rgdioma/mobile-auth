@@ -60,6 +60,10 @@ public class PickupsFragment extends Fragment {
         if (savedInstanceState != null) id = savedInstanceState.getLong("selected", -1);
         if (id <= 0 && requireActivity() instanceof HomeActivity) id = ((HomeActivity) requireActivity()).takeReserveId();
         if (id > 0) selected = db.getListing(id);
+        if (selected != null && me != null && db.isOwnListing(selected.id, me.email)) {
+            selected = null;   // nobody reserves their own food
+            Toast.makeText(requireContext(), R.string.toast_own_listing, Toast.LENGTH_SHORT).show();
+        }
 
         selectedDay = DatabaseHelper.today();
         CalendarView cal = view.findViewById(R.id.calendarView);
@@ -140,6 +144,10 @@ public class PickupsFragment extends Fragment {
     // ------------------------------------------------------------------ booking (CREATE)
     private void confirm() {
         if (selected == null || me == null) return;
+        if (db.isOwnListing(selected.id, me.email)) {
+            Toast.makeText(requireContext(), R.string.toast_own_listing, Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (selectedSlot == null) {
             Toast.makeText(requireContext(), R.string.toast_pick_slot, Toast.LENGTH_SHORT).show();
             return;
@@ -170,7 +178,10 @@ public class PickupsFragment extends Fragment {
         b.date = selectedDay;
         b.slot = selectedSlot;
         b.code = QrCodes.newCode(db);
-        db.insertBooking(b);
+        if (db.insertBooking(b) == -1) {   // refused: own listing, or the database failed
+            Toast.makeText(requireContext(), R.string.toast_own_listing, Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         selected = null;
         selectedSlot = null;
@@ -197,8 +208,11 @@ public class PickupsFragment extends Fragment {
 
     private View bindBooking(View card, DatabaseHelper.Booking b) {
         ((TextView) card.findViewById(R.id.textFood)).setText(b.food);
-        ((TextView) card.findViewById(R.id.textInfo)).setText(
-                b.qty + " · " + Ui.prettyDay(b.date) + ", " + b.slot + "\n" + b.desk);
+        String info = b.qty + " · " + Ui.prettyDay(b.date) + ", " + b.slot + "\n" + b.desk;
+        if ("Scheduled".equals(b.status) && b.rescheduled > 0 && b.prevDate != null) {
+            info += "\n" + getString(R.string.rescheduled_from, Ui.prettyDay(b.prevDate), b.prevSlot);
+        }
+        ((TextView) card.findViewById(R.id.textInfo)).setText(info);
 
         TextView status = card.findViewById(R.id.textStatus);
         boolean scheduled = "Scheduled".equals(b.status), verified = "Verified".equals(b.status);
@@ -216,6 +230,9 @@ public class PickupsFragment extends Fragment {
             qrView.setImageBitmap(qr);
             qrView.setOnClickListener(v -> showQr(b, false));
             card.findViewById(R.id.buttonEnlarge).setOnClickListener(v -> showQr(b, false));
+            View resched = card.findViewById(R.id.buttonReschedule);
+            resched.setVisibility(View.VISIBLE);
+            resched.setOnClickListener(v -> showReschedule(b));
             card.findViewById(R.id.buttonCancel).setOnClickListener(v -> new AlertDialog.Builder(requireContext())
                     .setTitle(R.string.cancel_pickup_title)
                     .setMessage(getString(R.string.cancel_pickup_body, b.food))
@@ -258,6 +275,85 @@ public class PickupsFragment extends Fragment {
             ((RatingBar) card.findViewById(R.id.ratingShown)).setRating(b.rating);
         }
         return card;
+    }
+
+    // ------------------------------------------------------------------ reschedule (UPDATE)
+    /**
+     * The receiver can't make it: pick another day and slot. The booking keeps its QR code,
+     * and the desk's list shows the new time, marked Rescheduled with the old one.
+     */
+    private void showReschedule(DatabaseHelper.Booking b) {
+        if (!isAdded() || me == null) return;
+        View content = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_reschedule, null);
+        ((TextView) content.findViewById(R.id.textCurrent)).setText(
+                getString(R.string.reschedule_now, Ui.prettyDay(b.date), b.slot));
+        TextView error = content.findViewById(R.id.textRescheduleError);
+        CalendarView cal = content.findViewById(R.id.calendarReschedule);
+        ChipGroup group = content.findViewById(R.id.chipGroupReschedule);
+
+        final String[] day = {b.date.compareTo(DatabaseHelper.today()) < 0 ? DatabaseHelper.today() : b.date};
+        final String[] slot = {null};
+        cal.setMinDate(System.currentTimeMillis() - 1000);
+        try {
+            long ms = new java.text.SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(day[0]).getTime();
+            cal.setDate(Math.max(ms, System.currentTimeMillis()), false, true);
+        } catch (Exception ignored) {
+        }
+        Runnable buildChips = () -> {
+            group.removeAllViews();
+            boolean today = DatabaseHelper.today().equals(day[0]);
+            int hourNow = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+            for (int h : SLOT_HOURS) {
+                Chip chip = (Chip) LayoutInflater.from(requireContext()).inflate(R.layout.item_time_chip, group, false);
+                String label = slotLabel(h);
+                chip.setText(label);
+                chip.setId(View.generateViewId());
+                boolean past = today && h <= hourNow;
+                chip.setEnabled(!past);
+                chip.setAlpha(past ? 0.4f : 1f);
+                chip.setChecked(label.equals(slot[0]));
+                chip.setOnCheckedChangeListener((c, checked) -> {
+                    if (checked) slot[0] = label;
+                    else if (label.equals(slot[0])) slot[0] = null;
+                    error.setVisibility(View.GONE);
+                });
+                group.addView(chip);
+            }
+        };
+        cal.setOnDateChangeListener((v, y, m, d) -> {
+            day[0] = String.format(Locale.US, "%04d-%02d-%02d", y, m + 1, d);
+            slot[0] = null;
+            error.setVisibility(View.GONE);
+            buildChips.run();
+        });
+        buildChips.run();
+
+        AlertDialog dialog = new AlertDialog.Builder(requireContext())
+                .setTitle(R.string.reschedule_title)
+                .setView(content)
+                .setPositiveButton(R.string.action_save_new_time, null)
+                .setNegativeButton(R.string.action_cancel, null)
+                .create();
+        dialog.setOnShowListener(d -> dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+            String problem = null;
+            if (slot[0] == null) problem = getString(R.string.toast_pick_slot);
+            else if (day[0].equals(b.date) && slot[0].equals(b.slot)) problem = getString(R.string.error_same_schedule);
+            if (problem != null) {
+                error.setText(problem);
+                error.setVisibility(View.VISIBLE);
+                return;
+            }
+            if (db.rescheduleBooking(b.id, me.email, day[0], slot[0]) == 1) {
+                Toast.makeText(requireContext(), getString(R.string.toast_rescheduled,
+                        Ui.prettyDay(day[0]), slot[0]), Toast.LENGTH_LONG).show();
+            } else {
+                // already handed over by the desk, cancelled, or not yours
+                Toast.makeText(requireContext(), R.string.toast_cannot_reschedule, Toast.LENGTH_LONG).show();
+            }
+            dialog.dismiss();
+            renderBookings(false);
+        }));
+        dialog.show();
     }
 
     /** Big QR for the desk staff to scan. */

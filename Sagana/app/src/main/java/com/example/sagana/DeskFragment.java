@@ -120,7 +120,11 @@ public class DeskFragment extends Fragment {
             ((TextView) card.findViewById(R.id.textFood)).setText(b.food);
             ((TextView) card.findViewById(R.id.textQtyDonor)).setText(getString(R.string.qty_from_donor, b.qty, b.donor));
             ((TextView) card.findViewById(R.id.textReceiver)).setText(b.receiver);
-            ((TextView) card.findViewById(R.id.textScheduled)).setText(Ui.prettyDay(b.date) + ", " + b.slot);
+            String scheduled = Ui.prettyDay(b.date) + ", " + b.slot;
+            if (b.rescheduled > 0 && b.prevDate != null) {
+                scheduled += "\n" + getString(R.string.desk_moved_from, Ui.prettyDay(b.prevDate), b.prevSlot);
+            }
+            ((TextView) card.findViewById(R.id.textScheduled)).setText(scheduled);
             card.findViewById(R.id.buttonHandOver).setOnClickListener(v -> confirmHandOver(b));
             result.addView(card);
             card.setScaleX(0.9f);
@@ -183,8 +187,18 @@ public class DeskFragment extends Fragment {
         for (DatabaseHelper.Booking b : rows) {
             View row = inf.inflate(R.layout.item_desk_row, box, false);
             ((TextView) row.findViewById(R.id.textTitle)).setText(b.receiver);
-            ((TextView) row.findViewById(R.id.textSubtitle)).setText(b.food + ", " + b.qty + " · " + Ui.prettyDay(b.date) + ", " + b.slot);
-            ((TextView) row.findViewById(R.id.textPill)).setText(R.string.status_waiting);
+            String when = b.food + ", " + b.qty + " · " + Ui.prettyDay(b.date) + ", " + b.slot;
+            TextView pill = row.findViewById(R.id.textPill);
+            if (b.rescheduled > 0 && b.prevDate != null) {
+                // the receiver moved this pickup: show the new time, tagged, with where it was moved from
+                when += "\n" + getString(R.string.desk_moved_from, Ui.prettyDay(b.prevDate), b.prevSlot);
+                pill.setText(R.string.status_rescheduled);
+                pill.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.chili_light)));
+                pill.setTextColor(ContextCompat.getColor(requireContext(), R.color.chili));
+            } else {
+                pill.setText(R.string.status_waiting);
+            }
+            ((TextView) row.findViewById(R.id.textSubtitle)).setText(when);
             box.addView(row);
         }
         Ui.stagger(box);

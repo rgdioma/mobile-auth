@@ -1,6 +1,7 @@
 package com.example.sagana;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +16,8 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import com.google.android.material.button.MaterialButton;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
@@ -93,6 +96,7 @@ public class FoodDetailsActivity extends AppCompatActivity {
 
         findViewById(R.id.buttonBack).setOnClickListener(v -> finish());
         findViewById(R.id.buttonReserve).setOnClickListener(v -> reserve());
+        if (listing.owner != null && me != null && listing.owner.equalsIgnoreCase(me.email)) showAsOwnListing();
         View.OnClickListener directions = v -> Nav.push(this,
                 MapRouteActivity.intent(this, listing.desk, listing.lat, listing.lng));
         findViewById(R.id.buttonDirections).setOnClickListener(directions);
@@ -149,7 +153,22 @@ public class FoodDetailsActivity extends AppCompatActivity {
         findViewById(R.id.textRouteError).setVisibility(View.VISIBLE);
     }
 
+    /** Your own listing: nobody reserves their own food, so Reserve becomes a disabled notice. */
+    private void showAsOwnListing() {
+        MaterialButton b = findViewById(R.id.buttonReserve);
+        b.setText(R.string.action_your_listing);
+        b.setEnabled(false);
+        b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.input_border)));
+        b.setTextColor(ContextCompat.getColor(this, R.color.text_secondary));
+        b.setIconTint(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.text_secondary)));
+    }
+
     private void reserve() {
+        DatabaseHelper.User owner = Session.user(this);
+        if (owner != null && listing.owner != null && listing.owner.equalsIgnoreCase(owner.email)) {
+            Toast.makeText(this, R.string.toast_own_listing, Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (!listing.isOpen()) {
             Toast.makeText(this, R.string.toast_listing_closed, Toast.LENGTH_SHORT).show();
             return;

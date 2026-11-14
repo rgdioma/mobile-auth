@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 import java.util.Arrays;
@@ -35,7 +36,8 @@ public class PostFragment extends Fragment {
     private static final Pattern FOOD_PATTERN = Pattern.compile("^[A-Za-zÀ-ÿÑñ0-9 ,.'()&-]{3,40}$");
 
     private int quantity = 1;
-    private int startMin, endMin;   // minutes after midnight, today
+    private int startMin, endMin;   // minutes after midnight, on the chosen day
+    private int dayOffset;          // 0 = today, 1 = tomorrow
     private String photoPath;       // file path or res:name
     private DatabaseHelper.Listing editing;
     private boolean saving;
@@ -101,6 +103,7 @@ public class PostFragment extends Fragment {
         Calendar c = Calendar.getInstance();
         startMin = c.get(Calendar.HOUR_OF_DAY) * 60 + c.get(Calendar.MINUTE);
         endMin = Math.min(23 * 60 + 59, startMin + 180);
+        setDay(view, 0);
         showTimes(view);
         ((EditText) view.findViewById(R.id.etFoodName)).setText("");
         ((EditText) view.findViewById(R.id.etNotes)).setText("");
@@ -137,6 +140,9 @@ public class PostFragment extends Fragment {
         e.setTimeInMillis(editing.pickupEnd);
         startMin = s.get(Calendar.HOUR_OF_DAY) * 60 + s.get(Calendar.MINUTE);
         endMin = e.get(Calendar.HOUR_OF_DAY) * 60 + e.get(Calendar.MINUTE);
+        // a listing that starts tomorrow opens on Tomorrow; anything else (today or an old
+        // expired one) opens on Today, where the usual "must end later than now" check applies
+        setDay(view, daysFromToday(editing.pickupStart) == 1 ? 1 : 0);
         showTimes(view);
         ((CheckBox) view.findViewById(R.id.cbSafety)).setChecked(true);
         photoPath = editing.photo;
@@ -177,6 +183,31 @@ public class PostFragment extends Fragment {
     private void setupTimePickers(View view) {
         view.findViewById(R.id.tvStartTime).setOnClickListener(v -> pickTime(view, true));
         view.findViewById(R.id.tvEndTime).setOnClickListener(v -> pickTime(view, false));
+        ((MaterialButtonToggleGroup) view.findViewById(R.id.toggleDay)).addOnButtonCheckedListener((g, id, checked) -> {
+            if (!checked) return;
+            dayOffset = id == R.id.buttonTomorrow ? 1 : 0;
+            view.findViewById(R.id.textPostError).setVisibility(View.GONE);
+        });
+    }
+
+    /** Selects Today (0) or Tomorrow (1) without waiting for a tap. */
+    private void setDay(View view, int offset) {
+        dayOffset = offset;
+        ((MaterialButtonToggleGroup) view.findViewById(R.id.toggleDay))
+                .check(offset == 1 ? R.id.buttonTomorrow : R.id.buttonToday);
+    }
+
+    /** How many calendar days after today a moment falls (negative if earlier). */
+    private static int daysFromToday(long millis) {
+        Calendar a = Calendar.getInstance(), b = Calendar.getInstance();
+        b.setTimeInMillis(millis);
+        for (Calendar c : new Calendar[]{a, b}) {
+            c.set(Calendar.HOUR_OF_DAY, 12);
+            c.set(Calendar.MINUTE, 0);
+            c.set(Calendar.SECOND, 0);
+            c.set(Calendar.MILLISECOND, 0);
+        }
+        return (int) Math.round((b.getTimeInMillis() - a.getTimeInMillis()) / 86_400_000.0);
     }
 
     private void pickTime(View view, boolean start) {
@@ -196,12 +227,14 @@ public class PostFragment extends Fragment {
     }
 
     private void showTimes(View view) {
-        ((TextView) view.findViewById(R.id.tvStartTime)).setText(Ui.clock(todayAt(startMin)));
-        ((TextView) view.findViewById(R.id.tvEndTime)).setText(Ui.clock(todayAt(endMin)));
+        ((TextView) view.findViewById(R.id.tvStartTime)).setText(Ui.clock(windowAt(startMin)));
+        ((TextView) view.findViewById(R.id.tvEndTime)).setText(Ui.clock(windowAt(endMin)));
     }
 
-    private static long todayAt(int minutes) {
+    /** The moment {@code minutes} after midnight on the chosen day (today or tomorrow). */
+    private long windowAt(int minutes) {
         Calendar c = Calendar.getInstance();
+        c.add(Calendar.DAY_OF_YEAR, dayOffset);
         c.set(Calendar.HOUR_OF_DAY, minutes / 60);
         c.set(Calendar.MINUTE, minutes % 60);
         c.set(Calendar.SECOND, 0);
@@ -241,7 +274,8 @@ public class PostFragment extends Fragment {
         else if (!FOOD_PATTERN.matcher(name).matches()) problem = getString(R.string.error_food_invalid);
         else if (cat.getSelectedItemPosition() == 0) problem = getString(R.string.error_category_required);
         else if (endMin <= startMin) problem = getString(R.string.error_window_order);
-        else if (todayAt(endMin) <= System.currentTimeMillis()) problem = getString(R.string.error_window_past);
+        else if (windowAt(endMin) <= System.currentTimeMillis())
+            problem = getString(R.string.error_window_past, Ui.clock(System.currentTimeMillis()));
         else if (!((CheckBox) view.findViewById(R.id.cbSafety)).isChecked()) problem = getString(R.string.error_safety_required);
         if (problem != null) {
             error.setText(problem);
@@ -259,8 +293,8 @@ public class PostFragment extends Fragment {
         l.desk = ((Spinner) view.findViewById(R.id.spinnerDesk)).getSelectedItem().toString();
         l.notes = ((EditText) view.findViewById(R.id.etNotes)).getText().toString().trim();
         l.photo = photoPath;
-        l.pickupStart = todayAt(startMin);
-        l.pickupEnd = todayAt(endMin);
+        l.pickupStart = windowAt(startMin);
+        l.pickupEnd = windowAt(endMin);
         l.owner = me.email;
         l.donor = me.name;
         if (l.donorType == null) l.donorType = getString(R.string.donor_type_member);
