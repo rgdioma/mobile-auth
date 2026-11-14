@@ -277,6 +277,9 @@ public class PostFragment extends Fragment {
         else if (windowAt(endMin) <= System.currentTimeMillis())
             problem = getString(R.string.error_window_past, Ui.clock(System.currentTimeMillis()));
         else if (!((CheckBox) view.findViewById(R.id.cbSafety)).isChecked()) problem = getString(R.string.error_safety_required);
+        else if (editing != null && !editing.isPendingDropOff()
+                && !editing.desk.equals(((Spinner) view.findViewById(R.id.spinnerDesk)).getSelectedItem().toString()))
+            problem = getString(R.string.error_desk_locked, editing.desk);
         if (problem != null) {
             error.setText(problem);
             error.setVisibility(View.VISIBLE);
@@ -320,8 +323,8 @@ public class PostFragment extends Fragment {
             Toast.makeText(requireContext(), R.string.toast_listing_updated, Toast.LENGTH_SHORT).show();
             requireActivity().finish();
         } else {
-            db.insertListing(l);
-            Toast.makeText(requireContext(), R.string.toast_listing_posted, Toast.LENGTH_SHORT).show();
+            db.insertListing(l);   // starts as Pending drop-off; desk staff make it reservable
+            Toast.makeText(requireContext(), getString(R.string.toast_listing_posted_pending, l.desk), Toast.LENGTH_LONG).show();
             resetForm(requireView());
             Nav.push(requireActivity(), new Intent(requireContext(), MyListingsActivity.class));
         }

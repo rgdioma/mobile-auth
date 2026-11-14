@@ -63,6 +63,9 @@ public class PickupsFragment extends Fragment {
         if (selected != null && me != null && db.isOwnListing(selected.id, me.email)) {
             selected = null;   // nobody reserves their own food
             Toast.makeText(requireContext(), R.string.toast_own_listing, Toast.LENGTH_SHORT).show();
+        } else if (selected != null && selected.isPendingDropOff()) {
+            selected = null;   // the desk hasn't received it yet
+            Toast.makeText(requireContext(), R.string.toast_listing_pending, Toast.LENGTH_SHORT).show();
         }
 
         selectedDay = DatabaseHelper.today();
@@ -152,6 +155,16 @@ public class PickupsFragment extends Fragment {
             Toast.makeText(requireContext(), R.string.toast_pick_slot, Toast.LENGTH_SHORT).show();
             return;
         }
+        DatabaseHelper.Listing fresh = db.getListing(selected.id);
+        if (fresh == null) {
+            Toast.makeText(requireContext(), R.string.toast_listing_gone, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        selected = fresh;
+        if (selected.isPendingDropOff()) {
+            Toast.makeText(requireContext(), R.string.toast_listing_pending, Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (!selected.isOpen()) {
             Toast.makeText(requireContext(), R.string.toast_listing_closed, Toast.LENGTH_SHORT).show();
             return;
@@ -178,8 +191,12 @@ public class PickupsFragment extends Fragment {
         b.date = selectedDay;
         b.slot = selectedSlot;
         b.code = QrCodes.newCode(db);
-        if (db.insertBooking(b) == -1) {   // refused: own listing, or the database failed
-            Toast.makeText(requireContext(), R.string.toast_own_listing, Toast.LENGTH_SHORT).show();
+        if (db.insertBooking(b) == -1) {   // refused: own listing, not reservable, or the database failed
+            DatabaseHelper.Listing l = db.getListing(b.listingId);
+            int why = l == null ? R.string.toast_listing_gone
+                    : l.isPendingDropOff() ? R.string.toast_listing_pending
+                    : !l.isOpen() ? R.string.toast_listing_closed : R.string.toast_own_listing;
+            Toast.makeText(requireContext(), why, Toast.LENGTH_SHORT).show();
             return;
         }
 

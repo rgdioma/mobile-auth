@@ -84,7 +84,53 @@ public class DeskFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        renderDropOffs();
         renderWaiting();
+    }
+
+    // ------------------------------------------------------------------ drop-offs (receipt confirmation)
+    private void renderDropOffs() {
+        View view = getView();
+        if (view == null || me == null) return;
+        List<DatabaseHelper.Listing> rows = db.getPendingDropOffs(me.desk());
+        ((TextView) view.findViewById(R.id.textDropOffCount)).setText(getString(R.string.n_expected, rows.size()));
+        LinearLayout box = view.findViewById(R.id.dropOffContainer);
+        box.removeAllViews();
+        if (rows.isEmpty()) {
+            TextView empty = new TextView(requireContext());
+            empty.setText(R.string.desk_no_dropoffs);
+            empty.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_secondary));
+            int p = Ui.dp(requireContext(), 12);
+            empty.setPadding(0, p, 0, p);
+            box.addView(empty);
+            return;
+        }
+        LayoutInflater inf = LayoutInflater.from(requireContext());
+        for (DatabaseHelper.Listing l : rows) {
+            View row = inf.inflate(R.layout.item_dropoff_row, box, false);
+            ((TextView) row.findViewById(R.id.textTitle)).setText(l.name);
+            ((TextView) row.findViewById(R.id.textSubtitle)).setText(
+                    getString(R.string.dropoff_row, l.qty, l.donor, Ui.clock(l.pickupEnd)));
+            row.findViewById(R.id.buttonConfirmReceived).setOnClickListener(v -> confirmReceived(l));
+            box.addView(row);
+        }
+        Ui.stagger(box);
+    }
+
+    private void confirmReceived(DatabaseHelper.Listing l) {
+        new AlertDialog.Builder(requireContext())
+                .setTitle(getString(R.string.confirm_received_title, l.name))
+                .setMessage(getString(R.string.confirm_received_body, l.qty, l.name, l.donor))
+                .setPositiveButton(R.string.action_yes_received, (d, w) -> {
+                    if (db.confirmReceived(l.id, me.desk(), me.name) == 1) {
+                        Toast.makeText(requireContext(), getString(R.string.toast_food_received, l.name), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(requireContext(), R.string.toast_receipt_failed, Toast.LENGTH_SHORT).show();
+                    }
+                    renderDropOffs();
+                })
+                .setNegativeButton(R.string.action_not_yet_arrived, null)
+                .show();
     }
 
     // ------------------------------------------------------------------ checking a code

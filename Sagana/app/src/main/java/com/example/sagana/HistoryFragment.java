@@ -31,10 +31,12 @@ public class HistoryFragment extends Fragment {
         if (me == null) return;
         ((TextView) view.findViewById(R.id.textHistorySubtitle)).setText(getString(R.string.history_subtitle, me.desk()));
 
-        List<DatabaseHelper.Booking> rows = DatabaseHelper.get(requireContext()).getHistoryAtDesk(me.desk());
+        DatabaseHelper db = DatabaseHelper.get(requireContext());
+        List<DatabaseHelper.Booking> rows = db.getHistoryAtDesk(me.desk());
+        List<DatabaseHelper.Listing> received = db.getReceivedAtDesk(me.desk());
         LinearLayout box = view.findViewById(R.id.historyContainer);
         LayoutInflater inf = LayoutInflater.from(requireContext());
-        if (rows.isEmpty()) {
+        if (rows.isEmpty() && received.isEmpty()) {
             TextView empty = new TextView(requireContext());
             empty.setText(R.string.history_empty);
             empty.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_secondary));
@@ -44,7 +46,12 @@ public class HistoryFragment extends Fragment {
             return;
         }
         SimpleDateFormat day = new SimpleDateFormat("MMM d", Locale.US);
+        // both lists are newest first: merge them so drop-offs and handovers read as one timeline
+        int r = 0;
         for (DatabaseHelper.Booking b : rows) {
+            while (r < received.size() && received.get(r).receivedAt > b.verifiedAt) {
+                addReceivedRow(box, inf, received.get(r++), day);
+            }
             View row = inf.inflate(R.layout.item_desk_row, box, false);
             row.findViewById(R.id.iconBg).setBackgroundTintList(
                     ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.leaf_light)));
@@ -60,6 +67,18 @@ public class HistoryFragment extends Fragment {
             pill.setTextColor(ContextCompat.getColor(requireContext(), R.color.leaf));
             box.addView(row);
         }
+        while (r < received.size()) addReceivedRow(box, inf, received.get(r++), day);
         Ui.stagger(box);
+    }
+
+    private void addReceivedRow(LinearLayout box, LayoutInflater inf, DatabaseHelper.Listing l, SimpleDateFormat day) {
+        View row = inf.inflate(R.layout.item_desk_row, box, false);
+        ImageView icon = row.findViewById(R.id.icon);
+        icon.setImageResource(R.drawable.ic_nav_pickups);
+        ((TextView) row.findViewById(R.id.textTitle)).setText(l.name + ", " + l.qty);
+        ((TextView) row.findViewById(R.id.textSubtitle)).setText(getString(R.string.history_received_row,
+                l.donor, l.receivedBy, day.format(new Date(l.receivedAt)), Ui.clock(l.receivedAt)));
+        ((TextView) row.findViewById(R.id.textPill)).setText(R.string.status_dropped_off);
+        box.addView(row);
     }
 }

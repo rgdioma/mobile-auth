@@ -61,15 +61,30 @@ public class MyListingsActivity extends AppCompatActivity {
             int booked = db.countScheduledFor(l.id);
             ((TextView) card.findViewById(R.id.textName)).setText(l.name);
             ((TextView) card.findViewById(R.id.textInfo)).setText(l.qty + " · " + l.category + " · " + l.desk);
-            String window = open ? getString(R.string.window_ends, Ui.clock(l.pickupEnd))
-                    : getString(R.string.window_ended, new SimpleDateFormat("MMM d", Locale.US).format(new Date(l.pickupEnd)));
+            boolean pending = l.isPendingDropOff();
+            String window = !open ? getString(R.string.window_ended, new SimpleDateFormat("MMM d", Locale.US).format(new Date(l.pickupEnd)))
+                    : pending ? getString(R.string.window_pending_dropoff, Ui.clock(l.pickupEnd))
+                    : getString(R.string.window_ends, Ui.clock(l.pickupEnd));
             if (booked > 0) window += " · " + getResources().getQuantityString(R.plurals.pickups_booked, booked, booked);
             ((TextView) card.findViewById(R.id.textWindow)).setText(window);
 
+            // Pending Drop-off -> Active (desk has it) -> Completed (handed over) / Closed / Not dropped off
+            int label, fg, bg;
+            if (pending) {
+                label = open ? R.string.status_pending_dropoff : R.string.status_not_dropped_off;
+                fg = open ? R.color.adobo : R.color.text_secondary;
+                bg = open ? R.color.mango : R.color.input_border;
+            } else if (open) {
+                label = R.string.status_active; fg = R.color.leaf; bg = R.color.leaf_light;
+            } else if (db.countHandedOverFor(l.id) > 0) {
+                label = R.string.status_completed; fg = R.color.leaf; bg = R.color.leaf_light;
+            } else {
+                label = R.string.status_closed; fg = R.color.text_secondary; bg = R.color.input_border;
+            }
             TextView status = card.findViewById(R.id.textStatus);
-            status.setText(open ? R.string.status_active : R.string.status_closed);
-            status.setTextColor(ContextCompat.getColor(this, open ? R.color.leaf : R.color.text_secondary));
-            status.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, open ? R.color.leaf_light : R.color.input_border)));
+            status.setText(label);
+            status.setTextColor(ContextCompat.getColor(this, fg));
+            status.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, bg)));
 
             if (Ui.loadPhoto(card.findViewById(R.id.imageThumb), l.photo)) {
                 card.findViewById(R.id.thumbCard).setVisibility(View.VISIBLE);

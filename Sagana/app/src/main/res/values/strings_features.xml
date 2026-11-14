@@ -246,6 +246,30 @@
     <string name="n_waiting">%1$d waiting</string>
     <string name="desk_nobody_waiting">No one is waiting for a pickup at this desk right now.</string>
 
+    <!-- Drop-off: donors bring food to the desk; staff confirm before receivers can reserve -->
+    <string name="desk_dropoff_title">Food drop-offs</string>
+    <string name="desk_dropoff_hint">Confirm only once the food is physically here. Receivers can reserve it after that.</string>
+    <string name="n_expected">%1$d expected</string>
+    <string name="desk_no_dropoffs">No donations are waiting to be dropped off at this desk.</string>
+    <string name="dropoff_row">%1$s · from %2$s\nPosted window ends %3$s</string>
+    <string name="action_confirm_received">Confirm Food Received</string>
+    <string name="confirm_received_title">Received %1$s?</string>
+    <string name="confirm_received_body">Confirm that %1$s of %2$s from %3$s is here at the desk. It becomes available for receivers to reserve, recorded under your name.</string>
+    <string name="action_yes_received">Yes, it\'s here</string>
+    <string name="action_not_yet_arrived">Not yet</string>
+    <string name="toast_food_received">%1$s is now available for reservation</string>
+    <string name="toast_receipt_failed">This drop-off is no longer pending</string>
+    <string name="status_pending_dropoff">Pending Drop-off</string>
+    <string name="status_not_dropped_off">Not dropped off</string>
+    <string name="status_completed">Completed</string>
+    <string name="status_dropped_off">Dropped off</string>
+    <string name="window_pending_dropoff">Bring it to the desk before %1$s</string>
+    <string name="toast_listing_posted_pending">Posted. Bring it to the %1$s; it goes live once staff confirm they have it.</string>
+    <string name="toast_listing_pending">Not available yet: the donor hasn\'t dropped this food off at the desk</string>
+    <string name="action_awaiting_dropoff">Waiting for drop-off at the desk</string>
+    <string name="error_desk_locked">The %1$s already has this food, so the desk can\'t be changed.</string>
+    <string name="history_received_row">From %1$s · received by %2$s\n%3$s, %4$s</string>
+
     <!-- Staff: scanner -->
     <string name="scan_title">Scan handover QR</string>
     <string name="scan_hint">Point the camera at the QR code on the receiver\'s phone</string>
@@ -259,8 +283,8 @@
 
     <!-- Staff: history -->
     <string name="title_history">Handover history</string>
-    <string name="history_subtitle">Every handover at the %1$s, newest first.</string>
-    <string name="history_empty">No handovers yet. Checked codes show up here.</string>
+    <string name="history_subtitle">Every drop-off and handover at the %1$s, newest first.</string>
+    <string name="history_empty">No drop-offs or handovers yet. Confirmed food and checked codes show up here.</string>
     <string name="history_row">To %1$s · by %2$s\n%3$s, %4$s · code %5$s</string>
 
     <!-- Reports -->
