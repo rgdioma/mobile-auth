@@ -93,6 +93,10 @@ public class FoodDetailsActivity extends AppCompatActivity {
 
         findViewById(R.id.buttonBack).setOnClickListener(v -> finish());
         findViewById(R.id.buttonReserve).setOnClickListener(v -> reserve());
+        View.OnClickListener directions = v -> Nav.push(this,
+                MapRouteActivity.intent(this, listing.desk, listing.lat, listing.lng));
+        findViewById(R.id.buttonDirections).setOnClickListener(directions);
+        findViewById(R.id.imageRoute).setOnClickListener(directions);
 
         updateCountdown();
     }

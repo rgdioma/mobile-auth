@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Opening screen: one wisp of steam (three copies rise one after another) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="16dp"
+    android:height="36dp"
+    android:viewportWidth="16"
+    android:viewportHeight="36">
+    <path
+        android:pathData="M8,34c-5,-5 5,-9 0,-14s5,-9 0,-16"
+        android:strokeWidth="3.5"
+        android:strokeColor="@color/mango"
+        android:strokeLineCap="round" />
+</vector>

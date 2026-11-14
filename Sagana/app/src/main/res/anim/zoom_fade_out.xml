@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Opening screen exit: the red splash zooms toward the viewer and fades away -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:anim/accelerate_interpolator"
+    android:duration="420"
+    android:zAdjustment="top">
+    <scale android:fromXScale="1" android:toXScale="1.18"
+        android:fromYScale="1" android:toYScale="1.18"
+        android:pivotX="50%" android:pivotY="45%" />
+    <alpha android:fromAlpha="1" android:toAlpha="0" />
+</set>

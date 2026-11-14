@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/rice"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/reportBody"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/buttonBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="12dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/cd_back"
+                android:src="@drawable/ic_arrow_back"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/textReportTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_reports"
+                android:textColor="@color/adobo"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/reports_subtitle"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp" />
+
+        <!-- Summary tiles -->
+        <GridLayout
+            android:id="@+id/kpiGrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:columnCount="2"
+            android:useDefaultMargins="false">
+
+            <LinearLayout
+                style="@style/Widget.SaluBite.Kpi"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    style="@style/Widget.SaluBite.KpiLabel"
+                    android:text="@string/kpi_rescued" />
+
+                <TextView
+                    android:id="@+id/kpiKg"
+                    style="@style/Widget.SaluBite.KpiValue"
+                    tools:text="68.4 kg" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Widget.SaluBite.Kpi"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    style="@style/Widget.SaluBite.KpiLabel"
+                    android:text="@string/kpi_handovers" />
+
+                <TextView
+                    android:id="@+id/kpiHandovers"
+                    style="@style/Widget.SaluBite.KpiValue"
+                    tools:text="37" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Widget.SaluBite.Kpi"
+                android:layout_marginEnd="4dp">
+
+                <TextView
+                    style="@style/Widget.SaluBite.KpiLabel"
+                    android:text="@string/kpi_rate" />
+
+                <TextView
+                    android:id="@+id/kpiRate"
+                    style="@style/Widget.SaluBite.KpiValue"
+                    tools:text="86%" />
+
+                <TextView
+                    android:id="@+id/kpiExpired"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/leaf"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    tools:text="6 expired" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Widget.SaluBite.Kpi"
+                android:layout_marginStart="4dp">
+
+                <TextView
+                    style="@style/Widget.SaluBite.KpiLabel"
+                    android:text="@string/kpi_active" />
+
+                <TextView
+                    android:id="@+id/kpiActive"
+                    style="@style/Widget.SaluBite.KpiValue"
+                    tools:text="7" />
+            </LinearLayout>
+        </GridLayout>
+
+        <!-- Handovers per day -->
+        <LinearLayout
+            style="@style/Widget.SaluBite.ChartCard"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                style="@style/Widget.SaluBite.ChartTitle"
+                android:text="@string/chart_per_day" />
+
+            <TextView
+                style="@style/Widget.SaluBite.ChartHint"
+                android:text="@string/chart_per_day_hint" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barChart"
+                android:layout_width="match_parent"
+                android:layout_height="220dp" />
+        </LinearLayout>
+
+        <!-- Active listings by category -->
+        <LinearLayout
+            style="@style/Widget.SaluBite.ChartCard"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                style="@style/Widget.SaluBite.ChartTitle"
+                android:text="@string/chart_category" />
+
+            <TextView
+                style="@style/Widget.SaluBite.ChartHint"
+                android:text="@string/chart_category_hint" />
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="match_parent"
+                android:layout_height="230dp" />
+        </LinearLayout>
+
+        <!-- Busiest desks -->
+        <LinearLayout
+            style="@style/Widget.SaluBite.ChartCard"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                style="@style/Widget.SaluBite.ChartTitle"
+                android:text="@string/chart_desks" />
+
+            <TextView
+                style="@style/Widget.SaluBite.ChartHint"
+                android:text="@string/chart_desks_hint" />
+
+            <com.github.mikephil.charting.charts.HorizontalBarChart
+                android:id="@+id/deskChart"
+                android:layout_width="match_parent"
+                android:layout_height="220dp" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonExport"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/chili"
+            android:text="@string/action_export_pdf"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:cornerRadius="14dp"
+            app:icon="@drawable/ic_save"
+            app:iconGravity="textStart"
+            app:iconTint="@color/white" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Transition 4 (tabs): fade through when switching bottom-nav tabs -->
+<set xmlns:android="http://schemas.android.com/apk/res/android" android:duration="250">
+    <alpha android:fromAlpha="0" android:toAlpha="1" />
+    <scale android:fromXScale="0.98" android:toXScale="1"
+        android:fromYScale="0.98" android:toYScale="1"
+        android:pivotX="50%" android:pivotY="50%" />
+</set>

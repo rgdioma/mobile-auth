@@ -1,0 +1,11 @@
+<resources>
+    <!-- Android 12+ always shows a system splash first. Make it plain red with no icon
+         so it blends straight into our animated opening screen. -->
+    <style name="Theme.Sagana.Splash" parent="Theme.Sagana">
+        <item name="android:windowBackground">@color/chili</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowSplashScreenBackground">@color/chili</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_blank</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@color/chili</item>
+    </style>
+</resources>

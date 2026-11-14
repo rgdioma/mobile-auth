@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Opening screen: the bowl and its base (same 96x96 grid as ic_logo so layers line up) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+    <path
+        android:fillColor="#E09E00"
+        android:pathData="M18,44h60c0,1.6 -0.1,3.2 -0.4,4.7H18.4C18.1,47.2 18,45.6 18,44z" />
+    <path
+        android:fillColor="@color/mango"
+        android:pathData="M18,44h60c0,17 -13,30 -30,30S18,61 18,44z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.28"
+        android:pathData="M24,50c2,9 8,16 16,19c-9,-1 -16,-9 -17.5,-19z" />
+    <path
+        android:fillColor="@color/mango"
+        android:pathData="M34,75h28a2.5,2.5 0,0 1 0,5h-28a2.5,2.5 0,0 1 0,-5z" />
+</vector>

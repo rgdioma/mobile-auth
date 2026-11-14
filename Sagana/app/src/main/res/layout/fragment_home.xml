@@ -315,26 +315,19 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="260dp"
+                android:layout_height="320dp"
                 app:cardBackgroundColor="@color/butter"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
                 app:strokeColor="@color/input_border"
                 app:strokeWidth="1dp">
 
-                <ImageView
-                    android:id="@+id/imageMap"
+                <!-- Interactive Geoapify map: drag, pinch or use +/-, tap a pin -->
+                <org.osmdroid.views.MapView
+                    android:id="@+id/mapView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/cd_map_nearby"
-                    android:scaleType="centerCrop" />
-
-                <ProgressBar
-                    android:id="@+id/progressMap"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center"
-                    android:indeterminateTint="@color/chili" />
+                    android:contentDescription="@string/cd_map_nearby" />
 
                 <TextView
                     android:id="@+id/textMapError"

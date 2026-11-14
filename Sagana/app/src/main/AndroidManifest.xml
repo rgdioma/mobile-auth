@@ -9,8 +9,17 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
+    <!-- Directions start from the phone's current location -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
+    <!-- The map library checks connectivity before downloading map tiles -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".SaganaApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -76,6 +85,9 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ReportsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MapRouteActivity"
             android:exported="false" />
         <activity
             android:name=".ScanActivity"

@@ -13,6 +13,7 @@ glide = "4.16.0"
 camerax = "1.4.2"
 mlkitBarcode = "17.3.0"
 zxing = "3.5.3"
+osmdroid = "6.1.20"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -35,6 +36,8 @@ camerax-mlkit = { group = "androidx.camera", name = "camera-mlkit-vision", versi
 mlkit-barcode = { group = "com.google.mlkit", name = "barcode-scanning", version.ref = "mlkitBarcode" }
 # Draws the handover code as a QR image
 zxing-core = { group = "com.google.zxing", name = "core", version.ref = "zxing" }
+# Interactive map (pan, zoom, tappable pins, route line) drawing Geoapify map tiles
+osmdroid = { group = "org.osmdroid", name = "osmdroid-android", version.ref = "osmdroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

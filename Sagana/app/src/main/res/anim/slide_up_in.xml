@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Transition 3 (login): next screen slides up into place -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:anim/decelerate_interpolator"
+    android:duration="450">
+    <translate android:fromYDelta="15%p" android:toYDelta="0" />
+    <alpha android:fromAlpha="0" android:toAlpha="1" />
+</set>

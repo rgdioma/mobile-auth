@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Text for the final-build features: database, OTP, Geoapify, QR, reports, backup. -->
+<resources>
+    <!-- Common actions -->
+    <string name="action_ok">OK</string>
+    <string name="action_done">Done</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_save">Save</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_keep">Keep it</string>
+    <string name="action_send">Send</string>
+    <string name="action_open">Open</string>
+    <string name="action_check">Check</string>
+    <string name="action_not_yet">Not yet</string>
+    <string name="action_stay">Stay logged in</string>
+
+    <!-- Opening screen -->
+    <string name="splash_footer">Bacolod City · SDG 2 Zero Hunger</string>
+
+    <!-- Login -->
+    <string name="action_staff_demo">Barangay desk staff? Use the staff demo</string>
+    <string name="error_login_wrong">Wrong email or password. Try the demo account.</string>
+    <string name="toast_welcome_back">Welcome back, %1$s</string>
+
+    <!-- Registration -->
+    <string name="error_email_taken">That email already has an account</string>
+    <string name="label_staff_id">Barangay staff ID</string>
+    <string name="hint_staff_id">BRGY-0421</string>
+    <string name="staff_id_hint">Format: BRGY- followed by 4 digits. Your desk is set by the barangay you picked above.</string>
+    <string name="error_staff_required">Enter your staff ID</string>
+    <string name="error_staff_invalid">Use the format BRGY-0000</string>
+
+    <!-- OTP (PhilSMS) -->
+    <string name="otp_title">Verify your number</string>
+    <string name="otp_subtitle">We sent a 6-digit code by SMS to %1$s. Type it below to finish signing up.</string>
+    <string name="otp_sending">Sending your code…</string>
+    <string name="otp_sent">Code sent. It expires in 5 minutes.</string>
+    <string name="otp_send_failed">Couldn\'t send the SMS: %1$s. Tap Resend to try again.</string>
+    <string name="otp_not_configured">SMS isn\'t set up yet (no PHILSMS_TOKEN in local.properties).</string>
+    <string name="otp_use_test_code">Show the test code</string>
+    <string name="otp_test_code_title">Test code</string>
+    <string name="otp_test_code_body">The SMS didn\'t go out, so here is the code for testing: %1$s</string>
+    <string name="otp_verify">Verify and create account</string>
+    <string name="otp_resend">Resend code</string>
+    <string name="otp_resend_in">Resend code in %1$d:%2$02d</string>
+    <string name="otp_enter_all">Enter all 6 digits</string>
+    <string name="otp_expired">That code has expired. Tap Resend for a new one.</string>
+    <string name="otp_too_many">Too many wrong tries. Tap Resend for a new code.</string>
+    <string name="otp_creating">Number verified. Creating your account…</string>
+    <string name="otp_verified">Verified!</string>
+    <string name="otp_powered">SMS delivered by PhilSMS</string>
+    <string name="toast_sms_sent">SMS sent to %1$s</string>
+    <string name="toast_sms_failed">The SMS wasn\'t sent. See the message above.</string>
+    <string name="cd_otp_digit">Digit %1$d</string>
+    <plurals name="otp_wrong">
+        <item quantity="one">Wrong code. %1$d try left.</item>
+        <item quantity="other">Wrong code. %1$d tries left.</item>
+    </plurals>
+
+    <!-- Home -->
+    <string name="within_km_f">Within %1$.1f km of you</string>
+    <string name="distance_walk">%1$.1f km · %2$d min walk</string>
+    <string name="home_empty">Nothing in range right now. Widen the radius or try another category.</string>
+    <string name="view_list">List</string>
+    <string name="view_map">Map</string>
+    <string name="map_hint">Green dot is you. Tap a red pin to see the food there and get directions. Drag, pinch or use +/− to move around.</string>
+    <string name="map_you">You (saved barangay)</string>
+    <string name="map_you_saved">This is your saved barangay location</string>
+    <string name="sheet_food_here">Food waiting at this desk</string>
+    <string name="sheet_desk_info">%1$.1f km away · about %2$d min walk · %3$s</string>
+    <string name="action_get_directions">Get directions</string>
+
+    <!-- Directions (MapRouteActivity) -->
+    <string name="directions_to">Directions to</string>
+    <string name="cd_fit_route">Show the whole route</string>
+    <string name="mode_walk">Walk</string>
+    <string name="mode_drive">Drive</string>
+    <string name="action_use_my_location">Use my current location</string>
+    <string name="route_powered">Route by Geoapify Routing API · map © OpenStreetMap</string>
+    <string name="route_finding_you">Finding your location…</string>
+    <string name="route_loading">Getting the route…</string>
+    <string name="route_from_gps">From your current location</string>
+    <string name="route_from_saved_denied">Location permission is off, so this starts from your saved barangay.</string>
+    <string name="route_from_saved_off">Location is turned off on this phone, so this starts from your saved barangay.</string>
+    <string name="route_from_saved_timeout">Couldn\'t get a location fix in time, so this starts from your saved barangay.</string>
+    <string name="route_from_saved_far">You\'re %1$.0f km away from this desk, so this starts from your saved barangay.</string>
+    <string name="route_destination_hint">Pickup desk</string>
+    <string name="route_failed_title">No route found</string>
+    <string name="route_failed_body">Geoapify couldn\'t make a route (%1$s). Check your connection and try again.</string>
+    <string name="n_min">%1$d min</string>
+    <string name="n_hr_min">%1$d h %2$d min</string>
+    <string name="map_unavailable">Map unavailable. Check your connection or Geoapify key.</string>
+    <string name="map_attribution">© OpenStreetMap · Geoapify</string>
+    <string name="cd_map_nearby">Map of pickup desks near you</string>
+    <plurals name="listing_count">
+        <item quantity="one">%1$d listing</item>
+        <item quantity="other">%1$d listings</item>
+    </plurals>
+
+    <!-- Food details -->
+    <string name="donor_rating_f">%1$.1f donor rating</string>
+    <string name="no_notes">No notes from the donor.</string>
+    <string name="handover_note_f">Pickup at %1$s. Staff check the food and log the handover.</string>
+    <string name="label_walk_distance">Walking distance</string>
+    <string name="label_walk_time">Walking time</string>
+    <string name="label_desk">Desk</string>
+    <string name="walk_minutes">~%1$d min</string>
+    <string name="route_from_api">Walking route by Geoapify Routing API</string>
+    <string name="route_estimate">Estimated from straight-line distance…</string>
+    <string name="cd_map_route">Walking route from you to the pickup desk</string>
+    <string name="toast_listing_gone">That listing was removed</string>
+    <string name="toast_listing_closed">This listing has closed</string>
+    <string name="toast_staff_cannot_reserve">Desk staff can\'t reserve food</string>
+
+    <!-- Post / edit listing -->
+    <string name="manage_my_listings">Manage my listings</string>
+    <string name="change_photo">Change photo</string>
+    <string name="cd_food_photo">Photo of the food</string>
+    <string name="cd_less">Less</string>
+    <string name="cd_more">More</string>
+    <string name="label_notes">Notes for the receiver (optional)</string>
+    <string name="hint_notes">When it was cooked, how to keep it, allergens</string>
+    <string name="title_start_time">Pickup starts</string>
+    <string name="title_end_time">Pickup ends</string>
+    <string name="title_edit_listing">Edit listing</string>
+    <string name="subtitle_edit_listing">Change anything below, then save. People who reserved it see the update.</string>
+    <string name="action_save_changes">Save changes</string>
+    <string name="action_delete_listing">Delete listing</string>
+    <string name="donor_type_member">Community member</string>
+    <string name="error_food_required">Enter the food name</string>
+    <string name="error_food_invalid">Use 3–40 letters or numbers for the food name</string>
+    <string name="error_category_required">Pick a category</string>
+    <string name="error_window_order">The end time has to be after the start time</string>
+    <string name="error_window_past">The pickup window has to end later than now</string>
+    <string name="error_safety_required">Confirm the food is safe before posting</string>
+    <string name="toast_listing_posted">Listing posted</string>
+    <string name="toast_listing_updated">Listing updated</string>
+    <string name="toast_listing_deleted">%1$s deleted</string>
+    <string name="toast_photo_failed">Couldn\'t use that photo</string>
+    <string name="delete_listing_title">Delete %1$s?</string>
+    <string name="delete_listing_body">It comes off the map and the list for everyone. This can\'t be undone.</string>
+    <plurals name="delete_cancels">
+        <item quantity="one">%1$d scheduled pickup will be cancelled too.</item>
+        <item quantity="other">%1$d scheduled pickups will be cancelled too.</item>
+    </plurals>
+
+    <!-- My listings -->
+    <string name="title_my_listings">My listings</string>
+    <string name="subtitle_my_listings">Food you\'ve posted. Edit the details or remove a listing once it\'s gone.</string>
+    <string name="my_listings_empty">No listings yet. Post your extra food and it shows up here so you can edit or remove it.</string>
+    <string name="action_post_new">Post new food</string>
+    <string name="status_active">Active</string>
+    <string name="status_closed">Closed</string>
+    <string name="window_ends">Window ends %1$s</string>
+    <string name="window_ended">Ended %1$s</string>
+    <plurals name="pickups_booked">
+        <item quantity="one">%1$d pickup booked</item>
+        <item quantity="other">%1$d pickups booked</item>
+    </plurals>
+
+    <!-- Pickups -->
+    <string name="cd_clear">Clear</string>
+    <string name="action_confirm_pickup">Confirm pickup</string>
+    <string name="toast_pick_slot">Pick a time slot first</string>
+    <string name="confirm_pickup_title">Confirm this pickup?</string>
+    <string name="confirm_pickup_body">%1$s, %2$s\n%3$s at %4$s\n%5$s</string>
+    <string name="pickup_confirmed_title">Pickup confirmed</string>
+    <string name="handover_qr_title">Your handover code</string>
+    <string name="show_qr_to_desk">Show this QR to the desk staff</string>
+    <string name="cd_qr">Handover QR code</string>
+    <string name="action_enlarge_qr">Show big QR</string>
+    <string name="cancel_pickup_title">Cancel this pickup?</string>
+    <string name="cancel_pickup_body">%1$s goes back on the list so someone else can reserve it.</string>
+    <string name="action_cancel_pickup">Cancel pickup</string>
+    <string name="toast_pickup_cancelled">Pickup cancelled</string>
+    <string name="status_scheduled">Scheduled</string>
+    <string name="status_verified">Verified</string>
+    <string name="status_received">Received</string>
+    <string name="status_given">Given</string>
+    <string name="status_waiting">Waiting</string>
+    <string name="verified_note">Desk checked your code at %1$s. Confirm once you have the food.</string>
+    <string name="action_mark_received">Mark received</string>
+    <string name="received_title">Food handed over?</string>
+    <string name="received_body">Only confirm once you actually have the food in hand.</string>
+    <string name="action_received_yes">Yes, I received it</string>
+    <string name="toast_handover_confirmed">Handover confirmed</string>
+    <string name="rate_prompt">How was it? Rate %1$s</string>
+    <string name="toast_tap_stars">Tap the stars first</string>
+    <string name="toast_thanks_rating">Thanks for the rating</string>
+    <string name="you_rated">You rated this pickup</string>
+
+    <!-- Alerts -->
+    <string name="alert_pickup_at">Pickup at %1$s, %2$s</string>
+    <string name="code_label">code %1$s</string>
+    <string name="nothing_open">Nothing open right now</string>
+    <string name="alerts_all_off">All alerts are off. Turn one on above to get notified.</string>
+    <plurals name="listings_nearby">
+        <item quantity="one">%1$d listing within %2$d km</item>
+        <item quantity="other">%1$d listings within %2$d km</item>
+    </plurals>
+
+    <!-- Staff: navigation -->
+    <string name="nav_desk">Desk</string>
+    <string name="nav_history">History</string>
+    <string name="nav_reports">Reports</string>
+
+    <!-- Staff: desk -->
+    <string name="staff_badge">Staff</string>
+    <string name="desk_check_title">Check a handover code</string>
+    <string name="desk_check_hint">Scan the QR on the receiver\'s phone. It runs on this phone, no internet needed.</string>
+    <string name="action_scan_qr">Scan QR code</string>
+    <string name="desk_or_type">or type the code</string>
+    <string name="hint_code">SG-7K2P</string>
+    <string name="error_code_required">Enter the code from the receiver\'s phone</string>
+    <string name="error_code_format">Codes look like SG- followed by 4 letters or numbers</string>
+    <string name="desk_no_match">No pickup matches %1$s. Double-check the code with the receiver.</string>
+    <string name="desk_wrong_desk">This code is for the %1$s, not this desk.</string>
+    <string name="desk_already">Already handed over at %1$s by %2$s.</string>
+    <string name="desk_code_matches">Code matches</string>
+    <string name="qty_from_donor">%1$s · from %2$s</string>
+    <string name="label_receiver">Receiver</string>
+    <string name="label_scheduled">Scheduled</string>
+    <string name="action_hand_over">Hand over food</string>
+    <string name="hand_over_title">Hand over %1$s?</string>
+    <string name="hand_over_body">Give %1$s to %2$s. This records the handover under your name.</string>
+    <string name="action_handed_over">Yes, handed over</string>
+    <string name="toast_handed_over">Handed over to %1$s</string>
+    <string name="desk_waiting_title">Pickups at this desk</string>
+    <string name="n_waiting">%1$d waiting</string>
+    <string name="desk_nobody_waiting">No one is waiting for a pickup at this desk right now.</string>
+
+    <!-- Staff: scanner -->
+    <string name="scan_title">Scan handover QR</string>
+    <string name="scan_hint">Point the camera at the QR code on the receiver\'s phone</string>
+    <string name="scan_on_device">Scanned on this phone with ML Kit. No internet needed.</string>
+    <string name="scan_type_instead">Type the code instead</string>
+    <string name="scan_not_sagana">That QR isn\'t a Sagana handover code</string>
+    <string name="scan_found">Found %1$s</string>
+    <string name="scan_no_permission">Sagana needs the camera to scan handover QR codes. You can also type the code.</string>
+    <string name="scan_allow_camera">Allow camera</string>
+    <string name="cd_torch">Flashlight</string>
+
+    <!-- Staff: history -->
+    <string name="title_history">Handover history</string>
+    <string name="history_subtitle">Every handover at the %1$s, newest first.</string>
+    <string name="history_empty">No handovers yet. Checked codes show up here.</string>
+    <string name="history_row">To %1$s · by %2$s\n%3$s, %4$s · code %5$s</string>
+
+    <!-- Reports -->
+    <string name="title_reports">Reports</string>
+    <string name="title_impact">Community impact report</string>
+    <string name="reports_subtitle">Past 7 days across Bacolod pickup desks. Earlier days include sample records.</string>
+    <string name="kpi_rescued">Food rescued</string>
+    <string name="kpi_handovers">Handovers</string>
+    <string name="kpi_rate">Rescue rate</string>
+    <string name="kpi_active">Active listings</string>
+    <string name="n_expired">%1$d expired</string>
+    <string name="chart_per_day">Handovers per day</string>
+    <string name="chart_per_day_hint">Stacked: picked up and expired before pickup</string>
+    <string name="chart_category">What\'s on offer now</string>
+    <string name="chart_category_hint">Active listings by category</string>
+    <string name="chart_desks">Busiest desks</string>
+    <string name="chart_desks_hint">Handovers this week</string>
+    <string name="chart_no_data">No data yet</string>
+    <string name="legend_picked">Picked up</string>
+    <string name="legend_expired">Expired</string>
+    <string name="action_export_pdf">Export report (PDF)</string>
+    <string name="report_saved_title">Report saved</string>
+    <string name="report_saved_body">The weekly report was saved as a PDF:\n%1$s</string>
+    <string name="toast_export_failed">Couldn\'t export: %1$s</string>
+    <string name="toast_no_pdf_app">No app to open PDFs. Find it in your Download folder.</string>
+
+    <!-- Onboarding -->
+    <string name="action_skip">Skip</string>
+    <string name="action_replay_intro">View the app intro again</string>
+    <string name="action_next">Next</string>
+    <string name="action_get_started">Get started</string>
+    <string name="onb_title_1">Share your extra food</string>
+    <string name="onb_body_1">Cooked too much? Post leftovers from home, your eatery or school canteen in under a minute.</string>
+    <string name="onb_title_2">Find food near you</string>
+    <string name="onb_body_2">See what\'s up for grabs within walking distance, on a list or a map, with the walking route to the desk.</string>
+    <string name="onb_title_3">Pick up safely</string>
+    <string name="onb_body_3">Reserve a time, then show your QR code at the barangay desk. Staff scan it and hand the food over.</string>
+    <string name="onb_title_4">Every meal counts</string>
+    <string name="onb_body_4">Track how much food your barangay rescues each week. Less waste, fewer hungry neighbors.</string>
+
+    <!-- Registration: first and last name -->
+    <string name="label_first_name">First name</string>
+    <string name="label_last_name">Last name</string>
+    <string name="hint_first_name">Juan</string>
+    <string name="hint_last_name">dela Cruz</string>
+    <string name="error_first_name_required">Enter your first name</string>
+    <string name="error_last_name_required">Enter your last name</string>
+    <string name="error_name_part_invalid">Letters only, at least 2</string>
+
+    <!-- Edit profile -->
+    <string name="section_details">Personal details</string>
+    <string name="section_password">Change password</string>
+    <string name="section_delete">Delete account</string>
+    <string name="email_change_hint">Changing your login email asks for your password.</string>
+    <string name="mobile_change_hint">A new number is confirmed with a code sent by SMS.</string>
+    <string name="label_current_password">Current password</string>
+    <string name="label_new_password">New password</string>
+    <string name="password_rules_line">8+ characters with an uppercase letter, a lowercase letter, a number and a symbol.</string>
+    <string name="action_change_password">Change password</string>
+    <string name="action_continue">Continue</string>
+    <string name="action_delete_account">Delete my account</string>
+    <string name="action_keep_account">Keep my account</string>
+    <string name="delete_account_hint">Removes your account and your listings. Finished handovers stay in the desk records.</string>
+    <string name="delete_account_title">Delete your account?</string>
+    <string name="delete_account_body">This can\'t be undone. Type your password to confirm.</string>
+    <string name="confirm_email_change_title">Change login email?</string>
+    <string name="confirm_email_change_body">You\'ll log in with %1$s from now on. Type your current password to confirm.</string>
+    <string name="error_wrong_password">That password isn\'t right</string>
+    <string name="error_current_password_required">Enter your current password</string>
+    <string name="error_password_same">The new password must be different</string>
+    <string name="error_mobile_not_verified">The new mobile number wasn\'t verified, so nothing was saved.</string>
+    <string name="toast_password_changed">Password changed</string>
+    <string name="toast_account_deleted">Your account was deleted</string>
+    <string name="toast_photo_ready">Photo ready. Tap Save changes to keep it.</string>
+    <string name="otp_subtitle_change">We sent a 6-digit code by SMS to your new number, %1$s.</string>
+    <string name="otp_verify_number">Verify number</string>
+
+    <!-- Profile -->
+    <string name="role_member_label">Community member</string>
+    <string name="role_staff_label">Barangay desk staff</string>
+    <string name="stat_waiting">Waiting</string>
+    <string name="stat_handed_over">Handed over</string>
+    <string name="stat_total">Total</string>
+    <string name="edit_profile_note">Your email stays the same since it\'s your login.</string>
+    <string name="toast_profile_saved">Profile saved</string>
+    <string name="label_backup">Backup and restore</string>
+    <string name="backup_body">Save every table to a text file in your Download folder, or load one back in.</string>
+    <string name="action_backup">Back up</string>
+    <string name="action_restore">Restore</string>
+    <string name="backup_done_title">Backup saved</string>
+    <string name="backup_done_body">%1$d rows from 4 tables were saved to:\n%2$s</string>
+    <string name="toast_backup_failed">Backup failed: %1$s</string>
+    <string name="restore_title">Restore this backup?</string>
+    <string name="restore_body">Everything in the app now will be replaced by the file. If the file is damaged, nothing changes.</string>
+    <string name="action_restore_replace">Replace with backup</string>
+    <string name="toast_restored">Restored %1$d rows</string>
+    <string name="toast_restored_logout">Restored. Your account isn\'t in that file, so log in again.</string>
+    <string name="toast_restore_failed">Couldn\'t restore: %1$s</string>
+    <string name="logout_title">Log out?</string>
+    <string name="logout_body">Your pickups stay saved. You can log back in any time.</string>
+    <string name="toast_no_browser">No browser found</string>
+</resources>

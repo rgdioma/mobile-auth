@@ -542,6 +542,19 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <TextView
+            android:id="@+id/textReplayIntro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:background="?attr/selectableItemBackground"
+            android:padding="6dp"
+            android:text="@string/action_replay_intro"
+            android:textColor="@color/chili"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
         <Button
             android:id="@+id/buttonLogout"
             style="@style/Widget.Material3.Button.OutlinedButton"

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One row in the staff Desk / History lists -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingVertical="12dp">
+
+    <FrameLayout
+        android:id="@+id/iconBg"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/bg_circle_solid"
+        android:backgroundTint="@color/butter">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_nav_profile"
+            app:tint="@color/placeholder_ink" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/adobo"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="Maria Santos" />
+
+        <TextView
+            android:id="@+id/textSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            tools:text="Pancit bihon, 2 packs · Nov 13, 5:00 PM" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textPill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_badge"
+        android:backgroundTint="@color/mango"
+        android:paddingHorizontal="9dp"
+        android:paddingVertical="3dp"
+        android:textColor="@color/adobo"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        tools:text="Waiting" />
+</LinearLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Opening screen: the heart on the bowl, animated separately so it can beat -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+    <path
+        android:fillColor="@color/chili"
+        android:pathData="M48,66c-7,-5 -12,-9 -12,-14a5.5,5.5 0,0 1,12 -2 5.5,5.5 0,0 1,12 2c0,5 -5,9 -12,14z" />
+</vector>

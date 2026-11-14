@@ -41,6 +41,8 @@ public class ProfileFragment extends Fragment {
                 Nav.push(requireActivity(), new Intent(requireContext(), MyListingsActivity.class)));
         view.findViewById(R.id.rowReport).setOnClickListener(v ->
                 Nav.push(requireActivity(), new Intent(requireContext(), ReportsActivity.class)));
+        view.findViewById(R.id.textReplayIntro).setOnClickListener(v ->
+                Nav.push(requireActivity(), new Intent(requireContext(), OnboardingActivity.class)));
         view.findViewById(R.id.buttonBackup).setOnClickListener(v -> backup());
         view.findViewById(R.id.buttonRestore).setOnClickListener(v ->
                 pickBackup.launch(new String[]{"text/plain", "application/octet-stream"}));
