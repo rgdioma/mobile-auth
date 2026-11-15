@@ -33,7 +33,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "sagana.db";
     // 3: first_name/last_name split, profile photo
     // 4: bookings can be rescheduled (rescheduled, prev_date, prev_slot, updated_at)
-    private static final int DB_VERSION = 4;
+    // 5: listings wait for the barangay desk to confirm drop-off (status, received_at, received_by)
+    private static final int DB_VERSION = 5;
+
+    public static final String PENDING_DROPOFF = "Pending";
+    public static final String AVAILABLE = "Available";
     private static final long MIN = 60_000L;
 
     private static DatabaseHelper instance;
@@ -80,7 +84,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "notes TEXT, " +
                 "photo TEXT, " +                      // res:drawable_name or a file path
                 "seed INTEGER DEFAULT 0, " +          // sample data that refreshes itself
-                "archived INTEGER DEFAULT 0)");
+                "archived INTEGER DEFAULT 0, " +
+                "status TEXT NOT NULL DEFAULT 'Available', " + // Pending (not yet at the desk) or Available
+                "received_at INTEGER, " +             // when desk staff confirmed the food arrived
+                "received_by TEXT)");
 
         db.execSQL("CREATE TABLE bookings (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -129,6 +136,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL("ALTER TABLE bookings ADD COLUMN prev_date TEXT");
             db.execSQL("ALTER TABLE bookings ADD COLUMN prev_slot TEXT");
             db.execSQL("ALTER TABLE bookings ADD COLUMN updated_at INTEGER");
+        }
+        if (oldV < 5) {
+            // listings posted before this version stay reservable as they were
+            db.execSQL("ALTER TABLE listings ADD COLUMN status TEXT NOT NULL DEFAULT 'Available'");
+            db.execSQL("ALTER TABLE listings ADD COLUMN received_at INTEGER");
+            db.execSQL("ALTER TABLE listings ADD COLUMN received_by TEXT");
         }
     }
 
@@ -271,11 +284,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return r.isEmpty() ? null : r.get(0);
     }
 
-    /** READ: listings whose pickup window is still open. Distance sorting happens in Java. */
+    /**
+     * READ: listings receivers can reserve: the desk has the food and the window is still open.
+     * Distance sorting happens in Java.
+     */
     public List<Listing> getOpenListings() {
         refreshSeedListings();
-        return queryListings("SELECT * FROM listings WHERE pickup_end > ? ORDER BY pickup_end",
+        return queryListings("SELECT * FROM listings WHERE status = 'Available' AND pickup_end > ? ORDER BY pickup_end",
                 new String[]{String.valueOf(System.currentTimeMillis())});
+    }
+
+    /** Staff: food posted for this desk that the donor hasn't dropped off yet, closing soonest first. */
+    public List<Listing> getPendingDropOffs(String desk) {
+        return queryListings("SELECT * FROM listings WHERE desk = ? AND status = 'Pending' AND pickup_end > ? ORDER BY pickup_end",
+                new String[]{desk, String.valueOf(System.currentTimeMillis())});
+    }
+
+    /** Staff: drop-offs this desk already confirmed, newest first, for the History screen. */
+    public List<Listing> getReceivedAtDesk(String desk) {
+        return queryListings("SELECT * FROM listings WHERE desk = ? AND received_at IS NOT NULL ORDER BY received_at DESC",
+                new String[]{desk});
+    }
+
+    /**
+     * Staff confirm the donor brought the food to their desk, so receivers can now reserve it.
+     * Returns 1 if it was waiting for drop-off at that desk and its window is still open.
+     */
+    public int confirmReceived(long listingId, String desk, String staffName) {
+        ContentValues v = new ContentValues();
+        v.put("status", AVAILABLE);
+        v.put("received_at", System.currentTimeMillis());
+        v.put("received_by", staffName);
+        return getWritableDatabase().update("listings", v,
+                "id = ? AND desk = ? AND status = 'Pending' AND pickup_end > ?",
+                new String[]{String.valueOf(listingId), desk, String.valueOf(System.currentTimeMillis())});
+    }
+
+    public int countHandedOverFor(long listingId) {
+        try (Cursor c = getReadableDatabase().rawQuery(
+                "SELECT COUNT(*) FROM bookings WHERE listing_id = ? AND status != 'Scheduled'",
+                new String[]{String.valueOf(listingId)})) {
+            return c.moveToFirst() ? c.getInt(0) : 0;
+        }
     }
 
     /** READ: one owner's listings, for the My listings screen. */
@@ -341,8 +391,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return l != null && l.owner != null && l.owner.equalsIgnoreCase(email);
     }
 
-    /** CREATE a pickup. Returns -1 and saves nothing if the member is booking their own listing. */
+    /**
+     * CREATE a pickup. Returns -1 and saves nothing if the member is booking their own listing,
+     * or the food isn't reservable (not yet received by the desk, or the window closed).
+     */
     public long insertBooking(Booking b) {
+        Listing l = getListing(b.listingId);
+        if (l == null || !l.isReservable()) return -1;
         if (isOwnListing(b.listingId, b.owner)) return -1;
         ContentValues v = new ContentValues();
         v.put("listing_id", b.listingId);
@@ -504,7 +559,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // ------------------------------------------------------------------ reports
-    /** Moves member listings whose window closed with nobody picking up into the archive as expired. */
+    /**
+     * Moves member listings whose window closed with nobody picking up into the archive as expired.
+     * Food the donor never dropped off at the desk was never in the program, so it is closed
+     * without counting as rescued or wasted.
+     */
     public void sweepExpired() {
         long now = System.currentTimeMillis();
         List<Listing> closed = queryListings("SELECT * FROM listings WHERE seed = 0 AND archived = 0 AND pickup_end <= ?",
@@ -516,7 +575,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     new String[]{String.valueOf(l.id)})) {
                 handedOver = c.moveToFirst();
             }
-            if (!handedOver) {
+            if (!handedOver && AVAILABLE.equals(l.status)) {
                 ContentValues a = new ContentValues();
                 a.put("day", new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(new Date(l.pickupEnd)));
                 a.put("category", l.category);
@@ -544,7 +603,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /** Open listings by category for the pie chart. */
     public Cursor listingsByCategory() {
         return getReadableDatabase().rawQuery(
-                "SELECT category, COUNT(*) FROM listings WHERE pickup_end > ? GROUP BY category",
+                "SELECT category, COUNT(*) FROM listings WHERE status = 'Available' AND pickup_end > ? GROUP BY category",
                 new String[]{String.valueOf(System.currentTimeMillis())});
     }
 
@@ -556,7 +615,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int countOpenListings() {
-        try (Cursor c = getReadableDatabase().rawQuery("SELECT COUNT(*) FROM listings WHERE pickup_end > ?",
+        try (Cursor c = getReadableDatabase().rawQuery("SELECT COUNT(*) FROM listings WHERE status = 'Available' AND pickup_end > ?",
                 new String[]{String.valueOf(System.currentTimeMillis())})) {
             return c.moveToFirst() ? c.getInt(0) : 0;
         }
@@ -647,6 +706,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             l.notes = (String) f[10];
             l.owner = (String) f[11];
             l.seed = l.owner == null;
+            // sample donors' food is already at the desk; the demo member's own post still needs dropping off
+            if (l.seed) {
+                l.status = AVAILABLE;
+                l.receivedAt = l.pickupStart;
+                l.receivedBy = "Tangub".equals(f[6]) ? "Rosa Villanueva" : "Desk staff";
+            }
             ids[i] = db.insert("listings", null, l.toValues());
         }
 
@@ -739,9 +804,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         public double lat, lng, rating = 5;
         public long pickupStart, pickupEnd;
         public boolean seed;
+        public String status = PENDING_DROPOFF; // new posts wait for the desk to confirm drop-off
+        public long receivedAt;
+        public String receivedBy;
         public double distanceKm; // filled in on the phone, not stored
 
         public boolean isOpen() { return pickupEnd > System.currentTimeMillis(); }
+        public boolean isPendingDropOff() { return PENDING_DROPOFF.equals(status); }
+        public boolean isReservable() { return AVAILABLE.equals(status) && isOpen(); }
 
         ContentValues toValues() {
             ContentValues v = new ContentValues();
@@ -760,6 +830,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             v.put("notes", notes);
             v.put("photo", photo);
             v.put("seed", seed ? 1 : 0);
+            v.put("status", status);
+            if (receivedAt > 0) v.put("received_at", receivedAt); else v.putNull("received_at");
+            v.put("received_by", receivedBy);
             return v;
         }
 
@@ -781,6 +854,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             l.notes = c.getString(c.getColumnIndexOrThrow("notes"));
             l.photo = c.getString(c.getColumnIndexOrThrow("photo"));
             l.seed = c.getInt(c.getColumnIndexOrThrow("seed")) == 1;
+            l.status = c.getString(c.getColumnIndexOrThrow("status"));
+            l.receivedAt = c.getLong(c.getColumnIndexOrThrow("received_at"));
+            l.receivedBy = c.getString(c.getColumnIndexOrThrow("received_by"));
             return l;
         }
     }

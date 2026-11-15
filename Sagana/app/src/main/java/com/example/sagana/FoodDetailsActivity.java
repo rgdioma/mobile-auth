@@ -97,6 +97,7 @@ public class FoodDetailsActivity extends AppCompatActivity {
         findViewById(R.id.buttonBack).setOnClickListener(v -> finish());
         findViewById(R.id.buttonReserve).setOnClickListener(v -> reserve());
         if (listing.owner != null && me != null && listing.owner.equalsIgnoreCase(me.email)) showAsOwnListing();
+        else if (listing.isPendingDropOff()) showDisabledReserve(R.string.action_awaiting_dropoff);
         View.OnClickListener directions = v -> Nav.push(this,
                 MapRouteActivity.intent(this, listing.desk, listing.lat, listing.lng));
         findViewById(R.id.buttonDirections).setOnClickListener(directions);
@@ -155,8 +156,12 @@ public class FoodDetailsActivity extends AppCompatActivity {
 
     /** Your own listing: nobody reserves their own food, so Reserve becomes a disabled notice. */
     private void showAsOwnListing() {
+        showDisabledReserve(R.string.action_your_listing);
+    }
+
+    private void showDisabledReserve(int text) {
         MaterialButton b = findViewById(R.id.buttonReserve);
-        b.setText(R.string.action_your_listing);
+        b.setText(text);
         b.setEnabled(false);
         b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.input_border)));
         b.setTextColor(ContextCompat.getColor(this, R.color.text_secondary));
@@ -171,6 +176,10 @@ public class FoodDetailsActivity extends AppCompatActivity {
         }
         if (!listing.isOpen()) {
             Toast.makeText(this, R.string.toast_listing_closed, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (listing.isPendingDropOff()) {
+            Toast.makeText(this, R.string.toast_listing_pending, Toast.LENGTH_SHORT).show();
             return;
         }
         DatabaseHelper.User me = Session.user(this);
